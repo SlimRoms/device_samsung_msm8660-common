@@ -64,8 +64,7 @@ PRODUCT_PACKAGES += \
 
 # Sensors/Lights Support
 PRODUCT_PACKAGES += \
-    sensors.msm8660 \
-    lights.msm8660_overlay
+    sensors.msm8660
 
 # NFC Support
 PRODUCT_PACKAGES += \
