@@ -38,7 +38,7 @@ lib/libOpenVG.so
 lib/libsc-a2xx.so
 
 # Copybit
-lib/hw/copybit.msm8660.so
+#lib/hw/copybit.msm8660.so
 
 # Radio
 bin/netmgrd
