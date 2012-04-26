@@ -86,4 +86,4 @@ BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
 
 # Webkit
 TARGET_FORCE_CPU_UPLOAD := true
-DYNAMIC_SHARED_LIBV8SO := true
+#DYNAMIC_SHARED_LIBV8SO := true
