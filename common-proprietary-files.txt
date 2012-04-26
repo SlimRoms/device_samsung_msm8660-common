@@ -136,3 +136,4 @@ lib/lib_Samsung_SB_AM_Handset_LPA.so
 lib/libsamsungSoundboosterLPA.so
 lib/libQmageDecoder.so
 lib/libprofiler_msmadc.so
+lib/libv8.so
