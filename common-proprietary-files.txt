@@ -117,6 +117,16 @@ lib/libdsm.so
 lib/libthermal_mitigation.so
 lib/libthermal_mitigation_fusion.so
 
+# Camera
+lib/hw/camera.msm8660.so
+lib/libmmjpeg.so
+lib/libgemini.so
+lib/libs3cjpeg.so
+lib/liboemcamera.so
+lib/libmmipl.so
+lib/libmmmpo.so
+lib/libmmstereo.so
+
 # Misc libs (will sort out later)
 lib/libdiag.so
 lib/libakm.so
