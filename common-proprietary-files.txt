@@ -131,12 +131,10 @@ lib/libmmstereo.so
 lib/libdiag.so
 lib/libakm.so
 lib/libcommondefs.so
-lib/libgemini.so
 lib/libgps.utils.so
 lib/libloc_adapter.so
 lib/libloc_api-rpc-qc.so
 lib/libloc_eng.so
-lib/libmmjpeg.so
 lib/libmmosal.so
 lib/libmmparser_divxdrmlib.so
 lib/libmmparser.so
