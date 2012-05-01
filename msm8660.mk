@@ -164,14 +164,15 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/keylayout/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
     device/samsung/msm8660-common/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
     device/samsung/msm8660-common/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
+    device/samsung/msm8660-common/keylayout/melfas_touchkey.kl:system/usr/keylayout/melfas_touchkey.kl \
     device/samsung/msm8660-common/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl\
     device/samsung/msm8660-common/keylayout/sii9234_rcp.kl:system/usr/keylayout/sii9234_rcp.kl \
-    device/samsung/msm8660-common/keylayout/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_028e.kl \
     device/samsung/msm8660-common/keylayout/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_028e.kl \
     device/samsung/msm8660-common/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
     device/samsung/msm8660-common/keylayout/Vendor_046d_Product_c294.kl:system/usr/keylayout/Vendor_046d_Product_c294.kl \
     device/samsung/msm8660-common/keylayout/Vendor_046d_Product_c299.kl:system/usr/keylayout/Vendor_046d_Product_c299.kl \
     device/samsung/msm8660-common/keylayout/Vendor_046d_Product_c532.kl:system/usr/keylayout/Vendor_046d_Product_c532.kl \
+    device/samsung/msm8660-common/keylayout/Vendor_04e8_Product_7021.kl:system/usr/keylayout/Vendor_04e8_Product_7021.kl \
     device/samsung/msm8660-common/keylayout/Vendor_054c_Product_0268.kl:system/usr/keylayout/Vendor_054c_Product_0268.kl \
     device/samsung/msm8660-common/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl \
     device/samsung/msm8660-common/keylayout/Vendor_22b8_Product_093d.kl:system/usr/keylayout/Vendor_22b8_Product_093d.kl
