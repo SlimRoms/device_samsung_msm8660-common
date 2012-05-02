@@ -17,6 +17,9 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm8660-common/include
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
+# Custom release tools
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/samsung/msm8660-common/releasetools/msm8660_ota_from_target_files
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
