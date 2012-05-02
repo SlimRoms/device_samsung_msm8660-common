@@ -144,19 +144,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/etc/wifi/wl:system/etc/wifi/wl \
     device/samsung/msm8660-common/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
-# Ramdisk
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/ramdisk/init.rc:root/init.rc \
-    device/samsung/msm8660-common/ramdisk/init.qcom.lpm_boot.sh:root/init.qcom.lpm_boot.sh \
-    device/samsung/msm8660-common/ramdisk/init.qcom.rc:root/init.qcom.rc \
-    device/samsung/msm8660-common/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    device/samsung/msm8660-common/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    device/samsung/msm8660-common/ramdisk/init.qcom.usb.sh:root/init.qcom.usb.sh \
-    device/samsung/msm8660-common/ramdisk/init.target.rc:root/init.target.rc \
-    device/samsung/msm8660-common/ramdisk/initlogo.rle:root/initlogo.rle \
-    device/samsung/msm8660-common/ramdisk/lpm.rc:root/lpm.rc \
-    device/samsung/msm8660-common/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
-
 # keylayouts
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl\
