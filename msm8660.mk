@@ -107,10 +107,6 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
         system/extras/bugmailer/send_bug:system/bin/send_bug
 endif
 
-# BT firmware
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/firmware/bcm4330B1.hcd:system/etc/firmware/bcm4330B1.hcd
-
 # EGL firmware
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
