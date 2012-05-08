@@ -208,6 +208,11 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/batteryanim/battery_charging_100.qmg:system/media/battery_charging_100.qmg \
     device/samsung/msm8660-common/batteryanim/battery_error.qmg:system/media/battery_error.qmg
 
+# Needed to reset bootmode when leaving recovery
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
+	$(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/system/bin/postrecoveryboot.sh
+
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
