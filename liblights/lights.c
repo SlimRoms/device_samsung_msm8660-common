@@ -30,9 +30,11 @@
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
+static int g_enable_touchlight = -1;
 
 static char const LCD_FILE[]      = "/sys/class/leds/lcd-backlight/brightness";
 static char const BUTTONS_FILE[]  = "/sys/class/misc/melfas_touchkey/brightness";
+static char const BUTTONS_POWER[] = "/sys/class/misc/melfas_touchkey/enable_disable";
 
 static int write_int(char const *path, int value)
 {
@@ -55,6 +57,22 @@ static int write_int(char const *path, int value)
 		}
 		return -errno;
 	}
+}
+
+void load_settings()
+{
+        FILE* fp = fopen("/data/.disable_touchlight", "r");
+        if (!fp){
+           g_enable_touchlight = 1;
+        } else {
+           g_enable_touchlight = (int) (fgetc(fp));
+           if (g_enable_touchlight == '1')
+               g_enable_touchlight = 1;
+           else
+               g_enable_touchlight = 0;
+
+        fclose(fp);
+        }
 }
 
 static int write_str(char const *path, char const *str)
@@ -117,11 +135,15 @@ static int set_light_notifications(struct light_device_t* dev,
 static int set_light_backlight(struct light_device_t *dev,
 			struct light_state_t const *state)
 {
+        load_settings();
 	int err = 0;
 	int brightness = rgb_to_brightness(state);
 
 	pthread_mutex_lock(&g_lock);
 	err = write_int(LCD_FILE, brightness);
+
+        if (g_enable_touchlight == -1 || g_enable_touchlight > 0)
+             err = write_int(BUTTONS_FILE, brightness > 0 ? 1 : 2);
 
 	pthread_mutex_unlock(&g_lock);
 	return err;
@@ -136,7 +158,7 @@ static int set_light_keyboard(struct light_device_t *dev,
 static int set_light_buttons(struct light_device_t *dev,
 			struct light_state_t const *state)
 {
-	int touch_led_control = state->color & 0x00ffffff ? 1 : 2;
+	int touch_led_control = state->color & 0x00ffffff ? 1 : 0;
 	int res;
 
 	LOGD("set_light_buttons: color=%#010x, tlc=%u.", state->color,
