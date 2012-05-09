@@ -67,6 +67,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     sensors.msm8660
 
+# GPS
+PRODUCT_PACKAGES += \
+	gps.msm8660
+
 # NFC Support
 PRODUCT_PACKAGES += \
     libnfc \
