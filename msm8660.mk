@@ -65,7 +65,8 @@ PRODUCT_PACKAGES += \
 
 # Sensors/Lights Support
 PRODUCT_PACKAGES += \
-    sensors.msm8660
+    sensors.msm8660 \
+	lights.msm8660
 
 # GPS
 PRODUCT_PACKAGES += \
