@@ -94,6 +94,7 @@ lib/libgpsone_bit_api.so
 
 # NFC
 lib/hw/nfc.qcom.so
+lib/libpn544_fw.so
 
 # Thermald
 bin/thermald
@@ -129,6 +130,7 @@ lib/lib_Samsung_SB_AM_Handset_LPA.so
 lib/libsamsungSoundboosterLPA.so
 lib/libQmageDecoder.so
 lib/libprofiler_msmadc.so
+lib/libv8.so
 
 # Wi-Fi
 etc/wifi/bcm4330_apsta.bin
