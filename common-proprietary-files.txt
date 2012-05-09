@@ -1,21 +1,17 @@
 # Bins
 bin/drexe
 bin/immvibed
-bin/npsmobex
 bin/bridgemgrd
 bin/ds_fmc_appd
 bin/playsound
 bin/amploader
 bin/btnvtool
-bin/hci_qcomm_init
 bin/hdmid
 bin/lpmkey
 bin/mpdecision
 bin/playlpm
 bin/port-bridge
 bin/profiler_daemon
-bin/samsungani
-bin/sdcard
 bin/usbhub
 bin/usbhub_init
 
@@ -91,15 +87,6 @@ etc/permissions/cneapiclient.xml
 framework/cneapiclient.jar
 framework/com.quicinc.cne.jar
 
-# Vold
-bin/vold
-lib/libsec_devenc.so
-lib/libsec_km.so
-lib/libdirencryption.so
-lib/libsec_ecryptfs.so
-lib/libsecfips.so
-lib/libkeyutils.so
-
 # GPS
 bin/gpsone_daemon
 lib/liboncrpc.so
@@ -107,9 +94,6 @@ lib/libgpsone_bit_api.so
 
 # NFC
 lib/hw/nfc.qcom.so
-
-# Bluetooh
-bin/brcm_patchram_plus
 
 # Thermald
 bin/thermald
@@ -145,4 +129,3 @@ lib/lib_Samsung_SB_AM_Handset_LPA.so
 lib/libsamsungSoundboosterLPA.so
 lib/libQmageDecoder.so
 lib/libprofiler_msmadc.so
-lib/libv8.so
