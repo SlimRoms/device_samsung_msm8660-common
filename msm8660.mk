@@ -127,20 +127,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/firmware/dsps_fluid.b03:system/etc/firmware/dsps_fluid.b03 \
     device/samsung/msm8660-common/firmware/dsps_fluid.mdt:system/etc/firmware/dsps_fluid.mdt
 
-# Hercules/SkyRocket Wifi files
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/etc/wifi/bcm4330_apsta.bin:system/etc/wifi/bcm4330_apsta.bin \
-    device/samsung/msm8660-common/etc/wifi/bcm4330_mfg.bin:system/etc/wifi/bcm4330_mfg.bin \
-    device/samsung/msm8660-common/etc/wifi/bcm4330_p2p.bin:system/etc/wifi/bcm4330_p2p.bin \
-    device/samsung/msm8660-common/etc/wifi/bcm4330_sta.bin:system/etc/wifi/bcm4330_sta.bin \
-    device/samsung/msm8660-common/etc/wifi/default_ap.conf:system/etc/wifi/default_ap.conf \
-    device/samsung/msm8660-common/etc/wifi/nvram_mfg.txt:system/etc/wifi/nvram_mfg.txt \
-    device/samsung/msm8660-common/etc/wifi/nvram_mfg.txt_murata:system/etc/wifi/nvram_mfg.txt_murata \
-    device/samsung/msm8660-common/etc/wifi/nvram_net.txt:system/etc/wifi/nvram_net.txt \
-    device/samsung/msm8660-common/etc/wifi/nvram_net.txt_murata:system/etc/wifi/nvram_net.txt_murata \
-    device/samsung/msm8660-common/etc/wifi/wl:system/etc/wifi/wl \
-    device/samsung/msm8660-common/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
-
 # keylayouts
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl\

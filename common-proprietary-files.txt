@@ -129,3 +129,17 @@ lib/lib_Samsung_SB_AM_Handset_LPA.so
 lib/libsamsungSoundboosterLPA.so
 lib/libQmageDecoder.so
 lib/libprofiler_msmadc.so
+
+# Wi-Fi
+etc/wifi/bcm4330_apsta.bin
+etc/wifi/wl
+etc/wifi/nvram_net.txt_murata
+etc/wifi/nvram_net.txt
+etc/wifi/nvram_mfg.txt_murata
+etc/wifi/wpa_supplicant.conf
+etc/wifi/bcm4330_p2p.bin
+etc/wifi/bcm4330_sta.bin
+etc/wifi/bcm4330_mfg.bin
+etc/wifi/nvram_mfg.txt
+etc/wifi/default_ap.conf
+
