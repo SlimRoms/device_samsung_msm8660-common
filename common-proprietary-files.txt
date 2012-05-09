@@ -96,6 +96,9 @@ lib/libgpsone_bit_api.so
 lib/hw/nfc.qcom.so
 lib/libpn544_fw.so
 
+# Bluetooh (needed for T989/I727)
+bin/brcm_patchram_plus
+
 # Thermald
 bin/thermald
 lib/liboncrpc.so
@@ -143,5 +146,4 @@ etc/wifi/bcm4330_p2p.bin
 etc/wifi/bcm4330_sta.bin
 etc/wifi/bcm4330_mfg.bin
 etc/wifi/nvram_mfg.txt
-etc/wifi/default_ap.conf
-
+#etc/wifi/default_ap.conf
