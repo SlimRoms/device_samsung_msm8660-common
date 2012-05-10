@@ -118,25 +118,6 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
         system/extras/bugmailer/send_bug:system/bin/send_bug
 endif
 
-# EGL firmware
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
-    device/samsung/msm8660-common/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
-    device/samsung/msm8660-common/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
-    device/samsung/msm8660-common/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
-    device/samsung/msm8660-common/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw
-
-# LCD firmware
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/firmware/cyttsp_8660_ffa.hex:system/etc/firmware/cyttsp_8660_ffa.hex \
-    device/samsung/msm8660-common/firmware/cyttsp_8660_fluid_p2.hex:system/etc/firmware/cyttsp_8660_fluid_p2.hex \
-    device/samsung/msm8660-common/firmware/cyttsp_8660_fluid_p3.hex:system/etc/firmware/cyttsp_8660_fluid_p3.hex \
-    device/samsung/msm8660-common/firmware/dsps_fluid.b00:system/etc/firmware/dsps_fluid.b00 \
-    device/samsung/msm8660-common/firmware/dsps_fluid.b01:system/etc/firmware/dsps_fluid.b01 \
-    device/samsung/msm8660-common/firmware/dsps_fluid.b02:system/etc/firmware/dsps_fluid.b02 \
-    device/samsung/msm8660-common/firmware/dsps_fluid.b03:system/etc/firmware/dsps_fluid.b03 \
-    device/samsung/msm8660-common/firmware/dsps_fluid.mdt:system/etc/firmware/dsps_fluid.mdt
-
 # keylayouts
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl\

@@ -144,3 +144,19 @@ etc/wifi/bcm4330_sta.bin
 etc/wifi/bcm4330_mfg.bin
 etc/wifi/nvram_mfg.txt
 #etc/wifi/default_ap.conf
+
+# Firmware
+etc/firmware/cyttsp_8660_ffa.hex
+etc/firmware/cyttsp_8660_fluid_p2.hex
+etc/firmware/cyttsp_8660_fluid_p3.hex
+etc/firmware/dsps_fluid.b00
+etc/firmware/dsps_fluid.b01
+etc/firmware/dsps_fluid.b02
+etc/firmware/dsps_fluid.b03
+etc/firmware/dsps_fluid.mdt
+etc/firmware/leia_pfp_470.fw
+etc/firmware/leia_pm4_470.fw
+etc/firmware/vidc_1080p.fw
+etc/firmware/yamato_pfp.fw
+etc/firmware/yamato_pm4.fw
+
