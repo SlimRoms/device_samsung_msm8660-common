@@ -36,7 +36,6 @@ lib/libsc-a2xx.so
 
 # Radio
 bin/netmgrd
-bin/ATFWD-daemon
 bin/ks
 bin/qcks
 bin/sec-ril
