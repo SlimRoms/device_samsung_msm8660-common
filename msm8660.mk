@@ -41,10 +41,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-# Thermald config
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/configs/thermald.conf:system/etc/thermald.conf
-
 # QCOM Display
 PRODUCT_PACKAGES += \
     copybit.msm8660 \
