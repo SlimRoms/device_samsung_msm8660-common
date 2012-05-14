@@ -150,10 +150,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/idc/qwerty.idc:system/usr/idc/qwerty.idc \
     device/samsung/msm8660-common/idc/qwerty2.idc:system/usr/idc/qwerty2.idc
 
-# Vold fstab
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/configs/vold.fstab:system/etc/vold.fstab
-
 # Misc init scripts
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
