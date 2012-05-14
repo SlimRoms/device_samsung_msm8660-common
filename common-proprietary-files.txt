@@ -132,7 +132,6 @@ lib/libprofiler_msmadc.so
 lib/libv8.so
 
 # Wi-Fi
-bin/macloader
 etc/wifi/bcm4330_apsta.bin
 etc/wifi/wl
 etc/wifi/nvram_net.txt_murata
