@@ -3,8 +3,6 @@ bin/drexe
 bin/immvibed
 bin/bridgemgrd
 bin/ds_fmc_appd
-bin/playsound
-bin/amploader
 bin/btnvtool
 bin/hdmid
 bin/lpmkey
