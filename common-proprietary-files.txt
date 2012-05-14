@@ -9,7 +9,6 @@ bin/lpmkey
 bin/mpdecision
 bin/playlpm
 bin/port-bridge
-bin/profiler_daemon
 bin/usbhub
 bin/usbhub_init
 
@@ -118,15 +117,6 @@ lib/libgps.utils.so
 lib/libloc_adapter.so
 lib/libloc_api-rpc-qc.so
 lib/libloc_eng.so
-lib/libmmosal.so
-lib/libmmparser_divxdrmlib.so
-lib/libmmparser.so
-lib/libmvsechocanceler.so
-lib/lib_Samsung_Resampler.so
-lib/lib_Samsung_SB_AM_Handset_LPA.so
-lib/libsamsungSoundboosterLPA.so
-lib/libQmageDecoder.so
-lib/libprofiler_msmadc.so
 lib/libv8.so
 
 # Wi-Fi
