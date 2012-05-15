@@ -22,7 +22,7 @@ lib/libaudioparsers.so
 # mmparser extended
 lib/libmmparser.so
 lib/libmmosal.so
-lib/libDivxDrm.so
+#lib/libDivxDrm.so
 
 # Graphics
 lib/egl/eglsubAndroid.so
