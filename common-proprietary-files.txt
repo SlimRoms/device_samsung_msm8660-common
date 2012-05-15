@@ -19,6 +19,11 @@ lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libaudioparsers.so
 
+# mmparser extended
+lib/libmmparser.so
+lib/libmmosal.so
+lib/libDivxDrm.so
+
 # Graphics
 lib/egl/eglsubAndroid.so
 lib/egl/libEGL_adreno200.so
