@@ -59,9 +59,8 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8660 \
     libaudioutils
 
-# Sensors/Lights Support
+# Lights Support
 PRODUCT_PACKAGES += \
-    sensors.msm8660 \
 	lights.msm8660
 
 # GalaxyS2Settings
