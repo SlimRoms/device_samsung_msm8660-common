@@ -158,7 +158,7 @@ static int set_light_keyboard(struct light_device_t *dev,
 static int set_light_buttons(struct light_device_t *dev,
 			struct light_state_t const *state)
 {
-	int touch_led_control = state->color & 0x00ffffff ? 1 : 0;
+	int touch_led_control = state->color & 0x00ffffff ? 1 : 2;
 	int res;
 
 	LOGD("set_light_buttons: color=%#010x, tlc=%u.", state->color,
