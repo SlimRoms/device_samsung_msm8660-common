@@ -31,7 +31,8 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    frameworks/base/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
+    frameworks/base/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 # EGL config
 PRODUCT_COPY_FILES += \
@@ -50,7 +51,8 @@ PRODUCT_PACKAGES += \
     libmemalloc \
     liboverlay \
     libQcomUI \
-    libtilerenderer
+    libtilerenderer \
+    hdmid
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -59,9 +61,8 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8660 \
     libaudioutils
 
-# Sensors/Lights Support
+# Lights Support
 PRODUCT_PACKAGES += \
-    sensors.msm8660 \
 	lights.msm8660
 
 # GalaxyS2Settings
