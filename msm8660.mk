@@ -51,7 +51,8 @@ PRODUCT_PACKAGES += \
     libmemalloc \
     liboverlay \
     libQcomUI \
-    libtilerenderer
+    libtilerenderer \
+    hdmid
 
 # Audio
 PRODUCT_PACKAGES += \
