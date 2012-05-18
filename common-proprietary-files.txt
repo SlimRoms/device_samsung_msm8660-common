@@ -4,7 +4,6 @@ bin/immvibed
 bin/bridgemgrd
 bin/ds_fmc_appd
 bin/btnvtool
-bin/hdmid
 bin/lpmkey
 bin/mpdecision
 bin/playlpm
