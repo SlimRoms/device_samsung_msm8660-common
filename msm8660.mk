@@ -89,7 +89,9 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libstagefrighthw \
     libOmxVdec \
-    libOmxVenc
+    libOmxVenc \
+    libOmxAacEnc \
+    libOmxAmrEnc
 
 # Misc
 PRODUCT_PACKAGES += \
