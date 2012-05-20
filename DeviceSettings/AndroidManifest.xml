@@ -24,7 +24,6 @@
         </receiver>
       
         <activity android:name=".mDNIeFragmentActivity" />
-        <activity android:name=".RadioFragmentActivity" />
         
     </application>
 </manifest>

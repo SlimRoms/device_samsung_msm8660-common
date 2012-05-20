@@ -24,6 +24,7 @@
                 android:key="touchkey_light"
                 android:title="@string/touchkey_light_title_head"
                 android:summary="@string/touchkey_light_summary_head"
+                android:defaultValue="true"
                 />
     </PreferenceCategory>
 </PreferenceScreen>
