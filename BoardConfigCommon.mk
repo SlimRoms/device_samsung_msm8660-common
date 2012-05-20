@@ -113,9 +113,6 @@ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_MAX_PARTITIONS := 28
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
-# MTP
-BOARD_MTP_DEVICE := "/dev/usb_mtp_gadget"
-
 # Camera
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 BOARD_CAMERA_USE_MM_HEAP := true
