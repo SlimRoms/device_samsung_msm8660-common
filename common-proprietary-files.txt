@@ -87,13 +87,6 @@ lib/hw/sensors.default.so
 # Bluetooh (needed for T989/I727)
 bin/brcm_patchram_plus
 
-# Thermald
-bin/thermald
-lib/liboncrpc.so
-lib/libdsm.so
-lib/libthermal_mitigation.so
-lib/libthermal_mitigation_fusion.so
-
 # Camera
 lib/hw/camera.msm8660.so
 lib/libmmjpeg.so
