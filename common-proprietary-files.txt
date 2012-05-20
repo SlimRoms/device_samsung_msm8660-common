@@ -84,9 +84,6 @@ lib/libpn544_fw.so
 # Sensors
 lib/hw/sensors.default.so
 
-# Bluetooh (needed for T989/I727)
-bin/brcm_patchram_plus
-
 # Camera
 lib/hw/camera.msm8660.so
 lib/libmmjpeg.so
