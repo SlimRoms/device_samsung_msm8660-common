@@ -7,6 +7,7 @@
                 android:key="use_gyro_calibration"
                 android:title="@string/use_gyro_calibration_title_head"
                 android:summary="@string/use_gyro_calibration_summary_head"
+                android:defaultValue="true"
                 />
 
     <!-- Do gyro calibration -->
