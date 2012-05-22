@@ -88,5 +88,6 @@ public class SensorsFragmentActivity extends PreferenceFragment {
             Utils.writeValue(FILE_USE_GYRO_CALIB, "0");
 
         Utils.writeValue(FILE_TOUCHKEY_LIGHT, sharedPrefs.getBoolean(DeviceSettings.KEY_TOUCHKEY_LIGHT, true) ? "0" : "1");
+        Utils.writeValue(FILE_TOUCHKEY_TOGGLE, sharedPrefs.getBoolean(DeviceSettings.KEY_TOUCHKEY_LIGHT, true) ? "1" : "2");
     }
 }
