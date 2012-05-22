@@ -1,5 +1,4 @@
 # Bins
-bin/drexe
 bin/immvibed
 bin/bridgemgrd
 bin/ds_fmc_appd
