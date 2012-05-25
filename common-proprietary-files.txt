@@ -56,25 +56,16 @@ lib/libdsutils.so
 lib/libdsi_netctrl.so
 lib/libidl.so
 lib/libnetmgr.so
-lib/libqdp.so
-lib/libdss.so
-lib/libnv.so
-
-# Radio related
-lib/libdsucsdappif_apis_fusion.so
-lib/liboem_rapi_fusion.so
-lib/liboem_rapi.so
-lib/libpbmlib_fusion.so
-lib/libping_lte_rpc.so
-lib/libping_mdm.so
-lib/libqc-opt.so
-lib/libtime_remote_atom.so
-lib/libdprw.so
 
 # GPS
 bin/gpsone_daemon
 lib/liboncrpc.so
 lib/libgpsone_bit_api.so
+lib/libgps.utils.so
+lib/libloc_adapter.so
+lib/libloc_api-rpc-qc.so
+lib/libloc_eng.so
+lib/libcommondefs.so
 
 # NFC
 lib/hw/nfc.qcom.so
@@ -82,6 +73,7 @@ lib/libpn544_fw.so
 
 # Sensors
 lib/hw/sensors.default.so
+lib/libakm.so
 
 # Camera
 lib/hw/camera.msm8660.so
@@ -93,14 +85,10 @@ lib/libmmipl.so
 lib/libmmmpo.so
 lib/libmmstereo.so
 
-# Misc libs (will sort out later)
+# General
 lib/libdiag.so
-lib/libakm.so
-lib/libcommondefs.so
-lib/libgps.utils.so
-lib/libloc_adapter.so
-lib/libloc_api-rpc-qc.so
-lib/libloc_eng.so
+
+# Webkit
 lib/libv8.so
 
 # Wi-Fi
