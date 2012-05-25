@@ -46,6 +46,7 @@ bin/rild
 lib/libsecril-client.so
 lib/libqmi.so
 lib/libqdi.so
+lib/libqdp.so
 lib/libqmiservices.so
 lib/libqueue.so
 lib/libril.so
