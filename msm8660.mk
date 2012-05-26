@@ -156,6 +156,31 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
 
 # Battery animation pics for charge mode
+ifeq ($(PRODUCT_AAPT_PREF_CONFIG),xhdpi)
+PRODUCT_COPY_FILES += \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_batteryerror.qmg:system/media/battery_batteryerror.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_5.qmg:system/media/battery_charging_5.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_10.qmg:system/media/battery_charging_10.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_15.qmg:system/media/battery_charging_15.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_20.qmg:system/media/battery_charging_20.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_25.qmg:system/media/battery_charging_25.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_30.qmg:system/media/battery_charging_30.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_35.qmg:system/media/battery_charging_35.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_40.qmg:system/media/battery_charging_40.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_45.qmg:system/media/battery_charging_45.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_50.qmg:system/media/battery_charging_50.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_55.qmg:system/media/battery_charging_55.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_60.qmg:system/media/battery_charging_60.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_65.qmg:system/media/battery_charging_65.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_70.qmg:system/media/battery_charging_70.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_75.qmg:system/media/battery_charging_75.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_80.qmg:system/media/battery_charging_80.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_85.qmg:system/media/battery_charging_85.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_90.qmg:system/media/battery_charging_90.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_95.qmg:system/media/battery_charging_95.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_charging_100.qmg:system/media/battery_charging_100.qmg \
+    device/samsung/msm8660-common/batteryanim-xhdpi/battery_error.qmg:system/media/battery_error.qmg
+else
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/batteryanim/battery_batteryerror.qmg:system/media/battery_batteryerror.qmg \
     device/samsung/msm8660-common/batteryanim/battery_charging_5.qmg:system/media/battery_charging_5.qmg \
@@ -179,6 +204,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/batteryanim/battery_charging_95.qmg:system/media/battery_charging_95.qmg \
     device/samsung/msm8660-common/batteryanim/battery_charging_100.qmg:system/media/battery_charging_100.qmg \
     device/samsung/msm8660-common/batteryanim/battery_error.qmg:system/media/battery_error.qmg
+endif
 
 # Needed to reset bootmode when leaving recovery
 PRODUCT_COPY_FILES += \
