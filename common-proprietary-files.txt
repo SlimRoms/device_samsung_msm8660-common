@@ -8,11 +8,6 @@ bin/port-bridge
 bin/usbhub
 bin/usbhub_init
 
-# LPM
-bin/lpmkey
-bin/playlpm
-lib/libQmageDecoder.so
-
 # Audio
 lib/libacdbloader.so
 lib/libacdbmapper.so
