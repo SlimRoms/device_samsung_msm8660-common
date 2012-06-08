@@ -57,9 +57,7 @@ lib/libidl.so
 lib/libnetmgr.so
 
 # GPS
-bin/gpsone_daemon
 lib/liboncrpc.so
-lib/libgpsone_bit_api.so
 lib/libgps.utils.so
 lib/libloc_adapter.so
 lib/libloc_api-rpc-qc.so
