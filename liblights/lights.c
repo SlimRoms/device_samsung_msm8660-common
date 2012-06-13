@@ -35,6 +35,7 @@ static int g_enable_touchlight = -1;
 static char const LCD_FILE[]      = "/sys/class/leds/lcd-backlight/brightness";
 static char const BUTTONS_FILE[]  = "/sys/class/misc/melfas_touchkey/brightness";
 static char const BUTTONS_POWER[] = "/sys/class/misc/melfas_touchkey/enable_disable";
+static char const NOTIFICATION_FILE[] = "/sys/class/misc/backlightnotification/notification_led";
 
 static int write_int(char const *path, int value)
 {
@@ -124,7 +125,17 @@ static int set_light_battery(struct light_device_t* dev,
 static int set_light_notifications(struct light_device_t* dev,
             struct light_state_t const* state)
 {
-    return 0;
+       int bln_led_control = state->color & 0x00ffffff ? 1 : 0;
+       int res;
+
+       LOGD("set_light_notification: color=%#010x, klc=%u.", state->color,
+            bln_led_control);
+
+       pthread_mutex_lock(&g_lock);
+       res = write_int(NOTIFICATION_FILE, bln_led_control);
+       pthread_mutex_unlock(&g_lock);
+
+       return res;
 }
 
 static int set_light_backlight(struct light_device_t *dev,
