@@ -64,10 +64,6 @@ lib/libloc_api-rpc-qc.so
 lib/libloc_eng.so
 lib/libcommondefs.so
 
-# NFC
-lib/hw/nfc.qcom.so
-lib/libpn544_fw.so
-
 # Sensors
 lib/hw/sensors.default.so
 lib/libakm.so
@@ -91,9 +87,7 @@ lib/libv8.so
 # Wi-Fi
 etc/wifi/bcm4330_apsta.bin
 etc/wifi/wl
-etc/wifi/nvram_net.txt_murata
 etc/wifi/nvram_net.txt
-etc/wifi/nvram_mfg.txt_murata
 etc/wifi/wpa_supplicant.conf
 etc/wifi/bcm4330_p2p.bin
 etc/wifi/bcm4330_sta.bin
