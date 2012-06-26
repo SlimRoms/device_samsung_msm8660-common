@@ -117,3 +117,5 @@ COMMON_GLOBAL_CFLAGS += -DNO_QCOM_MVS
 # Nicer font rendering
 BOARD_USE_SKIA_LCDTEXT := true
 
+# Enable WEBGL
+ENABLE_WEBGL = true
