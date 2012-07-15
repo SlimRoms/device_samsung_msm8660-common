@@ -119,3 +119,7 @@ BOARD_USE_SKIA_LCDTEXT := true
 
 # Enable WEBGL
 ENABLE_WEBGL = true
+
+# Enable ICS-backwards compatibility
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_COMPAT
+
