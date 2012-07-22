@@ -102,6 +102,8 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/
 # Camera
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 BOARD_CAMERA_USE_MM_HEAP := true
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
 # Workaround to avoid issues with legacy liblights on QCOM platforms
 TARGET_PROVIDES_LIBLIGHTS := true
@@ -121,5 +123,5 @@ BOARD_USE_SKIA_LCDTEXT := true
 ENABLE_WEBGL = true
 
 # Enable ICS-backwards compatibility
-COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DQCOM_ICS_COMPAT
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_COMPAT
 
