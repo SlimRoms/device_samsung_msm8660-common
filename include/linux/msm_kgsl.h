@@ -2,7 +2,7 @@
 #define _MSM_KGSL_H
 
 #define KGSL_VERSION_MAJOR        3
-#define KGSL_VERSION_MINOR        9
+#define KGSL_VERSION_MINOR        8
 
 /*context flags */
 #define KGSL_CONTEXT_SAVE_GMEM	1
@@ -151,27 +151,18 @@ struct kgsl_version {
 #define KGSL_2D1_REG_MEMORY	"kgsl_2d1_reg_memory"
 #define KGSL_2D1_IRQ		"kgsl_2d1_irq"
 
-struct kgsl_device_iommu_data {
-	const char **iommu_ctx_names;
-	int iommu_ctx_count;
-	unsigned int physstart;
-	unsigned int physend;
-};
-
 struct kgsl_device_platform_data {
 	struct kgsl_pwrlevel pwrlevel[KGSL_MAX_PWRLEVELS];
 	int init_level;
 	int num_levels;
 	int (*set_grp_async)(void);
 	unsigned int idle_timeout;
-	bool strtstp_sleepwake;
 	unsigned int nap_allowed;
 	unsigned int clk_map;
 	unsigned int idle_needed;
 	struct msm_bus_scale_pdata *bus_scale_table;
-	struct kgsl_device_iommu_data *iommu_data;
-	int iommu_count;
-	struct msm_dcvs_core_info *core_info;
+	const char *iommu_user_ctx_name;
+	const char *iommu_priv_ctx_name;
 };
 
 #endif
@@ -206,8 +197,19 @@ struct kgsl_device_getproperty {
 #define IOCTL_KGSL_DEVICE_GETPROPERTY \
 	_IOWR(KGSL_IOC_TYPE, 0x2, struct kgsl_device_getproperty)
 
-/* IOCTL_KGSL_DEVICE_READ (0x3) - removed 03/2012
+
+/* read a GPU register.
+   offsetwords it the 32 bit word offset from the beginning of the
+   GPU register space.
  */
+struct kgsl_device_regread {
+	unsigned int offsetwords;
+	unsigned int value; /* output param */
+};
+
+#define IOCTL_KGSL_DEVICE_REGREAD \
+	_IOWR(KGSL_IOC_TYPE, 0x3, struct kgsl_device_regread)
+
 
 /* block until the GPU has executed past a given timestamp
  * timeout is in milliseconds.
@@ -455,14 +457,6 @@ struct kgsl_timestamp_event {
 struct kgsl_timestamp_event_genlock {
 	int handle; /* Handle of the genlock lock to release */
 };
-
-/*
- * Set a property within the kernel.  Uses the same structure as
- * IOCTL_KGSL_GETPROPERTY
- */
-
-#define IOCTL_KGSL_SETPROPERTY \
-	_IOW(KGSL_IOC_TYPE, 0x32, struct kgsl_device_getproperty)
 
 #ifdef __KERNEL__
 #ifdef CONFIG_MSM_KGSL_DRM
