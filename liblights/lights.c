@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-// #define LOG_NDEBUG 0
+#define LOG_NDEBUG 0
 #define LOG_TAG "lights"
 #include <cutils/log.h>
 #include <stdint.h>
@@ -55,7 +55,7 @@ static int write_int(char const *path, int value)
     int fd;
     static int already_warned = 0;
 
-    ALOGV("write_int: path=\"%s\", value=\"%d\".", path, value);
+    ALOGD("write_int: path=\"%s\", value=\"%d\".", path, value);
     fd = open(path, O_RDWR);
 
     if (fd >= 0) {
@@ -89,7 +89,7 @@ static int write_str(char const *path, char const *str)
     int fd;
     static int already_warned = 0;
 
-    ALOGV("write_str: path=\"%s\", str=\"%s\".", path, str);
+    ALOGD("write_str: path=\"%s\", str=\"%s\".", path, str);
     fd = open(path, O_RDWR);
 
     if (fd >= 0) {
@@ -167,6 +167,7 @@ static int set_light_backlight(struct light_device_t *dev,
         load_settings();
     int err = 0;
     int brightness = rgb_to_brightness(state);
+    ALOGE("DAF set_light_backlight g_enable_touchlight = %d brightness = 0x%08x", g_enable_touchlight, brightness);
 
     pthread_mutex_lock(&g_lock);
     err = write_int(LCD_FILE, brightness);
@@ -200,7 +201,7 @@ static int set_light_buttons(struct light_device_t *dev,
 
 static int close_lights(struct light_device_t *dev)
 {
-    ALOGV("close_light is called");
+    ALOGD("close_light is called");
     if (dev)
         free(dev);
 
@@ -213,7 +214,7 @@ static int open_lights(const struct hw_module_t *module, char const *name,
     int (*set_light)(struct light_device_t *dev,
         struct light_state_t const *state);
 
-    ALOGV("open_lights: open with %s", name);
+    ALOGD("open_lights: open with %s", name);
 
     if (0 == strcmp(LIGHT_ID_BACKLIGHT, name))
         set_light = set_light_backlight;
