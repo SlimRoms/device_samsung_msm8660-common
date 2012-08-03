@@ -1,3 +1,24 @@
+#
+# This file lists all of the proprietary blobs that need to be
+# extracted from a stock device. The extract-files.sh script
+# parses this file and copies the blobs into the vendor and build
+# trees as needed.
+#
+# File format:
+#   - Comments lines start with a hash (#) character and will be
+#     ignore.
+#   - Blobs should be listed with their path relative to /system
+#     on the device.
+#   - Options for a particular blob are specified in a comment
+#     after the blob path.
+#
+# Blob options:
+#   - needed_for_build: the blob will also be copied into the obj
+#     directory for use in the build of other open source files.
+#   - optional: if the blob is not found, extraction will not abort.
+#     directory for use in the build of other open source files.
+#
+
 # Bins
 bin/immvibed
 bin/bridgemgrd
@@ -9,10 +30,10 @@ bin/usbhub
 bin/usbhub_init
 
 # Audio
-lib/libacdbloader.so
-lib/libacdbmapper.so
+lib/libacdbloader.so     # needed_for_build
+lib/libacdbmapper.so     # needed_for_build
 lib/libaudcal.so
-lib/libaudioalsa.so
+lib/libaudioalsa.so      # needed_for_build
 lib/libaudioparsers.so
 
 # mmparser extended
@@ -86,7 +107,7 @@ lib/libmmstereo.so
 lib/libdiag.so
 
 # Webkit
-lib/libv8.so
+lib/libv8.so      # needed_for_build
 
 # Wi-Fi
 etc/wifi/bcm4330_apsta.bin
