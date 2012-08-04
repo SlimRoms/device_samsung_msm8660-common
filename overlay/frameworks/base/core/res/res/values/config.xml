@@ -50,4 +50,6 @@
     <!-- Default interface to monitor data use -->
     <string name="config_datause_iface">rmnet_sdio0</string>
 
+    <!-- If true, adds support for no delay A2DP in Samsung devices -->
+    <bool name="config_noDelayInATwoDP">true</bool>
 </resources>
