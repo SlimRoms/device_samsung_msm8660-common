@@ -119,7 +119,7 @@ etc/wifi/bcm4330_p2p.bin
 etc/wifi/bcm4330_sta.bin
 etc/wifi/bcm4330_mfg.bin
 etc/wifi/nvram_mfg.txt
-#etc/wifi/default_ap.conf
+bin/hostapd
 
 # Firmware
 etc/firmware/cyttsp_8660_ffa.hex
