@@ -128,3 +128,6 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_COMPAT
 # Disable PIE since it breaks ICS camera blobs
 TARGET_DISABLE_ARM_PIE := true
 
+# Disable HW VSYNC sync our kernel does not support it yet
+TARGET_NO_HW_VSYNC := true
+
