@@ -72,12 +72,12 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 # Graphics
 USE_OPENGL_RENDERER := true
-TARGET_HAVE_BYPASS := true
-TARGET_USES_SF_BYPASS := true
-TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
+# TODO (orphaned): TARGET_HAVE_BYPASS := true
+# TODO (orphaned): TARGET_USES_SF_BYPASS := true
+# TODO (orphaned): TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
 TARGET_USES_C2D_COMPOSITION := true
-TARGET_USES_OVERLAY := true
-TARGET_QCOM_HDMI_OUT := true
+# TODO (orphaned): TARGET_USES_OVERLAY := true
+# TODO (orphaned): TARGET_QCOM_HDMI_OUT := true
 
 TARGET_USES_ION := true
 BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
@@ -89,7 +89,7 @@ BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
 
 # Webkit
 TARGET_FORCE_CPU_UPLOAD := true
-DYNAMIC_SHARED_LIBV8SO := true
+# TODO (orphaned): DYNAMIC_SHARED_LIBV8SO := true
 
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8660
@@ -101,7 +101,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/
 
 # Camera
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
-BOARD_CAMERA_USE_MM_HEAP := true
+# TODO (orphaned): BOARD_CAMERA_USE_MM_HEAP := true
 BOARD_NEEDS_MEMORYHEAPPMEM := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
@@ -117,10 +117,10 @@ BOARD_HAVE_SAMSUNG_AUDIO := true
 COMMON_GLOBAL_CFLAGS += -DNO_QCOM_MVS -DQCOM_ACDB_ENABLED
 
 # Nicer font rendering
-BOARD_USE_SKIA_LCDTEXT := true
+# TODO (orphaned): BOARD_USE_SKIA_LCDTEXT := true
 
 # Enable WEBGL
-ENABLE_WEBGL = true
+# TODO (orphaned): ENABLE_WEBGL = true
 
 # Disable PIE since it breaks ICS camera blobs
 TARGET_DISABLE_ARM_PIE := true
