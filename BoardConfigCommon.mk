@@ -89,7 +89,6 @@ BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
 
 # Webkit
 TARGET_FORCE_CPU_UPLOAD := true
-# TODO (orphaned): DYNAMIC_SHARED_LIBV8SO := true
 
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8660
@@ -118,9 +117,6 @@ COMMON_GLOBAL_CFLAGS += -DNO_QCOM_MVS -DQCOM_ACDB_ENABLED
 
 # Nicer font rendering
 # TODO (orphaned): BOARD_USE_SKIA_LCDTEXT := true
-
-# Enable WEBGL
-# TODO (orphaned): ENABLE_WEBGL = true
 
 # Disable PIE since it breaks ICS camera blobs
 TARGET_DISABLE_ARM_PIE := true

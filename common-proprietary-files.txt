@@ -107,9 +107,6 @@ lib/libmmstereo.so
 # General
 lib/libdiag.so
 
-# Webkit
-lib/libv8.so      # needed_for_build
-
 # Wi-Fi
 etc/wifi/bcm4330_apsta.bin
 etc/wifi/wl
