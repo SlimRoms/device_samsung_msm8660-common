@@ -14,6 +14,8 @@
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm8660-common/include
 
+BOARD_VENDOR := samsung
+
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
