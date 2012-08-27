@@ -41,10 +41,6 @@ lib/libmmparser.so
 lib/libmmosal.so
 #lib/libDivxDrm.so
 
-# Media
-lib/libwvm.so
-lib/libWVStreamControlAPI_L3.so
-
 # Graphics
 lib/egl/eglsubAndroid.so
 lib/egl/libEGL_adreno200.so
