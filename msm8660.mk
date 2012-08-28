@@ -77,6 +77,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	gps.msm8660
 
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8660
+
 ifeq ($(BOARD_HAVE_NFC),true)
 
 PRODUCT_COPY_FILES += \

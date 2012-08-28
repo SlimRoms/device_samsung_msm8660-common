@@ -99,6 +99,8 @@ case "$target" in
 	 chmod 220 /sys/devices/system/cpu/mfreq
 	 chown root.system /sys/devices/system/cpu/cpu1/online
 	 chmod 664 /sys/devices/system/cpu/cpu1/online
+	 chown root.system /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
+	 chmod 664 /sys/devices/system/cpu/cpufreq/ondemand/boostpulse
 # set scheduler as CFQ after boot complete.( scheduler is set as deadline at defconfig file )
 	 echo "cfq" > /sys/block/mmcblk0/queue/scheduler
         ;;
