@@ -55,10 +55,8 @@ PRODUCT_PACKAGES += \
     hdmid
 
 # Audio
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/configs/audio_policy.conf:system/etc/audio_policy.conf
-
 PRODUCT_PACKAGES += \
+    audio_policy.conf \
     audio.a2dp.default \
     audio_policy.msm8660 \
     audio.primary.msm8660 \
