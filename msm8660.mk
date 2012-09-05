@@ -194,6 +194,17 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
+# Common properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.sf.hw=1 \
+    debug.egl.hw=1 \
+    debug.composition.type=dyn \
+    debug.mdpcomp.maxlayer=3 \
+    debug.mdpcomp.logs=0 \
+    debug.enabletr=true \
+    com.qc.hardware=true \
+    ro.hwui.text_cache_width=2048
+
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/msm8660-common/overlay
 

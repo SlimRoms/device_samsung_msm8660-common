@@ -76,16 +76,9 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 # Graphics
 USE_OPENGL_RENDERER := true
-# TODO (orphaned): TARGET_HAVE_BYPASS := true
-# TODO (orphaned): TARGET_USES_SF_BYPASS := true
-# TODO (orphaned): TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
 TARGET_USES_C2D_COMPOSITION := true
-# TODO (orphaned): TARGET_USES_OVERLAY := true
-# TODO (orphaned): TARGET_QCOM_HDMI_OUT := true
-
 TARGET_USES_ION := true
 BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
-#COMMON_GLOBAL_CFLAGS += -DQCOM_ROTATOR_KERNEL_FORMATS
 
 # FM Radio
 #BOARD_HAVE_FM_RADIO := true
@@ -118,9 +111,6 @@ BOARD_BATTERY_DEVICE_NAME := "battery"
 # Samsung VoIP/call routing
 BOARD_HAVE_SAMSUNG_AUDIO := true
 COMMON_GLOBAL_CFLAGS += -DNO_QCOM_MVS -DQCOM_ACDB_ENABLED
-
-# Nicer font rendering
-# TODO (orphaned): BOARD_USE_SKIA_LCDTEXT := true
 
 # Disable PIE since it breaks ICS camera blobs
 TARGET_DISABLE_ARM_PIE := true
