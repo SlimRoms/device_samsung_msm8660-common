@@ -50,9 +50,9 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libmemalloc \
     liboverlay \
-    libQcomUI \
+    libqdutils \
     libtilerenderer \
-    hdmid
+    libI420colorconvert
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -114,7 +114,9 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libOmxAacEnc \
-    libOmxAmrEnc
+    libOmxAmrEnc \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc
 
 # Misc
 PRODUCT_PACKAGES += \
@@ -133,12 +135,10 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # for bugmailer
-ifneq ($(TARGET_BUILD_VARIANT),user)
-    PRODUCT_PACKAGES += send_bug
-    PRODUCT_COPY_FILES += \
-        system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
-        system/extras/bugmailer/send_bug:system/bin/send_bug
-endif
+PRODUCT_PACKAGES += send_bug
+PRODUCT_COPY_FILES += \
+    system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
+    system/extras/bugmailer/send_bug:system/bin/send_bug
 
 # keylayouts
 PRODUCT_COPY_FILES += \
