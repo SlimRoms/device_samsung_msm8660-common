@@ -117,3 +117,7 @@ TARGET_DISABLE_ARM_PIE := true
 
 # use toolchain 4.4.3 for kernel compile
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
+
+# WebGL
+ENABLE_WEBGL := true
+
