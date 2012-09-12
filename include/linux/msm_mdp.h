@@ -68,10 +68,9 @@
 						struct msmfb_data)
 #define MSMFB_WRITEBACK_TERMINATE _IO(MSMFB_IOCTL_MAGIC, 155)
 #define MSMFB_MDP_PP _IOWR(MSMFB_IOCTL_MAGIC, 156, struct msmfb_mdp_pp)
-
-#define MSMFB_OVERLAY_VSYNC_CTRL  _IOW(MSMFB_IOCTL_MAGIC, 160, unsigned int)
+#define MSMFB_OVERLAY_VSYNC_CTRL _IOW(MSMFB_IOCTL_MAGIC, 160, unsigned int)
 #define MSMFB_VSYNC_CTRL  _IOW(MSMFB_IOCTL_MAGIC, 161, unsigned int)
-
+#define MSMFB_METADATA_SET  _IOW(MSMFB_IOCTL_MAGIC, 162, struct msmfb_metadata)
 #define FB_TYPE_3D_PANEL 0x10101010
 #define MDP_IMGTYPE2_START 0x10000
 #define MSMFB_DRIVER_VERSION	0xF9E8D701
@@ -188,8 +187,8 @@ struct mdp_img {
  * {3x3} + {3} ccs matrix
  */
 
-#define MDP_CCS_RGB2YUV 	0
-#define MDP_CCS_YUV2RGB 	1
+#define MDP_CCS_RGB2YUV	0
+#define MDP_CCS_YUV2RGB	1
 
 #define MDP_CCS_SIZE	9
 #define MDP_BV_SIZE	3
@@ -280,7 +279,7 @@ struct mdp_overlay {
 	struct msmfb_img src;
 	struct mdp_rect src_rect;
 	struct mdp_rect dst_rect;
-	uint32_t z_order;	/* stage number */
+	int z_order;	/* stage number */
 	uint32_t is_fg;		/* control alpha & transp */
 	uint32_t alpha;
 	uint32_t transp_mask;
@@ -448,10 +447,20 @@ struct mdp_lut_cfg_data {
 	} data;
 };
 
+struct mdp_qseed_cfg_data {
+	uint32_t block;
+	uint32_t table_num;
+	uint32_t ops;
+	uint32_t len;
+	uint32_t *data;
+};
+
+
 enum {
 	mdp_op_pcc_cfg,
 	mdp_op_csc_cfg,
 	mdp_op_lut_cfg,
+	mdp_op_qseed_cfg,
 	mdp_op_max,
 };
 
@@ -461,10 +470,27 @@ struct msmfb_mdp_pp {
 		struct mdp_pcc_cfg_data pcc_cfg_data;
 		struct mdp_csc_cfg_data csc_cfg_data;
 		struct mdp_lut_cfg_data lut_cfg_data;
+		struct mdp_qseed_cfg_data qseed_cfg_data;
 	} data;
 };
 
+enum {
+	metadata_op_none,
+	metadata_op_base_blend,
+	metadata_op_max
+};
 
+struct mdp_blend_cfg {
+	uint32_t is_premultiplied;
+};
+
+struct msmfb_metadata {
+	uint32_t op;
+	uint32_t flags;
+	union {
+		struct mdp_blend_cfg blend_cfg;
+	} data;
+};
 struct mdp_page_protection {
 	uint32_t page_protection;
 };
