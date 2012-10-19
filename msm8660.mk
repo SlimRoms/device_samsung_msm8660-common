@@ -195,6 +195,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Common properties
 PRODUCT_PROPERTY_OVERRIDES += \
+    debug.composition.type=gpu \
     debug.enabletr=true \
     com.qc.hardware=true \
     ro.hwui.text_cache_width=2048
