@@ -197,7 +197,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     debug.egl.hw=1 \
-    debug.composition.type=dyn \
+    debug.composition.type=gpu \
     debug.mdpcomp.maxlayer=3 \
     debug.mdpcomp.logs=0 \
     debug.enabletr=true \
