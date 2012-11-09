@@ -202,6 +202,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.mdpcomp.logs=0 \
     debug.enabletr=true \
     com.qc.hardware=true \
+    ro.vendor.extension_library=/system/lib/libqc-opt.so \
     ro.hwui.text_cache_width=2048
 
 # Common overlay

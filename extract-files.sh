@@ -18,6 +18,9 @@
 #     ignore.
 #   - Blobs should be listed with their path relative to /system
 #     on the device. 
+#   - A different destination path may be specified after a colon on
+#     the same line as the blob source path. Otherwise, the
+#     destination path with be the same as it was on the device.
 #   - Options for a particular blob are specified in a comment
 #     after the blob path.
 #
@@ -69,10 +72,15 @@ fi
 function perform_extract_files {
   # Iterate over all files specified in the list
   for FILE_WITH_OPTIONS in `egrep -v '(^#|^$)' $1 | sed -e 's/\([^\s]\)\s*#\s*\([^\s]*\)/\1#\2/'`; do
-    # Split the file from the options (format is file:options)
-    OLDIFS=$IFS IFS="#" FILE_WITH_OPTIONS_ARRAY=($FILE_WITH_OPTIONS) IFS=$OLDIFS
-    FILE=${FILE_WITH_OPTIONS_ARRAY[0]}
-    OPTIONS=${FILE_WITH_OPTIONS_ARRAY[1]}
+    # Split the file and dest from the options (format is "file:destination  # options")
+    OLDIFS=$IFS IFS="#" PARSING_ARRAY=($FILE_WITH_OPTIONS) IFS=$OLDIFS
+    FILE_AND_DEST=${PARSING_ARRAY[0]}
+    OPTIONS=${PARSING_ARRAY[1]}
+
+    # Split the file from the destination (format is "file:destination  # options")
+    OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE_AND_DEST) IFS=$OLDIFS
+    FILE=${PARSING_ARRAY[0]}
+    DEST=${PARSING_ARRAY[1]}
 
     # If the file is optional, then don't error out if it isn't found
     OPTIONAL=0
@@ -80,8 +88,13 @@ function perform_extract_files {
       OPTIONAL=1
     fi
 
+    # Use the source offset as the destination path
+    if [ "$DEST" == "" ]; then
+      DEST=$FILE
+    fi
+
     # Prepare the destination directory
-    DIR=`dirname $FILE`
+    DIR=`dirname $DEST`
     if [ ! -d $FULL_PROP_PATH/$DIR ]; then
       mkdir -p $FULL_PROP_PATH/$DIR
     fi
@@ -90,7 +103,7 @@ function perform_extract_files {
     if [ "$SRC" = "adb" ]; then
       # Extract from the device using adb
       echo "Extracting from adb: /system/$FILE"
-      if ! adb pull /system/$FILE $FULL_PROP_PATH/$FILE; then
+      if ! adb pull /system/$FILE $FULL_PROP_PATH/$DEST; then
         if [ $OPTIONAL -eq 1 ]; then
           echo "WARNING: Could not extract '$FILE' from the device."
           continue
@@ -108,7 +121,7 @@ function perform_extract_files {
         if [ -f $TEST_PATH/system/$FILE ]; then
           SRCNAME=`basename $TEST_PATH`
           echo "Copying from $SRCNAME: /system/$FILE"
-          cp $FULLPATH $FULL_PROP_PATH/$FILE
+          cp $FULLPATH $FULL_PROP_PATH/$DEST
           FOUNDIT=1
           break
         fi
@@ -127,11 +140,11 @@ function perform_extract_files {
     fi
 
     # Add the file to the full list of blobs
-    FILE_LIST=("${FILE_LIST[@]}" "$FILE")
+    FILE_LIST=("${FILE_LIST[@]}" "$DEST")
 
     # If the file is needed for the build, add it to a list for later
     if [ "$OPTIONS" == "needed_for_build" ]; then
-      FILE_LIST_FOR_BUILD=("${FILE_LIST_FOR_BUILD[@]}" "$FILE")
+      FILE_LIST_FOR_BUILD=("${FILE_LIST_FOR_BUILD[@]}" "$DEST")
     fi
   done
 }
