@@ -103,7 +103,7 @@ BOARD_NEEDS_MEMORYHEAPPMEM := true
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
 
 # Workaround to avoid issues with legacy liblights on QCOM platforms
-TARGET_PROVIDES_LIBLIGHTS := true
+TARGET_PROVIDES_LIBLIGHT := true
 
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
