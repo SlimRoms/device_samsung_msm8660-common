@@ -58,6 +58,8 @@ BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/msm8660-common/recovery/graphic
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUEDROID_VENDOR_CONF := device/samsung/msm8660-common/bluetooth/vnd_msm8660.txt
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
