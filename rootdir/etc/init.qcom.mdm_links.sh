@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2010, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2011, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -10,7 +10,7 @@
 #       copyright notice, this list of conditions and the following
 #       disclaimer in the documentation and/or other materials provided
 #       with the distribution.
-#     * Neither the name of Code Aurora Forum, Inc. nor the names of its
+#     * Neither the name of The Linux Foundation nor the names of its
 #       contributors may be used to endorse or promote products derived
 #       from this software without specific prior written permission.
 #
@@ -32,47 +32,28 @@
 PATH=/sbin:/system/sbin:/system/bin:/system/xbin
 export PATH
 
-mount -t vfat -o ro,fmask=0133,dmask=0022,shortname=lower /dev/block/mmcblk0p13 /system/etc/firmware/misc   
-mount -t vfat -o ro,fmask=0133,dmask=0022,shortname=lower /dev/block/mmcblk0p17 /system/etc/firmware/misc_mdm  
-
-# Check for images and set up symlinks
-cd /system/etc/firmware/misc/image
-
-case `ls modem.mdt 2>/dev/null` in
-    modem.mdt)
-        for imgfile in modem*; do
-            ln -s /system/etc/firmware/misc/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
-        done
-        break
-        ;;
-    *)
-        log -p w -t PIL 8660 device but no modem image found
-        ;;
-esac
-
-case `ls q6.mdt 2>/dev/null` in
-    q6.mdt)
-        for imgfile in q6*; do
-            ln -s /system/etc/firmware/misc/image/$imgfile /system/etc/firmware/$imgfile 2>/dev/null
-        done
-        break
-        ;;
-    *)
-        log -p w -t PIL 8660 device but no q6 image found
-        ;;
-esac
+mkdir /system/etc/firmware/misc_mdm
+chmod 771  /system/etc/firmware/misc_mdm
+chown system.system /system/etc/firmware/misc_mdm
+mount -t vfat -o ro,shortname=lower /dev/block/mmcblk0p17 /system/etc/firmware/misc_mdm
 
 MISC_MDM=/system/etc/firmware/misc_mdm/image
 cd $MISC_MDM
 ln -s $MISC_MDM/amss.mbn /system/etc/firmware/amss.mbn 2>/dev/null
 ln -s $MISC_MDM/dsp1.mbn /system/etc/firmware/dsp1.mbn 2>/dev/null
 ln -s $MISC_MDM/dsp2.mbn /system/etc/firmware/dsp2.mbn 2>/dev/null
-ln -s $MISC_MDM/dbl.mbn /system/etc/firmware/dbl.mbn 2>/dev/null
+ln -s $MISC_MDM/dbl.mbn  /system/etc/firmware/dbl.mbn  2>/dev/null
 ln -s $MISC_MDM/osbl.mbn /system/etc/firmware/osbl.mbn 2>/dev/null
 ln -s $MISC_MDM/efs1.mbn /system/etc/firmware/efs1.mbn 2>/dev/null
 ln -s $MISC_MDM/efs2.mbn /system/etc/firmware/efs2.mbn 2>/dev/null
 ln -s $MISC_MDM/efs3.mbn /system/etc/firmware/efs3.mbn 2>/dev/null
 
+case `getprop ro.baseband` in
+   svlte2a)
+    sleep 5
+    break;;
+   *)
+    break;;
+esac
 
 cd /
-

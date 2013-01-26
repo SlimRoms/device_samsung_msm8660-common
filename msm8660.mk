@@ -38,10 +38,8 @@ PRODUCT_COPY_FILES += \
 
 # Media config
 PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml \
-    device/samsung/msm8660-common/configs/media_codecs.xml:system/etc/media_codecs.xml
+    device/samsung/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-# QCOM Display
 PRODUCT_PACKAGES += \
     copybit.msm8660 \
     gralloc.msm8660 \
@@ -171,12 +169,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/idc/qwerty.idc:system/usr/idc/qwerty.idc \
     device/samsung/msm8660-common/idc/qwerty2.idc:system/usr/idc/qwerty2.idc
 
-# Misc init scripts
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-    device/samsung/msm8660-common/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-    device/samsung/msm8660-common/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
-
 # Charger
 PRODUCT_PACKAGES += charger charger_res_images
 PRODUCT_COPY_FILES += \
@@ -195,16 +187,13 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Common properties
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.hw=1 \
-    debug.egl.hw=1 \
-    debug.composition.type=dyn \
-    debug.mdpcomp.maxlayer=3 \
-    debug.mdpcomp.logs=0 \
-    debug.enabletr=true \
     com.qc.hardware=true \
     ro.vendor.extension_library=/system/lib/libqc-opt.so \
     ro.hwui.text_cache_width=2048
 
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/msm8660-common/overlay
+
+# Common Qualcomm hardware
+$(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
 
