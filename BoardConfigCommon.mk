@@ -70,6 +70,7 @@ USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
+PRODUCT_PROPERTY_OVERRIDES += debug.mdpcomp.maxlayer=3
 
 # FM Radio
 #BOARD_HAVE_FM_RADIO := true
