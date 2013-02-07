@@ -189,7 +189,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     ro.vendor.extension_library=/system/lib/libqc-opt.so \
-    ro.hwui.text_cache_width=2048
+    ro.hwui.text_cache_width=2048 \
+    debug.mdpcomp.maxlayer=3
 
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/msm8660-common/overlay

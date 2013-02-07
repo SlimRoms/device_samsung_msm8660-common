@@ -22,6 +22,8 @@ TARGET_NO_BOOTLOADER := true
 # Platform
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+TARGET_ARCH_VARIANT_CPU := cortex-a8
+TARGET_CPU_SMP := true
 
 # inherit from qcom-common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
@@ -67,10 +69,8 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 # Graphics
 USE_OPENGL_RENDERER := true
-TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
-PRODUCT_PROPERTY_OVERRIDES += debug.mdpcomp.maxlayer=3
 
 # FM Radio
 #BOARD_HAVE_FM_RADIO := true
