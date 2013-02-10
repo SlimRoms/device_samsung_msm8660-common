@@ -203,7 +203,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.enabletr=true \
     com.qc.hardware=true \
     ro.vendor.extension_library=/system/lib/libqc-opt.so \
-    ro.hwui.text_cache_width=2048
+    ro.hwui.text_cache_width=2048 \
+    debug.mdpcomp.maxlayer=3
 
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/msm8660-common/overlay
