@@ -128,21 +128,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/idc/qwerty.idc:system/usr/idc/qwerty.idc \
     device/samsung/msm8660-common/idc/qwerty2.idc:system/usr/idc/qwerty2.idc
 
-<<<<<<< HEAD
-# Misc init scripts
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-    device/samsung/msm8660-common/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-    device/samsung/msm8660-common/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
-
-# Charger
-PRODUCT_PACKAGES += charger charger_res_images
-PRODUCT_COPY_FILES += \
-	device/samsung/msm8660-common/lpm/lpm.rc:root/lpm.rc \
-	device/samsung/msm8660-common/lpm/init.qcom.lpm_boot.sh:root/init.qcom.lpm_boot.sh
-
-=======
->>>>>>> a47f2cf... msm8660-common: cleanup device tree
 # Needed to reset bootmode when leaving recovery
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
