@@ -5,11 +5,12 @@
 /dev/tty                  0666   root       root
 /dev/random               0666   root       root
 /dev/urandom              0666   root       root
+
 /dev/ashmem               0666   root       root
 /dev/binder               0666   root       root
 /dev/rtc0                 0600   system     system
 /dev/tspdrv               0666   root       root
-/dev/ttyHSL0              0660   radio      system
+/dev/ttyHSL0		  0660   radio      system
 # logger should be world writable (for logging) but not readable
 /dev/log/*                0662   root       log
 
@@ -134,10 +135,10 @@
 /dev/block/mmcblk0p17     0660   system     system
 /dev/block/mmcblk0p18     0660   system     system
 /dev/usb_accessory        0660   root       usb
-/dev/video*	          0660   system     camera
+/dev/video*	          0660   system     camera 
 /dev/tun                  0660   system     vpn
 #regular apps need to be able to open ion
-/dev/ion                  0664   system     system
+/dev/ion                  0664   media     system
 #rfcomm device for Bluetooth DUN
 /dev/rfcomm0              0660   bluetooth   bluetooth
 /dev/btlock               0664   bluetooth  system

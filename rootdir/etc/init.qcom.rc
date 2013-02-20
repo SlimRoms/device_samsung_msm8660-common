@@ -42,7 +42,9 @@ on init
 
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard1 /mnt/extSdCard
+    symlink /storage/sdcard0 /mnt/sdcard
+    symlink /storage/sdcard1 /external_sd
+    symlink /storage/sdcard1 /mnt/external_sd
     symlink /storage/usbdisk0 /usbdisk0
     symlink /storage/usbdisk0 /mnt/usbdisk0
 
@@ -81,6 +83,12 @@ on boot
 
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
+    mkdir /dev/socket/qmux_audio 0770 media audio
+    chmod 2770 /dev/socket/qmux_audio
+    mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
+    chmod 2770 /dev/socket/qmux_bluetooth
+    mkdir /dev/socket/qmux_gps 0770 gps gps
+    chmod 2770 /dev/socket/qmux_gps
 
     setprop wifi.interface wlan0
 
@@ -90,7 +98,7 @@ on boot
     # permissions for NFC
     chmod 0600 /dev/pn544
     chown nfc nfc /dev/pn544
-
+    
     #Set SUID bit for usbhub
     chmod 4755 /system/bin/usbhub
     chmod 755 /system/bin/usbhub_init
@@ -114,8 +122,8 @@ on boot
 
     # Change owner and group for media server and surface flinger
     chown system system /sys/devices/virtual/graphics/fb1/format_3d
-
-    #increase dirty_writeback_interval
+	
+	#increase dirty_writeback_interval
     write /proc/sys/vm/dirty_writeback_centisecs 60000
     write /proc/sys/vm/dirty_expire_centisecs 60000
 
@@ -240,9 +248,9 @@ on property:vold.decrypt=trigger_restart_framework
 service cnd /system/bin/cnd
     class late_start
     socket cnd stream 660 root radio
-    user radio
-    group system radio
-    disabled
+	user radio
+	group system radio
+	disabled
 
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmcblk0p11 /dev/block/mmcblk0p17
     class late_start
@@ -448,9 +456,9 @@ on property:sys.boot_completed=1
 
 service hdmid /system/bin/hdmid
     class late_start
-    user system
+	user system
     group system graphics
-    socket hdmid stream 0660 system system
+	socket hdmid stream 0660 system system
     disabled
 
 on property:ro.hdmi.enable=true
