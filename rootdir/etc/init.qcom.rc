@@ -120,8 +120,14 @@ on boot
     chmod 0664 /sys/devices/virtual/graphics/fb1/video_mode
     chmod 0664 /sys/devices/virtual/graphics/fb1/format_3d
 
-    # Change owner and group for media server and surface flinger
-    chown system system /sys/devices/virtual/graphics/fb1/format_3d
+    #HDMID Permission for sys nodes
+    chown system graphics /sys/class/graphics/fb1/connected
+    chown system graphics /sys/class/graphics/fb1/edid_modes
+    chown system graphics /sys/class/graphics/fb1/power_state
+    chown system graphics /sys/class/graphics/fb1/hpd
+    chown system graphics /sys/class/graphics/fb1/hdcp_present
+    chown system graphics /sys/class/graphics/fb1/hdmi_mode
+    chmod 0660 /sys/class/graphics/fb1/power_state
 	
 	#increase dirty_writeback_interval
     write /proc/sys/vm/dirty_writeback_centisecs 60000
@@ -453,25 +459,6 @@ on property:init.svc.bootanim=stopped
 
 on property:sys.boot_completed=1
     start qcom-post-boot
-
-service hdmid /system/bin/hdmid
-    class late_start
-	user system
-    group system graphics
-	socket hdmid stream 0660 system system
-    disabled
-
-on property:ro.hdmi.enable=true
-    start hdmid
-
-#HDMID Permission for sys nodes
-chown system graphics /sys/class/graphics/fb1/connected
-chown system graphics /sys/class/graphics/fb1/edid_modes
-chown system graphics /sys/class/graphics/fb1/power_state
-chown system graphics /sys/class/graphics/fb1/hpd
-chown system graphics /sys/class/graphics/fb1/hdcp_present
-chown system graphics /sys/class/graphics/fb1/hdmi_mode
-chmod 0660 /sys/class/graphics/fb1/power_state
 
 #service abld /system/bin/mm-abl-daemon
 #    class late_start
