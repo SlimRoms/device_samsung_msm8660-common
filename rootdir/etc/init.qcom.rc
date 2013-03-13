@@ -106,10 +106,6 @@ on boot
     #Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
 
-    #port-bridge
-    chmod 0660 /dev/smd0
-    chown system system /dev/smd0
-
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
     # create symlink for fb1 as HDMI
@@ -269,7 +265,7 @@ on property:ro.boot.emmc=true
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
     user radio
-    group radio
+    group radio qcom_diag
     disabled
 
 service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
@@ -283,19 +279,20 @@ on property:ro.baseband="msm"
     # setprop ro.qualcomm.bluetooth.dun true
 
 service qmiproxy /system/bin/qmiproxy
-    class late_start
+    class main
     user radio
-    group radio
+    group radio qcom_diag
     disabled
 
+# QMUX must be in multiple groups to support external process connections
 service qmuxd /system/bin/qmuxd
-    class late_start
-    user root
-    group radio
+    class main
+    user radio
+    group radio audio bluetooth gps qcom_diag
     disabled
 
 service netmgrd /system/bin/netmgrd
-    class late_start
+    class main
     disabled
 
 service sensors /system/bin/sensors.qcom
@@ -497,12 +494,12 @@ on property:persist.timed.enable=true
     start time_daemon
 
 service ril-daemon1 /system/bin/rild -c 1
-    class late_start
+    class main
     socket rild1 stream 660 root radio
     socket rild-debug1 stream 660 radio system
     user root
     disabled
-    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
+    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag qcom_diag log
 
 service profiler_daemon /system/bin/profiler_daemon
     class late_start
