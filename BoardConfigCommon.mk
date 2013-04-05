@@ -52,6 +52,9 @@ WIFI_DRIVER_FW_PATH_P2P     := "/system/etc/wifi/bcm4330_p2p.bin"
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
+# Adreno configuration
+BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
+
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
