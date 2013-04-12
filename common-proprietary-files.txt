@@ -23,14 +23,7 @@
 #
 
 # Bins
-bin/immvibed
-bin/bridgemgrd
-bin/ds_fmc_appd
-bin/btnvtool
 bin/mpdecision
-bin/port-bridge
-bin/usbhub
-bin/usbhub_init
 
 # Audio
 lib/libacdbloader.so     # needed_for_build
@@ -82,17 +75,20 @@ lib/libdsutils.so
 lib/libdsi_netctrl.so
 lib/libidl.so
 lib/libnetmgr.so
+lib/libqcci_legacy.so
+lib/libqmi_client_qmux.so
+lib/libomission_avoidance.so
+lib/libfactoryutil.so
+lib/libsecnativefeature.so
 
 # GPS
 lib/liboncrpc.so
-lib/libgps.utils.so
-lib/libloc_adapter.so
 lib/libloc_api-rpc-qc.so
-lib/libloc_eng.so
 lib/libcommondefs.so
+lib/librpc.so
 
 # Sensors
-lib/hw/sensors.default.so
+lib/hw/sensors.MSM8660_SURF.so
 lib/libakm.so
 
 # Camera
@@ -110,19 +106,15 @@ lib/libdiag.so
 lib/libqc-opt.so
 
 # Wi-Fi
-etc/wifi/bcm4330_apsta.bin
-etc/wifi/wl
+etc/wifi/bcmdhd_apsta.bin
 etc/wifi/nvram_net.txt
 etc/wifi/wpa_supplicant.conf
-etc/wifi/bcm4330_p2p.bin
-etc/wifi/bcm4330_sta.bin
-etc/wifi/bcm4330_mfg.bin
+etc/wifi/bcmdhd_p2p.bin
+etc/wifi/bcmdhd_sta.bin
+etc/wifi/bcmdhd_mfg.bin
 etc/wifi/nvram_mfg.txt
 
 # Firmware
-etc/firmware/cyttsp_8660_ffa.hex
-etc/firmware/cyttsp_8660_fluid_p2.hex
-etc/firmware/cyttsp_8660_fluid_p3.hex
 etc/firmware/dsps_fluid.b00
 etc/firmware/dsps_fluid.b01
 etc/firmware/dsps_fluid.b02
@@ -133,4 +125,11 @@ etc/firmware/leia_pm4_470.fw
 etc/firmware/vidc_1080p.fw
 etc/firmware/yamato_pfp.fw
 etc/firmware/yamato_pm4.fw
+
+# Thermald
+bin/thermald
+etc/thermald.conf
+lib/libdsm.so
+lib/libthermal_mitigation_fusion.so
+lib/libthermal_mitigation.so
 
