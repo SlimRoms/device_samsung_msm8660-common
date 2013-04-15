@@ -522,3 +522,8 @@ service sdcard /system/bin/sdcard /data/media 1023 1023
 on property:persist.fuse_sdcard=true
     start sdcard
 
+service userinit /system/xbin/busybox run-parts /system/etc/init.d
+    oneshot
+    class late_start
+    user root
+    group root
