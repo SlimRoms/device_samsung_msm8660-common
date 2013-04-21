@@ -32,7 +32,7 @@ public class TouchscreenSensitivity extends ListPreference implements OnPreferen
         this.setOnPreferenceChangeListener(this);
     }
 
-    private static final String FILE = "/sys/class/misc/melfas_touchkey/touchkey_threshold";
+    private static final String FILE = "/sys/class/misc/sec_touchkey/touchkey_threshold";
 
     public static boolean isSupported() {
         return Utils.fileExists(FILE);

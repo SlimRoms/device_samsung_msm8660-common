@@ -101,7 +101,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/keylayout/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
     device/samsung/msm8660-common/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
     device/samsung/msm8660-common/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
-    device/samsung/msm8660-common/keylayout/melfas_touchkey.kl:system/usr/keylayout/melfas_touchkey.kl \
+    device/samsung/msm8660-common/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
     device/samsung/msm8660-common/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl\
     device/samsung/msm8660-common/keylayout/sii9234_rcp.kl:system/usr/keylayout/sii9234_rcp.kl \
     device/samsung/msm8660-common/keylayout/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_028e.kl \
