@@ -35,8 +35,8 @@ static int g_notification_blink_rate_support = 0;
 static int g_enable_touchlight = -1;
 
 static char const LCD_FILE[]      = "/sys/class/leds/lcd-backlight/brightness";
-static char const BUTTONS_FILE[]  = "/sys/class/misc/melfas_touchkey/brightness";
-static char const BUTTONS_POWER[] = "/sys/class/misc/melfas_touchkey/enable_disable";
+static char const BUTTONS_FILE[]  = "/sys/class/misc/sec_touchkey/brightness";
+static char const BUTTONS_POWER[] = "/sys/class/misc/sec_touchkey/enable_disable";
 static char const NOTIFICATION_FILE[] = "/sys/class/misc/backlightnotification/notification_led";
 static char const NOTIFICATION_BLINK_FILE[]    = "/sys/class/misc/backlightnotification/blink_control";
 static char const NOTIFICATION_BLINK_RATE_FILE[] = "/sys/class/misc/backlightnotification/blink_interval";

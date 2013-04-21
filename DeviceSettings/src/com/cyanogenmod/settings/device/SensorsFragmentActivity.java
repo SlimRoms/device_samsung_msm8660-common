@@ -37,7 +37,7 @@ public class SensorsFragmentActivity extends PreferenceFragment {
 
     private static final String FILE_USE_GYRO_CALIB = "/sys/class/sec/gsensorcal/calibration";
     private static final String FILE_TOUCHKEY_LIGHT = "/data/.disable_touchlight";
-    private static final String FILE_TOUCHKEY_TOGGLE = "/sys/class/misc/melfas_touchkey/brightness";
+    private static final String FILE_TOUCHKEY_TOGGLE = "/sys/class/misc/sec_touchkey/brightness";
     private static final String FILE_BLN_TOGGLE = "/sys/class/misc/backlightnotification/enabled";
 
     @Override
