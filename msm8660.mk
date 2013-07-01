@@ -136,6 +136,10 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
 	$(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/system/bin/postrecoveryboot.sh
 
+# Support for testing the baseband version
+PRODUCT_COPY_FILES += \
+	device/samsung/msm8660-common/test_radio_version.sh:/system/etc/test_radio_version.sh
+
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
