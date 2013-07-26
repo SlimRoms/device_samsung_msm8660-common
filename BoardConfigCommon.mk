@@ -18,6 +18,7 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm8660-common/include
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_ARCH_VARIANT_CPU := cortex-a8
+TARGET_CPU_VARIANT := generic
 TARGET_CPU_SMP := true
 
 # inherit from qcom-common
