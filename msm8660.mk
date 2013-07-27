@@ -36,6 +36,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+
+# HALs
 PRODUCT_PACKAGES += \
     copybit.msm8660 \
     gralloc.msm8660 \
