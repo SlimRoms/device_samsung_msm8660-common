@@ -51,6 +51,8 @@ WIFI_DRIVER_FW_PATH_P2P     := "/system/etc/wifi/bcmdhd_p2p.bin"
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_FSTAB := device/samsung/msm8660-common/rootdir/etc/fstab.qcom
+RECOVERY_FSTAB_VERSION := 2
 
 # Adreno configuration
 BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
