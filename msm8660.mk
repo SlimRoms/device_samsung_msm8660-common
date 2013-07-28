@@ -36,6 +36,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# libnetcmdiface
+PRODUCT_PACKAGES += \
+    libnetcmdiface
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
