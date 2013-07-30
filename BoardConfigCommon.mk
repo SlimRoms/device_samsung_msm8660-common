@@ -78,6 +78,9 @@ TARGET_PROVIDES_LIBLIGHT := true
 BOARD_HAVE_SAMSUNG_AUDIO := true
 BOARD_QCOM_VOIP_ENABLED := true
 
+# QCOM enhanced A/V
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
 # To handle radio version checks
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common
 
