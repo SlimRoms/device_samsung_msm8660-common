@@ -18,12 +18,10 @@
 -->
 
 <resources>
-	<!-- Samsung Camcorder Mode -->
-	<bool name="needsSamsungCamMode">true</bool>
-	<!-- Samsung Camera Settings -->
-	<bool name="hasSamsungCamSettings">true</bool>
+    <!-- Samsung Camcorder Mode -->
+    <bool name="needsSamsungCamMode">true</bool>
+    <!-- Samsung Camera Settings -->
     <bool name="needsEarlyVideoSize">true</bool>
     <bool name="usePreferredPreviewSizeForEffects">true</bool>
     <bool name="ignorePreferredPreviewSizeForVideo">true</bool>
-    <bool name="resetVideoRotationParameter">true</bool>
 </resources>
