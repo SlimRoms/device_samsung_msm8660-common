@@ -90,6 +90,9 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
+    # TelephonyManager.java requires this
+    chmod 0644 /proc/cmdline
+
     setprop wifi.interface wlan0
 
     # Enable Bluetooth 802.11 PAL when Bluetooth is turned on
