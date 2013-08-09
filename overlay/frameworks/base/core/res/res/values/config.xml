@@ -37,7 +37,7 @@
 
     <!-- Vibrator pattern for feedback about touching a virtual key -->
     <integer-array name="config_virtualKeyVibePattern">
-        <item>10</item>
+        <item>5</item>
     </integer-array>
 
     <!-- Default interface to monitor data use -->
