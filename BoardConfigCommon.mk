@@ -91,3 +91,6 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common
 # Use legacy MM heap behavior
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
 
+# Use retire fence from MDP driver
+TARGET_DISPLAY_USE_RETIRE_FENCE := true
+
