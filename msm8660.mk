@@ -156,8 +156,8 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     ro.vendor.extension_library=/system/lib/libqc-opt.so \
-    ro.hwui.text_cache_width=2048 \
-    debug.mdpcomp.maxlayer=3
+    debug.mdpcomp.maxlayer=3 \
+    debug.hwc.dynThreshold=1.9
 
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/msm8660-common/overlay
