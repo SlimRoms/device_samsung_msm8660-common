@@ -17,18 +17,11 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm8660-common/include
 # Platform
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
-TARGET_ARCH_VARIANT_CPU := cortex-a8
-TARGET_CPU_VARIANT := cortex-a8
+TARGET_CPU_VARIANT := scorpion
 TARGET_CPU_SMP := true
 
 # inherit from qcom-common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
-
-# Scorpion optimizations
-TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
-TARGET_USE_SCORPION_PLD_SET := true
-TARGET_SCORPION_BIONIC_PLDOFFS := 6
-TARGET_SCORPION_BIONIC_PLDSIZE := 128
 
 # Wifi related defines
 WIFI_BAND := 802_11_ABG
