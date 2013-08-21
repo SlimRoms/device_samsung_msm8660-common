@@ -72,11 +72,8 @@ BOARD_CAMERA_USE_MM_HEAP := true
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Audio
-BOARD_USES_LEGACY_ALSA_AUDIO := true
-
-# Samsung VoIP/call routing
 BOARD_HAVE_SAMSUNG_AUDIO := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_ACDB_ENABLED
+BOARD_QCOM_VOIP_ENABLED := true
 
 # To handle radio version checks
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common
