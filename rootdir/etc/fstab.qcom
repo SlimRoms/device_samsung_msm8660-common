@@ -12,6 +12,4 @@
 /devices/platform/msm_sdcc.1/mmc_host/mmc0/mmc0     /storage/sdcard0    auto    defaults                                                                 voldmanaged=internal:28
 /devices/platform/msm_sdcc.3/mmc_host/mmc2/mmc2     /storage/sdcard1    auto    defaults                                                                 voldmanaged=external:auto
 /devices/platform/msm_hsusb_host.0                  /storage/usbdisk0   auto    defaults                                                                 voldmanaged=usbdisk:auto
-/dev/block/mmcblk0p28                               /sdcard             vfat    defaults                                                                 recoveryonly
-/dev/block/mmcblk1p1                                /external_sd        vfat    defaults                                                                 recoveryonly
 
