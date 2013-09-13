@@ -24,4 +24,6 @@
     <bool name="needsEarlyVideoSize">true</bool>
     <bool name="usePreferredPreviewSizeForEffects">true</bool>
     <bool name="ignorePreferredPreviewSizeForVideo">true</bool>
+    <!-- Disable touch snapshot in video recording -->
+    <bool name="disableTouchSnapshot">true</bool>
 </resources>
