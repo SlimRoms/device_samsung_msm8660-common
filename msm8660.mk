@@ -108,6 +108,11 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     librs_jni
 
+# Wifi
+PRODUCT_COPY_FILES += \
+    device/samsung/msm8660-common/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    device/samsung/msm8660-common/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
+
 # keylayouts
 PRODUCT_COPY_FILES += \
     device/samsung/msm8660-common/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl\
@@ -154,6 +159,7 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Common properties
 PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0 \
     com.qc.hardware=true \
     ro.vendor.extension_library=/system/lib/libqc-opt.so \
     debug.mdpcomp.maxlayer=3 \
