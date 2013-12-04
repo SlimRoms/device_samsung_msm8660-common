@@ -18,10 +18,6 @@
 -->
 
 <resources>
-    <!-- Samsung Camcorder Mode -->
-    <bool name="needsSamsungCamMode">true</bool>
     <!-- Samsung Camera Settings -->
-    <bool name="needsEarlyVideoSize">true</bool>
-    <bool name="usePreferredPreviewSizeForEffects">true</bool>
     <bool name="ignorePreferredPreviewSizeForVideo">true</bool>
 </resources>
