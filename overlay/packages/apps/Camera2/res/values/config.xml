@@ -18,11 +18,6 @@
 -->
 
 <resources>
-    <!-- Samsung Camcorder Mode -->
-    <bool name="needsSamsungCamMode">true</bool>
     <!-- Samsung Camera Settings -->
-    <bool name="needsEarlyVideoSize">true</bool>
-    <!-- Ignore preferred preview size and use best value from supported preview sizes
-         Setting both this and the above option true will always use values from preview sizes for both -->
     <bool name="ignorePreferredPreviewSizeForVideo">true</bool>
 </resources>

@@ -47,6 +47,7 @@ PRODUCT_PACKAGES += \
 
 # HALs
 PRODUCT_PACKAGES += \
+    camera.msm8660 \
     copybit.msm8660 \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
