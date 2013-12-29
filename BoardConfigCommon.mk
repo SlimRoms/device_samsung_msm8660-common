@@ -20,9 +20,6 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_CPU_VARIANT := cortex-a8
 TARGET_CPU_SMP := true
 
-#Kernel toolchain
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7/bin/arm-eabi-
-
 # inherit from qcom-common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
 
