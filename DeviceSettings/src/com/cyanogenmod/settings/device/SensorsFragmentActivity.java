@@ -39,6 +39,9 @@ public class SensorsFragmentActivity extends PreferenceFragment {
     private static final String FILE_TOUCHKEY_LIGHT = "/data/.disable_touchlight";
     private static final String FILE_TOUCHKEY_TOGGLE = "/sys/class/misc/sec_touchkey/brightness";
     private static final String FILE_BLN_TOGGLE = "/sys/class/misc/backlightnotification/enabled";
+    private static final String FILE_BLN_CONTROL = "/sys/class/misc/backlightnotification/blink_control";
+    private static final String FILE_BLN_TIMEOUT = "/sys/class/misc/backlightnotification/blink_timeout";
+    private static final String FILE_BLN_INTERVAL = "/sys/class/misc/backlightnotification/blink_interval";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,9 @@ public class SensorsFragmentActivity extends PreferenceFragment {
             Utils.writeValue(FILE_TOUCHKEY_TOGGLE, ((CheckBoxPreference)preference).isChecked() ? "1" : "2");
         } else if (key.compareTo(DeviceSettings.KEY_TOUCHKEY_BLN) == 0) {
             Utils.writeValue(FILE_BLN_TOGGLE, ((CheckBoxPreference)preference).isChecked() ? "1" : "0");
+        } else if (key.compareTo(DeviceSettings.KEY_TOUCHKEY_BLN_OFF) == 0) {
+            Utils.writeValue(FILE_BLN_CONTROL, "0");
+            Utils.showToast((Context)getActivity(), "BLN has been successfully turned off!");
         }
 
         return true;
@@ -93,5 +99,7 @@ public class SensorsFragmentActivity extends PreferenceFragment {
         Utils.writeValue(FILE_TOUCHKEY_LIGHT, sharedPrefs.getBoolean(DeviceSettings.KEY_TOUCHKEY_LIGHT, true) ? "0" : "1");
         Utils.writeValue(FILE_TOUCHKEY_TOGGLE, sharedPrefs.getBoolean(DeviceSettings.KEY_TOUCHKEY_LIGHT, true) ? "1" : "2");
         Utils.writeValue(FILE_BLN_TOGGLE, sharedPrefs.getBoolean(DeviceSettings.KEY_TOUCHKEY_BLN, false) ? "1" : "0");
+        Utils.writeValue(FILE_BLN_INTERVAL, sharedPrefs.getString(DeviceSettings.KEY_TOUCHKEY_BLN_INTERVAL, "500 500"));
+        Utils.writeValue(FILE_BLN_TIMEOUT, sharedPrefs.getString(DeviceSettings.KEY_TOUCHKEY_BLN_TIMEOUT, "600"));
     }
 }

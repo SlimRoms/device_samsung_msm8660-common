@@ -44,6 +44,9 @@ public class DeviceSettings extends FragmentActivity {
     public static final String KEY_TOUCHSCREEN_SENSITIVITY = "touchscreen_sensitivity";
     public static final String KEY_TOUCHKEY_LIGHT = "touchkey_light";
     public static final String KEY_TOUCHKEY_BLN = "touchkey_bln";
+    public static final String KEY_TOUCHKEY_BLN_OFF = "touchkey_bln_off";
+    public static final String KEY_TOUCHKEY_BLN_INTERVAL = "touchkey_bln_interval";
+    public static final String KEY_TOUCHKEY_BLN_TIMEOUT = "touchkey_bln_timeout";
 
     ViewPager mViewPager;
     TabsAdapter mTabsAdapter;
