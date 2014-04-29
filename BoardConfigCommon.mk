@@ -54,6 +54,7 @@ RECOVERY_FSTAB_VERSION := 2
 
 # Adreno configuration
 BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
