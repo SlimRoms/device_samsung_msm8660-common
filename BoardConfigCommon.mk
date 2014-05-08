@@ -99,7 +99,7 @@ TARGET_DISPLAY_USE_RETIRE_FENCE := true
 TARGET_USES_CM_POWERHAL := true
 
 # Recovery
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/msm8660-common/recovery/graphics.c
+#BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/msm8660-common/recovery/graphics.c
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
