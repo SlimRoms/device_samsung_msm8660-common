@@ -89,6 +89,9 @@ TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 # To handle radio version checks
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common
 
+# External apps on SD
+TARGET_EXTERNAL_APPS = sdcard1
+
 # Use legacy MM heap behavior
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
 
