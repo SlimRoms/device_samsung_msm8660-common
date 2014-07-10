@@ -64,7 +64,7 @@ public class DisplayColor extends DialogPreference {
     }
 
     public static int getMinValue()  {
-        return 1;
+        return 10000;
     }
 
     public static String getCurColors()  {
