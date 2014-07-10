@@ -18,9 +18,14 @@ package com.cyanogenmod.settings.device;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceGroup;
 import com.cyanogenmod.settings.device.R;
+import com.cyanogenmod.settings.device.DisplayColor;
+import com.cyanogenmod.settings.device.DisplayGamma;
 
 public class ScreenFragmentActivity extends PreferenceFragment {
+
+    private TouchscreenSensitivity mTouchscreenSensitivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,19 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.screen_preferences);
 
+        final PreferenceGroup calibrationCategory =
+                (PreferenceGroup) findPreference(DeviceSettings.KEY_DISPLAY_CALIBRATION_CATEGORY);
+
+        if (!DisplayColor.isSupported() && !DisplayGamma.isSupported()) {
+            getPreferenceScreen().removePreference(calibrationCategory);
+        } else {
+            if (!DisplayColor.isSupported()) {
+                calibrationCategory.removePreference(findPreference(DeviceSettings.KEY_DISPLAY_COLOR));
+            }
+            if (!DisplayGamma.isSupported()) {
+                calibrationCategory.removePreference(findPreference(DeviceSettings.KEY_DISPLAY_GAMMA));
+            }
+        }
         mTouchscreenSensitivity = (TouchscreenSensitivity) findPreference(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY);
         mTouchscreenSensitivity.setEnabled(mTouchscreenSensitivity.isSupported());
     }

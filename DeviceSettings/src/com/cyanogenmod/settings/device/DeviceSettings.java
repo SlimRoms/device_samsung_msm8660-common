@@ -43,6 +43,10 @@ public class DeviceSettings extends FragmentActivity {
     public static final String KEY_TOUCHKEY_BLN_OFF = "touchkey_bln_off";
     public static final String KEY_TOUCHKEY_BLN_INTERVAL = "touchkey_bln_interval";
     public static final String KEY_TOUCHKEY_BLN_TIMEOUT = "touchkey_bln_timeout";
+    public static final String KEY_DISPLAY_CALIBRATION_CATEGORY = "display_calibration_category";
+    public static final String KEY_DISPLAY_COLOR = "color_calibration";
+    public static final String KEY_DISPLAY_GAMMA = "gamma_tuning";
+    public static final String KEY_SENSORS_MOTORS_CATEGORY = "sensors_motors_category";
 
     ViewPager mViewPager;
     TabsAdapter mTabsAdapter;
