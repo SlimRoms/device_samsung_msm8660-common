@@ -14,34 +14,6 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string-array name="mdnie_scenario_entries">
-        <item>相机 (默认)</item>
-        <item>影片</item>
-        <item>影片 (温)</item>
-        <item>影片 (冷)</item>
-        <item>界面</item>
-        <item>导航</item>
-        <item>图库</item>
-        <item>VT</item>
-    </string-array>
-    <string-array name="mdnie_mode_entries">
-        <item>标准 (默认)</item>
-        <item>动态</item>
-        <item>自然</item>
-        <item>电影</item>
-    </string-array>
-    <string-array name="mdnie_negative_entries">
-        <item>正常</item>
-        <item>反色</item>
-    </string-array>
-    <string-array name="mdnie_outdoor_entries">
-        <item>关闭 (默认)</item>
-        <item>开启</item>
-    </string-array>
-    <string-array name="panel_gamma_entries">
-        <item>2.2 (默认)</item>
-        <item>1.9</item>
-    </string-array>
     <string-array name="touchscreen_sensitivity_entries">
         <item>10</item>
         <item>20</item>

@@ -17,16 +17,6 @@
     <string name="app_name">Pokročilé nastavení</string>
     <string name="screen_colors_title">Barvy</string>
     <string name="category_mdnie_title">Obrazovka</string>
-    <string name="mdnie_scenario_title_head">Scénář</string>
-    <string name="mdnie_scenario_summary_head">Nastavit scénář pro mDNIe</string>
-    <string name="mdnie_mode_title_head">Režim</string>
-    <string name="mdnie_mode_summary_head">Nastavi režim mDNIe</string>
-    <string name="mdnie_negative_title_head">Inverzní režim</string>
-    <string name="mdnie_negative_summary_head">Použít invertování barev</string>
-    <string name="mdnie_outdoor_title_head">Venkovní režim</string>
-    <string name="mdnie_outdoor_summary_head">Použít venkovní režim</string>
-    <string name="panel_gamma_title_head">Gamma obrazovky</string>
-    <string name="panel_gamma_summary_head">Nastavit hodnotu gamma pro obrazovku</string>
     <string name="touchscreen_subcat_title">Dotykové ovládání</string>
     <string name="touchscreen_sensitivity_title_head">Citlivost dotyků</string>
     <string name="touchscreen_sensitivity_summary_head">Nastavit citlivost dotykového panelu</string>
