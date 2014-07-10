@@ -31,6 +31,12 @@
 
     <PreferenceCategory
         android:title="@string/touchkey_subcat_title">
+        <CheckBoxPreference
+            android:key="touchkey_s2w"
+            android:title="@string/touchkey_s2w_title_head"
+            android:summary="@string/touchkey_s2w_summary_head"
+            android:defaultValue="true" />
+
         <!-- Touchkey backlight -->
         <CheckBoxPreference
             android:key="touchkey_light"
