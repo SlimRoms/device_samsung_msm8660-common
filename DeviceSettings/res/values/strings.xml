@@ -70,11 +70,5 @@
     <string name="touchkey_bln_interval_dialog_reset">Reset to Default</string>
     <string name="touchkey_bln_interval_dialog_reset_toast">Blink interval reset to default!</string>
     <string name="touchkey_bln_interval_dialog_success_toast">Blink interval set successfully!</string>
-    <string name="touchkey_bln_timeout_title_head">Set blink timeout</string>
-    <string name="touchkey_bln_timeout_summary_head">Set the duration in seconds for timout of the BLN.\n(Lower values save more battery)</string>
-    <string name="touchkey_bln_timeout_dialog_message">Set the BLN timout duration in seconds.</string>
-    <string name="touchkey_bln_timeout_dialog_timeout_label">Timeout (s)</string>
-    <string name="touchkey_bln_timeout_dialog_reset_toast">Blink timeout reset to default!</string>
-    <string name="touchkey_bln_timeout_dialog_success_toast">Blink timeout set successfully!</string>
 
 </resources>

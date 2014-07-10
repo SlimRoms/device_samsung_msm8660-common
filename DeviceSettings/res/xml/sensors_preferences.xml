@@ -59,15 +59,6 @@
             android:max="5000"
             custom:min="1" />
         
-        <com.cyanogenmod.settings.device.BlinkTimeout
-            android:key="touchkey_bln_timeout"
-            android:title="@string/touchkey_bln_timeout_title_head"
-            android:summary="@string/touchkey_bln_timeout_summary_head"
-            android:defaultValue="600\n"
-            android:dialogMessage="@string/touchkey_bln_timeout_dialog_message"
-            android:max="1800"
-            custom:min="1" />
-                    
         <Preference
             android:key="touchkey_bln_off"
             android:title="@string/touchkey_bln_off_title_head"
