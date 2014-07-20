@@ -14,6 +14,9 @@
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm8660-common/include
 
+# common kernel source
+TARGET_KERNEL_SOURCE        := kernel/samsung/msm8660
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
