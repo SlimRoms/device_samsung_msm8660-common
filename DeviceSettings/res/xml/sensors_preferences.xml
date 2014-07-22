@@ -54,7 +54,7 @@
             android:key="touchkey_bln_interval"
             android:title="@string/touchkey_bln_interval_title_head"
             android:summary="@string/touchkey_bln_interval_summary_head"
-            android:defaultValue="500 500\n"
+            android:defaultValue="500 1000\n"
             android:dialogMessage="@string/touchkey_bln_interval_dialog_message"
             android:max="5000"
             custom:min="1" />
