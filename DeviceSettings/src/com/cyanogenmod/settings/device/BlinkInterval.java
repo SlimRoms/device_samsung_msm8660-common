@@ -123,11 +123,11 @@ public class BlinkInterval extends DialogPreference implements android.widget.Bu
             String valueOnOff = valueOn + " " + valueOff;
             
             if (callChangeListener(valueOnOff)) {
-                SharedPreferences sharedPrefs = mContext.getSharedPreferences(DeviceSettings.SHARED_PREFERENCES_BASENAME + "_preferences", 0);
+                SharedPreferences sharedPrefs = mContext.getSharedPreferences(DisplaySettings.SHARED_PREFERENCES_BASENAME + "_preferences", 0);
                 SharedPreferences.Editor editor = sharedPrefs.edit();
                 
                 setValue(valueOnOff);
-                editor.putString(DeviceSettings.KEY_TOUCHKEY_BLN_INTERVAL, mValueOnOff);
+                editor.putString(DisplaySettings.KEY_TOUCHKEY_BLN_INTERVAL, mValueOnOff);
                 editor.commit();
                 Utils.writeValue(FILE_BLN_INTERVAL, mValueOnOff + "\n");
                 

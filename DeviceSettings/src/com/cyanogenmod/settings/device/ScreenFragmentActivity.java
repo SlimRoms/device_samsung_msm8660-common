@@ -34,19 +34,19 @@ public class ScreenFragmentActivity extends PreferenceFragment {
         addPreferencesFromResource(R.xml.screen_preferences);
 
         final PreferenceGroup calibrationCategory =
-                (PreferenceGroup) findPreference(DeviceSettings.KEY_DISPLAY_CALIBRATION_CATEGORY);
+                (PreferenceGroup) findPreference(DisplaySettings.KEY_DISPLAY_CALIBRATION_CATEGORY);
 
         if (!DisplayColor.isSupported() && !DisplayGamma.isSupported()) {
             getPreferenceScreen().removePreference(calibrationCategory);
         } else {
             if (!DisplayColor.isSupported()) {
-                calibrationCategory.removePreference(findPreference(DeviceSettings.KEY_DISPLAY_COLOR));
+                calibrationCategory.removePreference(findPreference(DisplaySettings.KEY_DISPLAY_COLOR));
             }
             if (!DisplayGamma.isSupported()) {
-                calibrationCategory.removePreference(findPreference(DeviceSettings.KEY_DISPLAY_GAMMA));
+                calibrationCategory.removePreference(findPreference(DisplaySettings.KEY_DISPLAY_GAMMA));
             }
         }
-        mTouchscreenSensitivity = (TouchscreenSensitivity) findPreference(DeviceSettings.KEY_TOUCHSCREEN_SENSITIVITY);
+        mTouchscreenSensitivity = (TouchscreenSensitivity) findPreference(DisplaySettings.KEY_TOUCHSCREEN_SENSITIVITY);
         mTouchscreenSensitivity.setEnabled(mTouchscreenSensitivity.isSupported());
     }
 
