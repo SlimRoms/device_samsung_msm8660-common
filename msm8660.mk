@@ -173,4 +173,4 @@ $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
 
 # MPDecision
 PRODUCT_COPY_FILES += \
-device/samsung/msm8660-common/01mpdecision:system/etc/init.d/01mpdecision
+    device/samsung/msm8660-common/01mpdecision:system/etc/init.d/01mpdecision
