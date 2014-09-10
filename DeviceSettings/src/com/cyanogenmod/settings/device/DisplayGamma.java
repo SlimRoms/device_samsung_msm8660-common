@@ -22,6 +22,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -326,6 +330,19 @@ public class DisplayGamma extends DialogPreference {
         private TextView mValue;
 
         public GammaSeekBar(int controlIndex, int colorIndex, ViewGroup container) {
+            LightingColorFilter mWhiteFilter = new LightingColorFilter(Color.BLACK,
+                getContext().getResources().getColor(android.R.color.white));
+            LightingColorFilter mRedFilter = new LightingColorFilter(Color.BLACK,
+                getContext().getResources().getColor(android.R.color.holo_red_light));
+            LightingColorFilter mGreenFilter = new LightingColorFilter(Color.BLACK,
+                getContext().getResources().getColor(android.R.color.holo_green_light));
+            LightingColorFilter mBlueFilter = new LightingColorFilter(Color.BLACK,
+                getContext().getResources().getColor(android.R.color.holo_blue_light));
+            LightingColorFilter currentFilter = mWhiteFilter;
+            String currentLabel = container.getContext().getString(BAR_COLORS[colorIndex]);
+            String labelRed = container.getContext().getString(R.string.color_red_title);
+            String labelGreen = container.getContext().getString(R.string.color_green_title);
+            String labelBlue = container.getContext().getString(R.string.color_blue_title);
             mControlIndex = controlIndex;
             mColorIndex = colorIndex;
 
@@ -333,6 +350,30 @@ public class DisplayGamma extends DialogPreference {
 
             mValue = (TextView) container.findViewById(R.id.color_value);
             mSeekBar = (SeekBar) container.findViewById(R.id.color_seekbar);
+            
+            Drawable progressDrawable = mSeekBar.getProgressDrawable();
+            Drawable progressThumb = mSeekBar.getThumb();
+            if (progressDrawable instanceof LayerDrawable) {
+                LayerDrawable ld = (LayerDrawable) progressDrawable;
+                progressDrawable = ld.findDrawableByLayerId(android.R.id.progress);
+            }
+            
+            if (currentLabel.equals(labelRed)) {
+                currentFilter = mRedFilter;
+            }
+            else if (currentLabel.equals(labelGreen)) {
+                currentFilter = mGreenFilter;
+            }
+            else if (currentLabel.equals(labelBlue)) {
+                currentFilter = mBlueFilter;
+            }
+            
+            if (progressDrawable != null) {
+                progressDrawable.setColorFilter(currentFilter);
+            }
+            if (progressThumb != null) {
+                progressThumb.setColorFilter(currentFilter);
+            }
 
             TextView label = (TextView) container.findViewById(R.id.color_text);
             label.setText(container.getContext().getString(BAR_COLORS[colorIndex]));

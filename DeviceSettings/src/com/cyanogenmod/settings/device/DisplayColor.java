@@ -21,6 +21,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -123,6 +127,16 @@ public class DisplayColor extends DialogPreference {
     @Override
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
+        
+        LightingColorFilter mWhiteFilter = new LightingColorFilter(Color.BLACK,
+            getContext().getResources().getColor(android.R.color.white));
+        LightingColorFilter mRedFilter = new LightingColorFilter(Color.BLACK,
+            getContext().getResources().getColor(android.R.color.holo_red_light));
+        LightingColorFilter mGreenFilter = new LightingColorFilter(Color.BLACK,
+            getContext().getResources().getColor(android.R.color.holo_green_light));
+        LightingColorFilter mBlueFilter = new LightingColorFilter(Color.BLACK,
+            getContext().getResources().getColor(android.R.color.holo_blue_light));
+        LightingColorFilter currentFilter = mWhiteFilter;
 
         mOriginalColors = getCurColors();
         mCurrentColors = mOriginalColors.split(" ");
@@ -132,6 +146,32 @@ public class DisplayColor extends DialogPreference {
             TextView value = (TextView) view.findViewById(SEEKBAR_VALUE_ID[i]);
             mSeekBars[i] = new ColorSeekBar(seekBar, value, i);
             mSeekBars[i].setValueFromString(mCurrentColors[i]);
+            
+            Drawable progressDrawable = seekBar.getProgressDrawable();
+            Drawable progressThumb = seekBar.getThumb();
+            if (progressDrawable instanceof LayerDrawable) {
+                LayerDrawable ld = (LayerDrawable) progressDrawable;
+                progressDrawable = ld.findDrawableByLayerId(android.R.id.progress);
+            }
+            
+            switch (SEEKBAR_ID[i]) {
+                case R.id.color_red_seekbar:
+                    currentFilter = mRedFilter;
+                    break;
+                case R.id.color_green_seekbar:
+                    currentFilter = mGreenFilter;
+                    break;
+                case R.id.color_blue_seekbar:
+                    currentFilter = mBlueFilter;
+                    break;
+            }
+            
+            if (progressDrawable != null) {
+                progressDrawable.setColorFilter(currentFilter);
+            }
+            if (progressThumb != null) {
+                progressThumb.setColorFilter(currentFilter);
+            }
         }
     }
 
