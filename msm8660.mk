@@ -65,6 +65,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_short_ons_2="" \
     persist.rild.nitz_short_ons_3=""
 
+# RIL Class
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.ril_class=SamsungQualcommRIL
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vold.umsdirtyratio=50
 
