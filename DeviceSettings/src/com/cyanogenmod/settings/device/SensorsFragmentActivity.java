@@ -42,6 +42,7 @@ public class SensorsFragmentActivity extends PreferenceFragment {
     private static final String FILE_BLN_CONTROL = "/sys/class/misc/backlightnotification/blink_control";
     private static final String FILE_BLN_INTERVAL = "/sys/class/misc/backlightnotification/blink_interval";
     private static final String FILE_S2W_TOGGLE = "/sys/android_touch/sweep2wake";
+    private static final String FILE_KEYPAD_ENABLE = "/sys/class/sec/sec_touchkey/keypad_enable";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,8 +99,10 @@ public class SensorsFragmentActivity extends PreferenceFragment {
         if (!sharedPrefs.getBoolean(DisplaySettings.KEY_USE_GYRO_CALIBRATION, true))
             Utils.writeValue(FILE_USE_GYRO_CALIB, "0");
 
-        Utils.writeValue(FILE_TOUCHKEY_LIGHT, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_LIGHT, true) ? "0" : "1");
-        Utils.writeValue(FILE_TOUCHKEY_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_LIGHT, true) ? "1" : "2");
+        if (Utils.readValue(FILE_KEYPAD_ENABLE) == "1") {
+            Utils.writeValue(FILE_TOUCHKEY_LIGHT, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_LIGHT, true) ? "0" : "1");
+            Utils.writeValue(FILE_TOUCHKEY_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_LIGHT, true) ? "1" : "2");
+        }
         Utils.writeValue(FILE_BLN_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_BLN, false) ? "1" : "0");
         Utils.writeValue(FILE_BLN_INTERVAL, sharedPrefs.getString(DisplaySettings.KEY_TOUCHKEY_BLN_INTERVAL, "500 500"));
         Utils.writeValue(FILE_S2W_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_S2W, false) ? "1" : "0");
