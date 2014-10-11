@@ -24,14 +24,12 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 
 import com.cyanogenmod.settings.device.R;
 import com.cyanogenmod.settings.device.Sweep2Wake;
-import com.cyanogenmod.settings.device.VibratorIntensity;
 
 public class SensorsFragmentActivity extends PreferenceFragment {
 
@@ -55,16 +53,12 @@ public class SensorsFragmentActivity extends PreferenceFragment {
 
         mSweep2Wake = (Sweep2Wake) findPreference(DisplaySettings.KEY_TOUCHKEY_S2W);
 
-        final PreferenceGroup motorsCategory =
-                (PreferenceGroup) findPreference(DisplaySettings.KEY_SENSORS_MOTORS_CATEGORY);
-
         if (!Sweep2Wake.isSupported()) {
             getPreferenceScreen().removePreference(mSweep2Wake);
         }
 
-        if (!VibratorIntensity.isSupported()) {
-            getPreferenceScreen().removePreference(motorsCategory);
-        }
+        PreferenceScreen prefSet = getPreferenceScreen();
+
     }
 
     @Override
