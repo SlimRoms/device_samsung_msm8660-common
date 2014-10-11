@@ -24,13 +24,11 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 
 import com.cyanogenmod.settings.device.R;
-import com.cyanogenmod.settings.device.VibratorIntensity;
 
 public class SensorsFragmentActivity extends PreferenceFragment {
 
@@ -51,12 +49,7 @@ public class SensorsFragmentActivity extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.sensors_preferences);
 
-        final PreferenceGroup motorsCategory =
-                (PreferenceGroup) findPreference(DisplaySettings.KEY_SENSORS_MOTORS_CATEGORY);
-
-        if (!VibratorIntensity.isSupported()) {
-            getPreferenceScreen().removePreference(motorsCategory);
-        }
+        PreferenceScreen prefSet = getPreferenceScreen();
 
     }
 
