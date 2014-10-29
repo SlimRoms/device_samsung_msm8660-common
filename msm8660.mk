@@ -102,6 +102,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.msm8660
 
+# Chromecast
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.enable.chromecast.mirror=true
+
 # Display
 PRODUCT_PACKAGES += \
     copybit.msm8660 \
