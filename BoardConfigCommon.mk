@@ -86,6 +86,9 @@ TARGET_RECOVERY_FSTAB := device/samsung/msm8660-common/rootdir/etc/fstab.qcom
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common
 
+# RIL
+BOARD_RIL_CLASS := ../../../device/samsung/msm8660-common/ril
+
 # SELinux
 BOARD_SEPOLICY_DIRS += \
     device/samsung/msm8660-common/sepolicy

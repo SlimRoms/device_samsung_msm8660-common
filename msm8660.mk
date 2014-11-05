@@ -67,7 +67,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # RIL Class
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.ril_class=SamsungQualcommRIL
+    ro.telephony.ril_class=SamsungMSM8660RIL
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vold.umsdirtyratio=50
