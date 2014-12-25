@@ -98,17 +98,13 @@ BOARD_SEPOLICY_UNION += \
     domain.te \
     drmserver.te \
     file_contexts \
-    file.te \
-    hci_init.te \
     healthd.te \
     init.te \
     init_shell.te \
-    keystore.te \
-    kickstart.te \
     mediaserver.te \
     rild.te \
     surfaceflinger.te \
-    system.te \
+    system_app.te \
     ueventd.te \
     untrusted_app.te \
     vold.te \
