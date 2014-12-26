@@ -443,7 +443,7 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
     write /sys/module/cpu_input_boost/parameters/input_boost_freq 1134000
-    write /sys/module/cpu_input_boost/parameters/input_boost_ms 1500
+    write /sys/module/cpu_input_boost/parameters/input_boost_ms 1200
     chown root system /sys/devices/system/cpu/mfreq
     chmod 220 /sys/devices/system/cpu/mfreq
     chown root system /sys/devices/system/cpu/cpu1/online
