@@ -57,6 +57,9 @@ TARGET_DISPLAY_INSECURE_MM_HEAP := true
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 TARGET_NO_INITLOGO := true
 
+# Dlmalloc
+MALLOC_IMPL := dlmalloc
+
 # External apps on SD
 TARGET_EXTERNAL_APPS = sdcard0
 
