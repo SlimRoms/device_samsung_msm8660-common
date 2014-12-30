@@ -68,6 +68,7 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
 BOARD_HAVE_NEW_QC_GPS := true
+TARGET_GPS_HAL_PATH := device/samsung/msm8660-common/gps
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
