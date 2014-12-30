@@ -29,7 +29,6 @@ BOARD_HAVE_SAMSUNG_AUDIO := true
 BOARD_USES_LEGACY_ALSA_AUDIO := true
 BOARD_QCOM_TUNNEL_LPA_ENABLED := true
 BOARD_QCOM_VOIP_ENABLED := true
-TARGET_QCOM_AUDIO_VARIANT := caf
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -39,8 +38,8 @@ BOARD_BLUEDROID_VENDOR_CONF := device/samsung/msm8660-common/bluetooth/vnd_msm86
 # Camera
 BOARD_CAMERA_USE_MM_HEAP := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_BSP_CAMERA_ABI_HACK
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
+TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
 # Charger
 BOARD_BATTERY_DEVICE_NAME := "battery"
@@ -51,12 +50,12 @@ BOARD_HARDWARE_CLASS += device/samsung/msm8660-common/cmhw
 
 # Display
 BOARD_EGL_CFG := device/samsung/msm8660-common/configs/egl.cfg
+BOARD_USES_LEGACY_MMAP := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 TARGET_NO_INITLOGO := true
-TARGET_QCOM_DISPLAY_VARIANT := caf
 
 # External apps on SD
 TARGET_EXTERNAL_APPS = sdcard0
@@ -67,17 +66,17 @@ BOARD_HAVE_NEW_QC_GPS := true
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
+# Logging
+TARGET_USES_LOGD := false
+
 # Media
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
-TARGET_QCOM_MEDIA_VARIANT := caf
 
 # Qualcomm support
 COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 TARGET_USES_QCOM_BSP := true
-TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Recovery
-BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/msm8660-common/recovery/graphics.c
 TARGET_RECOVERY_FSTAB := device/samsung/msm8660-common/rootdir/etc/fstab.qcom
 
 # Releasetools
@@ -87,6 +86,8 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common
 BOARD_RIL_CLASS := ../../../device/samsung/msm8660-common/ril
 
 # SELinux
+include device/qcom/sepolicy/sepolicy.mk
+
 BOARD_SEPOLICY_DIRS += \
     device/samsung/msm8660-common/sepolicy
 
@@ -97,7 +98,6 @@ BOARD_SEPOLICY_UNION += \
     domain.te \
     drmserver.te \
     file_contexts \
-    files \
     file.te \
     hci_init.te \
     healthd.te \

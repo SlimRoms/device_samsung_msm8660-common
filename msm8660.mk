@@ -52,7 +52,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    lpa.decode=false
+    lpa.decode=false \
+    media.stagefright.use-awesome=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_plmn="" \
@@ -116,8 +117,7 @@ PRODUCT_PACKAGES += \
 
 # GalaxyS2Settings
 PRODUCT_PACKAGES += \
-    GalaxyS2Settings \
-    SamsungServiceMode
+    GalaxyS2Settings
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -140,6 +140,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -166,15 +172,15 @@ PRODUCT_PACKAGES += \
     libOmxAmrEnc \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
-    libstagefrighthw
+    libstagefrighthw \
+    qcmediaplayer
+
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
 
 # Package generation
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/test_radio_version.sh:/system/etc/test_radio_version.sh
-
-# QRNGD
-PRODUCT_PACKAGES += \
-    qrngd
 
 # Torch
 PRODUCT_PACKAGES += \
@@ -186,7 +192,13 @@ PRODUCT_PACKAGES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
-    libnetcmdiface
+    dhcpcd.conf \
+    hostapd \
+    hostapd_default.conf \
+    libnetcmdiface \
+    libwpa_client \
+    wpa_supplicant \
+    wpa_supplicant.conf
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \

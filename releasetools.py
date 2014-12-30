@@ -45,7 +45,7 @@ def AddBasebandAssertion(info, input_zip):
     basebands = m.group(1).split("|")
     if len(basebands) and "*" not in basebands:
       info.script.script.append(info.script._WordWrap('package_extract_file("system/etc/test_radio_version.sh", "/tmp/test_radio_version.sh");'))
-      info.script.script.append(info.script._WordWrap('set_perm(0, 0, 0777, "/tmp/test_radio_version.sh");'))
+      info.script.script.append(info.script._WordWrap('set_metadata("/tmp/test_radio_version.sh", "uid", 0, "gid", 0, "mode", 0777);'))
       cmd = 'assert(run_program("/tmp/test_radio_version.sh"' + ''.join([', "%s"' % b for b in basebands]) + ") == 0);"
       info.script.script.append(info.script._WordWrap(cmd))
     info.metadata["pre-baseband"] = m.group(1)
