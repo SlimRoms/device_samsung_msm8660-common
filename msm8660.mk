@@ -110,10 +110,6 @@ PRODUCT_PACKAGES += \
     libgenlock \
     memtrack.msm8660
 
-# Frandom Script
-PRODUCT_COPY_FILES += \
-	device/samsung/msm8660-common/prebuilt/etc/init.d/00_frandom:/system/etc/init.d/00_frandom
-
 # GalaxyS2Settings
 PRODUCT_PACKAGES += \
     GalaxyS2Settings \
