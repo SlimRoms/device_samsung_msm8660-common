@@ -3,6 +3,26 @@
     android:title="@string/app_name">
 
     <PreferenceCategory
+        android:key="display_calibration_category"
+        android:title="@string/display_calibration_title" >
+
+       <com.cyanogenmod.settings.device.DisplayColor
+                android:key="color_calibration"
+                android:title="@string/color_calibration_title"
+                android:dialogTitle="@string/color_calibration_title"
+                android:summary="@string/color_calibration_summary"
+                android:persistent="false" />
+
+        <com.cyanogenmod.settings.device.DisplayGamma
+                android:key="gamma_tuning"
+                android:title="@string/gamma_tuning_title_head"
+                android:dialogTitle="@string/gamma_tuning_title_head"
+                android:summary="@string/gamma_tuning_summary_head"
+                android:persistent="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
                 android:title="@string/touchscreen_subcat_title">
     <com.cyanogenmod.settings.device.TouchscreenSensitivity
                 android:key="touchscreen_sensitivity"
@@ -10,6 +30,6 @@
                 android:summary="@string/touchscreen_sensitivity_summary_head"
                 android:entries="@array/touchscreen_sensitivity_entries"
                 android:entryValues="@array/touchscreen_sensitivity_entries_values"
-                android:defaultValue="50" />
+                android:defaultValue="70" />
     </PreferenceCategory>
 </PreferenceScreen>

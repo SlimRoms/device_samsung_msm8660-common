@@ -48,7 +48,7 @@ public class TouchscreenSensitivity extends ListPreference implements OnPreferen
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DisplaySettings.KEY_TOUCHSCREEN_SENSITIVITY, "50"));
+        Utils.writeValue(FILE, sharedPrefs.getString(DisplaySettings.KEY_TOUCHSCREEN_SENSITIVITY, "70"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
