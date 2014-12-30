@@ -63,6 +63,9 @@ MALLOC_IMPL := dlmalloc
 # External apps on SD
 TARGET_EXTERNAL_APPS = sdcard0
 
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
 # GPS
 BOARD_HAVE_NEW_QC_GPS := true
 
