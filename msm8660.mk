@@ -55,6 +55,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     lpa.decode=false \
     camera2.portability.force_api=1
 
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp
+
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_plmn="" \
     persist.rild.nitz_long_ons_0="" \
