@@ -179,10 +179,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
 
-# Package generation
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/test_radio_version.sh:/system/etc/test_radio_version.sh
-
 # Torch
 PRODUCT_PACKAGES += \
     Torch
