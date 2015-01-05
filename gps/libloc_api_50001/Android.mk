@@ -29,7 +29,7 @@ LOCAL_SRC_FILES += \
 LOCAL_CFLAGS += \
      -fno-short-enums \
      -D_ANDROID_ \
-	 -DNEW_QC_GPS
+     -DQCOM_FEATURE_ULP
 
 LOCAL_C_INCLUDES:= \
     $(TARGET_OUT_HEADERS)/gps.utils
@@ -60,15 +60,15 @@ LOCAL_SHARED_LIBRARIES := \
     libutils \
     libcutils \
     libloc_adapter \
-    libgps.utils
+    libgps.utils \
+    libdl
 
 LOCAL_SRC_FILES += \
     loc_eng.cpp \
     loc_eng_agps.cpp \
     loc_eng_xtra.cpp \
     loc_eng_ni.cpp \
-    loc_eng_log.cpp \
-	loc_eng_nmea.cpp
+    loc_eng_log.cpp
 
 ifeq ($(FEATURE_GNSS_BIT_API), true)
 LOCAL_CFLAGS += -DFEATURE_GNSS_BIT_API
@@ -84,7 +84,7 @@ LOCAL_SRC_FILES += \
 LOCAL_CFLAGS += \
      -fno-short-enums \
      -D_ANDROID_ \
-	 -DNEW_QC_GPS
+     -DQCOM_FEATURE_ULP
 
 LOCAL_C_INCLUDES:= \
     $(TARGET_OUT_HEADERS)/gps.utils \
@@ -106,8 +106,7 @@ LOCAL_SHARED_LIBRARIES := \
     libutils \
     libcutils \
     libloc_eng \
-    libgps.utils \
-    libdl
+    libgps.utils
 
 LOCAL_SRC_FILES += \
     loc.cpp \
@@ -116,7 +115,7 @@ LOCAL_SRC_FILES += \
 LOCAL_CFLAGS += \
     -fno-short-enums \
     -D_ANDROID_ \
-	-DNEW_QC_GPS
+    -DQCOM_FEATURE_ULP \
 
 ## Includes
 LOCAL_C_INCLUDES:= \
