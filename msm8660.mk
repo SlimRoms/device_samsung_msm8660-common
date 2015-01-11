@@ -53,7 +53,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     lpa.decode=false \
-    media.stagefright.use-awesome=true
+    persist.sys.media.use-awesome=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_plmn="" \
