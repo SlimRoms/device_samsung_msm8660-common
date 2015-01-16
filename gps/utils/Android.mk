@@ -20,6 +20,8 @@ LOCAL_CFLAGS += \
      -fno-short-enums \
      -D_ANDROID_
 
+LOCAL_LDFLAGS += -Wl,--export-dynamic
+
 ## Includes
 LOCAL_C_INCLUDES:=
 
@@ -40,3 +42,4 @@ LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 include $(BUILD_SHARED_LIBRARY)
 endif # not BUILD_TINY_ANDROID
+
