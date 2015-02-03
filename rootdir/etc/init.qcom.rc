@@ -426,6 +426,7 @@ on property:drmdiag.load=0
 service charger /charger
     class charger
     critical
+    seclabel u:r:healthd:s0
 
 #service abld /system/bin/mm-abl-daemon
 #    class late_start
