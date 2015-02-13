@@ -41,8 +41,7 @@ PRODUCT_COPY_FILES += \
 # System properties
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
-    qcom.hw.aac.encoder=true
-
+    persist.sys.usb.config=mtp
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/system/lib/libqc-opt.so
@@ -55,6 +54,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     lpa.decode=false \
     persist.sys.media.use-awesome=true \
+    qcom.hw.aac.encoder=true \
     camera2.portability.force_api=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
