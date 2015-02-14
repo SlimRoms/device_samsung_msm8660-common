@@ -90,7 +90,6 @@ PRODUCT_PACKAGES += \
     audio_policy.msm8660 \
     audio.primary.msm8660 \
     libaudio-resampler \
-    libaudioamp \
     libaudioutils
 
 # Camera
