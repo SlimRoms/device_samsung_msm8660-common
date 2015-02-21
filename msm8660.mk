@@ -41,10 +41,7 @@ PRODUCT_COPY_FILES += \
 
 # System properties
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0
-
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0 \
     persist.sys.usb.config=mtp
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -184,6 +181,10 @@ PRODUCT_BOOT_JARS += \
 # Package generation
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/test_radio_version.sh:/system/etc/test_radio_version.sh
+
+# Power HAL
+PRODUCT_PACKAGES += \
+    power.msm8660
 
 # Torch
 PRODUCT_PACKAGES += \
