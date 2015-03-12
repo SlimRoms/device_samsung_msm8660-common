@@ -47,10 +47,8 @@
 /sys/devices/virtual/misc/sec_touchkey/brightness         u:object_r:keypad_dev:s0
 /sys/android_touch/sweep2wake                             u:object_r:keypad_dev:s0
 /sys/android_touch/sweep2wake_sensitive                   u:object_r:keypad_dev:s0
+/sys/devices/virtual/graphics/fb0/kcal                    u:object_r:panel_dev:s0
 /sys/devices/virtual/lcd/panel/power_reduce               u:object_r:panel_dev:s0
 /sys/devices/virtual/misc/enhanced_bln/blink(.*)          u:object_r:keypad_dev:s0
-/sys/devices/virtual/misc/samoled_color/blue_(.*)         u:object_r:panel_dev:s0
-/sys/devices/virtual/misc/samoled_color/green_(.*)        u:object_r:panel_dev:s0
-/sys/devices/virtual/misc/samoled_color/red_(.*)          u:object_r:panel_dev:s0
 /sys/devices/virtual/sec/sec_touchkey/keypad_enable       u:object_r:keypad_dev:s0
 /sys/devices/virtual/timed_output/vibrator/pwm_value      u:object_r:power_dev:s0
