@@ -16,7 +16,7 @@
 -include device/samsung/qcom-common/BoardConfigCommon.mk
 
 # common kernel source
-TARGET_KERNEL_SOURCE        := kernel/samsung/msm8660
+TARGET_KERNEL_SOURCE := kernel/samsung/msm8660
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8660
