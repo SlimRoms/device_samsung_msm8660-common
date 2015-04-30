@@ -22,6 +22,30 @@
       "revId": "598d1a20c61a648e03638973d71cb9eb18e8dfa1",
       "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a202591_e1dab116",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1000017
+      },
+      "writtenOn": "2015-04-30T09:05:52Z",
+      "side": 1,
+      "message": "True, it\u0027s from another branch.",
+      "parentUuid": "5a202591_81bbfdc3",
+      "range": {
+        "startLine": 76,
+        "startChar": 30,
+        "endLine": 76,
+        "endChar": 33
+      },
+      "revId": "598d1a20c61a648e03638973d71cb9eb18e8dfa1",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
     }
   ]
 }
