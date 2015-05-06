@@ -32,7 +32,7 @@
 #include <hardware/hardware.h>
 #include <hardware/camera.h>
 #include <camera/Camera.h>
-#include <camera/CameraParameters.h>
+#include <camera/CameraParameters2.h>
 
 static bool needsPreviewRestart = false;
 
@@ -104,7 +104,7 @@ static int check_vendor_module()
 
 static char *camera_fixup_getparams(int id, const char *settings)
 {
-    android::CameraParameters params;
+    android::CameraParameters2 params;
     params.unflatten(android::String8(settings));
 
     ALOGV("%s: original parameters:", __FUNCTION__);
@@ -161,7 +161,7 @@ static char *camera_fixup_setparams(int id, const char *settings, struct camera_
     const char *sceneMode = "auto";
     const char *videoHdr = "false";
 
-    android::CameraParameters params;
+    android::CameraParameters2 params;
     params.unflatten(android::String8(settings));
 
     ALOGV("%s: original parameters:", __FUNCTION__);
