@@ -53,7 +53,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     lpa.decode=false \
-    persist.sys.media.use-awesome=true \
     camera2.portability.force_api=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
