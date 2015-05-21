@@ -30,7 +30,6 @@
 
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
-static int g_notification_enabled = 0;
 static int g_notification_blink_support = 0;
 static int g_notification_blink_rate_support = 0;
 static int g_enable_touchlight = -1;
@@ -38,7 +37,6 @@ static int g_enable_touchlight = -1;
 static char const LCD_FILE[]      = "/sys/class/leds/lcd-backlight/brightness";
 static char const BUTTONS_FILE[]  = "/sys/class/misc/sec_touchkey/brightness";
 static char const BUTTONS_POWER[] = "/sys/class/misc/sec_touchkey/enable_disable";
-static char const NOTIFICATION_ENABLED_FILE[] = "/sys/class/misc/backlightnotification/enabled";
 static char const NOTIFICATION_FILE[] = "/sys/class/misc/backlightnotification/notification_led";
 static char const NOTIFICATION_BLINK_FILE[]    = "/sys/class/misc/backlightnotification/blink_control";
 static char const NOTIFICATION_BLINK_RATE_FILE[] = "/sys/class/misc/backlightnotification/blink_interval";
@@ -84,19 +82,6 @@ void load_settings()
         g_enable_touchlight = fgetc(fp) == '1' ? 0 : 1;
         fclose(fp);
     }
-}
-
-void set_notification_status()
-{
-    int notification_enabled = 0;
-    
-    FILE* fp = fopen(NOTIFICATION_ENABLED_FILE, "r");
-    if (fp) {
-        fscanf(fp, "%d", &notification_enabled);
-        fclose (fp);
-    }
-    
-    g_notification_enabled = notification_enabled;
 }
 
 static int write_str(char const *path, char const *str)
@@ -153,13 +138,6 @@ static int set_light_battery(struct light_device_t* dev,
 static int set_light_notifications(struct light_device_t* dev,
             struct light_state_t const* state)
 {
-       set_notification_status();
-       
-       if (!g_notification_enabled) {
-           ALOGD("Notifications disabled: g_notification_enabled=%d", g_notification_enabled);
-           return 0;
-       }
-       
        int bln_led_control = state->color & 0x00ffffff ? 1 : 0;
        int res;
 
@@ -170,13 +148,11 @@ static int set_light_notifications(struct light_device_t* dev,
        res = write_int(NOTIFICATION_FILE, bln_led_control);
 
        if (g_notification_blink_support && bln_led_control && state->flashMode) {
-#if 0
            if (g_notification_blink_rate_support) {
                char buffer[10];
                snprintf(buffer, sizeof(buffer), "%d %d", state->flashOnMS, state->flashOffMS);
                res = write_str(NOTIFICATION_BLINK_RATE_FILE, buffer);
            }
-#endif
            res = write_int(NOTIFICATION_BLINK_FILE, bln_led_control);
        }
 
