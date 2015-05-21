@@ -40,9 +40,6 @@ public class SensorsFragmentActivity extends PreferenceFragment {
     private static final String FILE_USE_GYRO_CALIB = "/sys/class/sec/gsensorcal/calibration";
     private static final String FILE_TOUCHKEY_LIGHT = "/data/.disable_touchlight";
     private static final String FILE_TOUCHKEY_TOGGLE = "/sys/class/misc/sec_touchkey/brightness";
-    private static final String FILE_BLN_TOGGLE = "/sys/class/misc/backlightnotification/enabled";
-    private static final String FILE_BLN_CONTROL = "/sys/class/misc/backlightnotification/blink_control";
-    private static final String FILE_BLN_INTERVAL = "/sys/class/misc/backlightnotification/blink_interval";
     private static final String FILE_S2W_TOGGLE = "/sys/android_touch/sweep2wake";
     private static final String FILE_KEYPAD_ENABLE = "/sys/class/sec/sec_touchkey/keypad_enable";
 
@@ -81,11 +78,6 @@ public class SensorsFragmentActivity extends PreferenceFragment {
         } else if (key.compareTo(DisplaySettings.KEY_TOUCHKEY_LIGHT) == 0) {
             Utils.writeValue(FILE_TOUCHKEY_LIGHT, ((CheckBoxPreference)preference).isChecked() ? "0" : "1");
             Utils.writeValue(FILE_TOUCHKEY_TOGGLE, ((CheckBoxPreference)preference).isChecked() ? "1" : "2");
-        } else if (key.compareTo(DisplaySettings.KEY_TOUCHKEY_BLN) == 0) {
-            Utils.writeValue(FILE_BLN_TOGGLE, ((CheckBoxPreference)preference).isChecked() ? "1" : "0");
-        } else if (key.compareTo(DisplaySettings.KEY_TOUCHKEY_BLN_OFF) == 0) {
-            Utils.writeValue(FILE_BLN_CONTROL, "0");
-            Utils.showToast((Context)getActivity(), "BLN has been successfully turned off!");
         } else if (key.compareTo(DisplaySettings.KEY_TOUCHKEY_S2W) == 0) {
             Utils.writeValue(FILE_S2W_TOGGLE, ((CheckBoxPreference)preference).isChecked() ? "1" : "0");
         }
@@ -110,8 +102,6 @@ public class SensorsFragmentActivity extends PreferenceFragment {
             Utils.writeValue(FILE_TOUCHKEY_LIGHT, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_LIGHT, true) ? "0" : "1");
             Utils.writeValue(FILE_TOUCHKEY_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_LIGHT, true) ? "1" : "2");
         }
-        Utils.writeValue(FILE_BLN_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_BLN, false) ? "1" : "0");
-        Utils.writeValue(FILE_BLN_INTERVAL, sharedPrefs.getString(DisplaySettings.KEY_TOUCHKEY_BLN_INTERVAL, "500 500"));
         Utils.writeValue(FILE_S2W_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_S2W, false) ? "1" : "0");
     }
 }

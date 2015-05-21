@@ -43,26 +43,6 @@
             android:title="@string/touchkey_light_title_head"
             android:summary="@string/touchkey_light_summary_head"
             android:defaultValue="true" />
-
-        <CheckBoxPreference
-            android:key="touchkey_bln"
-            android:title="@string/touchkey_bln_title_head"
-            android:summary="@string/touchkey_bln_summary_head"
-            android:defaultValue="false" />
-        
-        <com.cyanogenmod.settings.device.BlinkInterval
-            android:key="touchkey_bln_interval"
-            android:title="@string/touchkey_bln_interval_title_head"
-            android:summary="@string/touchkey_bln_interval_summary_head"
-            android:defaultValue="500 1000\n"
-            android:dialogMessage="@string/touchkey_bln_interval_dialog_message"
-            android:max="5000"
-            custom:min="1" />
-        
-        <Preference
-            android:key="touchkey_bln_off"
-            android:title="@string/touchkey_bln_off_title_head"
-            android:summary="@string/touchkey_bln_off_summary_head" />
     </PreferenceCategory>
 </PreferenceScreen>
 
