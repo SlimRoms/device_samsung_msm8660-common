@@ -18,6 +18,16 @@
          per-device overlay. Required to build on non-hardware tunable devices -->
     <string-array name="gamma_descriptors" translatable="false">
     </string-array>
+    <string-array name="s2w_entries">
+        <item>Disable</item>
+        <item>Enable Sweep2Wake</item>
+        <item>Enable Sweep2Sleep</item>
+    </string-array>
+    <string-array name="s2w_entries_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
     <string-array name="touchscreen_sensitivity_entries">
         <item>10</item>
         <item>20</item>

@@ -30,6 +30,7 @@ import android.preference.PreferenceScreen;
 import android.util.Log;
 
 import com.cyanogenmod.settings.device.R;
+import com.cyanogenmod.settings.device.Sweep2Wake;
 import com.cyanogenmod.settings.device.VibratorIntensity;
 
 public class SensorsFragmentActivity extends PreferenceFragment {
@@ -41,7 +42,10 @@ public class SensorsFragmentActivity extends PreferenceFragment {
     private static final String FILE_TOUCHKEY_LIGHT = "/data/.disable_touchlight";
     private static final String FILE_TOUCHKEY_TOGGLE = "/sys/class/misc/sec_touchkey/brightness";
     private static final String FILE_S2W_TOGGLE = "/sys/android_touch/sweep2wake";
+    private static final String FILE_S2WSENSITIVE_TOGGLE = "/sys/android_touch/sweep2wake_sensitive";
     private static final String FILE_KEYPAD_ENABLE = "/sys/class/sec/sec_touchkey/keypad_enable";
+
+    private Sweep2Wake mSweep2Wake;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,13 +53,18 @@ public class SensorsFragmentActivity extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.sensors_preferences);
 
+        mSweep2Wake = (Sweep2Wake) findPreference(DisplaySettings.KEY_TOUCHKEY_S2W);
+
         final PreferenceGroup motorsCategory =
                 (PreferenceGroup) findPreference(DisplaySettings.KEY_SENSORS_MOTORS_CATEGORY);
+
+        if (!Sweep2Wake.isSupported()) {
+            getPreferenceScreen().removePreference(mSweep2Wake);
+        }
 
         if (!VibratorIntensity.isSupported()) {
             getPreferenceScreen().removePreference(motorsCategory);
         }
-
     }
 
     @Override
@@ -78,8 +87,8 @@ public class SensorsFragmentActivity extends PreferenceFragment {
         } else if (key.compareTo(DisplaySettings.KEY_TOUCHKEY_LIGHT) == 0) {
             Utils.writeValue(FILE_TOUCHKEY_LIGHT, ((CheckBoxPreference)preference).isChecked() ? "0" : "1");
             Utils.writeValue(FILE_TOUCHKEY_TOGGLE, ((CheckBoxPreference)preference).isChecked() ? "1" : "2");
-        } else if (key.compareTo(DisplaySettings.KEY_TOUCHKEY_S2W) == 0) {
-            Utils.writeValue(FILE_S2W_TOGGLE, ((CheckBoxPreference)preference).isChecked() ? "1" : "0");
+        } else if (key.compareTo(DisplaySettings.KEY_TOUCHKEY_S2WSENSITIVE) == 0) {
+            Utils.writeValue(FILE_S2WSENSITIVE_TOGGLE, ((CheckBoxPreference)preference).isChecked() ? "1" : "0");
         }
 
         return true;
@@ -102,6 +111,7 @@ public class SensorsFragmentActivity extends PreferenceFragment {
             Utils.writeValue(FILE_TOUCHKEY_LIGHT, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_LIGHT, true) ? "0" : "1");
             Utils.writeValue(FILE_TOUCHKEY_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_LIGHT, true) ? "1" : "2");
         }
-        Utils.writeValue(FILE_S2W_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_S2W, false) ? "1" : "0");
+
+        Utils.writeValue(FILE_S2WSENSITIVE_TOGGLE, sharedPrefs.getBoolean(DisplaySettings.KEY_TOUCHKEY_S2WSENSITIVE, false) ? "1" : "0");
     }
 }

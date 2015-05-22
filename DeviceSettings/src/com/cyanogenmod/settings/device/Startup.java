@@ -29,6 +29,7 @@ public class Startup extends BroadcastReceiver {
         VibratorIntensity.restore(context);
         TouchscreenSensitivity.restore(context);
         SensorsFragmentActivity.restore(context);
+        Sweep2Wake.restore(context);
     }
 
 }

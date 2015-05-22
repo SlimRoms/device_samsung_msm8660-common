@@ -31,10 +31,18 @@
 
     <PreferenceCategory
         android:title="@string/touchkey_subcat_title">
-        <CheckBoxPreference
+        <com.cyanogenmod.settings.device.Sweep2Wake
             android:key="touchkey_s2w"
             android:title="@string/touchkey_s2w_title_head"
             android:summary="@string/touchkey_s2w_summary_head"
+            android:entries="@array/s2w_entries"
+            android:entryValues="@array/s2w_entries_values"
+            android:defaultValue="0" />
+
+        <CheckBoxPreference
+            android:key="s2w_sensitive"
+            android:title="@string/s2w_sensitive_head"
+            android:summary="@string/s2w_sensitive_summary_head"
             android:defaultValue="false" />
 
         <!-- Touchkey backlight -->

@@ -47,6 +47,7 @@ public class DisplaySettings extends FragmentActivity {
     public static final String KEY_DISPLAY_GAMMA = "gamma_tuning";
     public static final String KEY_SENSORS_MOTORS_CATEGORY = "sensors_motors_category";
     public static final String KEY_TOUCHKEY_S2W = "touchkey_s2w";
+    public static final String KEY_TOUCHKEY_S2WSENSITIVE = "s2w_sensitive";
 
     ViewPager mViewPager;
     TabsAdapter mTabsAdapter;

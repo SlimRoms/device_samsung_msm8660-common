@@ -52,8 +52,11 @@
     <string name="calibrate_gyro_title_head">Calibrate</string>
     <string name="calibrate_gyro_summary_head">Put your phone on a flat surface, and press this to calibrate</string>
 
-    <string name="touchkey_s2w_title_head">Enable Sweep2Wake</string>
-    <string name="touchkey_s2w_summary_head">Sweep the four capacitative keys from left to right to wake the device</string>
+    <string name="touchkey_s2w_title_head">Enable Sweep2Wake/Sweep2Sleep</string>
+    <string name="touchkey_s2w_summary_head">Sweep the four keys from left to right to wake the device or sweep the four keys from right to left to put the device to sleep</string>
+
+    <string name="s2w_sensitive_head">Enable Sweep2Wake Sensitivity</string>
+    <string name="s2w_sensitive_summary_head">Require only the first and last buttons to trigger Sweep2Wake</string>
 
     <string name="touchkey_subcat_title">Touch key</string>
     <string name="touchkey_light_title_head">Enable keys backlight</string>
