@@ -85,6 +85,10 @@ PRODUCT_PACKAGES += \
     lpm.rc \
     ueventd.qcom.rc
 
+# Recovery-Ramdisk
+PRODUCT_PACKAGES += \
+    twrp.fstab
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -202,10 +206,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
-
-# TWRP
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8660-common/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
 
 # Common Qualcomm hardware
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
