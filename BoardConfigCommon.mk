@@ -87,6 +87,7 @@ TARGET_USES_QCOM_BSP := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/samsung/msm8660-common/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_DEVICE_DIRS += device/samsung/msm8660-common
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/samsung/msm8660-common/ril
