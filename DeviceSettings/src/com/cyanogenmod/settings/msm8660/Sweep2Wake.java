@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package com.cyanogenmod.settings.msm8660;
 
 import java.io.IOException;
 import android.content.Context;
@@ -25,21 +25,21 @@ import android.preference.ListPreference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class TouchscreenSensitivity extends ListPreference implements OnPreferenceChangeListener {
+public class Sweep2Wake extends ListPreference implements OnPreferenceChangeListener {
 
-    public TouchscreenSensitivity(Context context, AttributeSet attrs) {
+    public Sweep2Wake(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.setOnPreferenceChangeListener(this);
     }
 
-    private static final String FILE = "/sys/class/sec/sec_touchscreen/tsp_threshold";
+    private static final String FILE = "/sys/android_touch/sweep2wake";
 
     public static boolean isSupported() {
         return Utils.fileExists(FILE);
     }
 
     /**
-     * Restore touchscreen sensitivity setting from SharedPreferences. (Write to kernel.)
+     * Restore sweep2wake setting from SharedPreferences. (Write to kernel.)
      * @param context       The context to read the SharedPreferences from
      */
     public static void restore(Context context) {
@@ -48,7 +48,7 @@ public class TouchscreenSensitivity extends ListPreference implements OnPreferen
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DisplaySettings.KEY_TOUCHSCREEN_SENSITIVITY, "50"));
+        Utils.writeValue(FILE, sharedPrefs.getString(DisplaySettings.KEY_TOUCHKEY_S2W, "0"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package com.cyanogenmod.settings.msm8660;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -28,8 +28,8 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 
-import com.cyanogenmod.settings.device.R;
-import com.cyanogenmod.settings.device.Sweep2Wake;
+import com.cyanogenmod.settings.msm8660.R;
+import com.cyanogenmod.settings.msm8660.Sweep2Wake;
 
 public class SensorsFragmentActivity extends PreferenceFragment {
 

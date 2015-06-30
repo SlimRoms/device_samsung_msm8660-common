@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory 
+    <PreferenceCategory
         android:title="@string/gyro_subcat_title">
         <!-- Use sensor calibration -->
         <CheckBoxPreference
@@ -19,7 +19,7 @@
 
     <PreferenceCategory
         android:title="@string/touchkey_subcat_title">
-        <com.cyanogenmod.settings.device.Sweep2Wake
+        <com.cyanogenmod.settings.msm8660.Sweep2Wake
             android:key="touchkey_s2w"
             android:title="@string/touchkey_s2w_title_head"
             android:summary="@string/touchkey_s2w_summary_head"
@@ -41,4 +41,3 @@
             android:defaultValue="true" />
     </PreferenceCategory>
 </PreferenceScreen>
-

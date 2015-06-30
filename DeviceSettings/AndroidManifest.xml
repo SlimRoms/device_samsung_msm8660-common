@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cyanogenmod.settings.device"
+    package="com.cyanogenmod.settings.msm8660"
     android:sharedUserId="android.uid.system" >
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -9,9 +9,9 @@
     <application
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Material.Settings">
-        
+
         <activity
-            android:name="com.cyanogenmod.settings.device.DisplaySettings"
+            android:name="com.cyanogenmod.settings.msm8660.DisplaySettings"
             android:icon="@drawable/ic_launcher_cmdevicesettings"
             android:label="@string/app_name" >
             <intent-filter>
@@ -26,8 +26,8 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-      
+
         <activity android:name=".ScreenFragmentActivity" />
-        
+
     </application>
 </manifest>

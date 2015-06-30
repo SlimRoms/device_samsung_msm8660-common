@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package com.cyanogenmod.settings.msm8660;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -27,14 +27,14 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.cyanogenmod.settings.device.R;
+import com.cyanogenmod.settings.msm8660.R;
 
 import java.util.ArrayList;
 
 public class DisplaySettings extends FragmentActivity {
 
-    public static final String SHARED_PREFERENCES_BASENAME = "com.cyanogenmod.settings.device";
-    public static final String ACTION_UPDATE_PREFERENCES = "com.cyanogenmod.settings.device.UPDATE";
+    public static final String SHARED_PREFERENCES_BASENAME = "com.cyanogenmod.settings.msm8660";
+    public static final String ACTION_UPDATE_PREFERENCES = "com.cyanogenmod.settings.msm8660.UPDATE";
     public static final String KEY_USE_GYRO_CALIBRATION = "use_gyro_calibration";
     public static final String KEY_CALIBRATE_GYRO = "calibrate_gyro";
     public static final String KEY_TOUCHSCREEN_SENSITIVITY = "touchscreen_sensitivity";

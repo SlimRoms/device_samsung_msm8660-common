@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package com.cyanogenmod.settings.msm8660;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -48,7 +48,7 @@ public class Utils {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Read a string value from the specified file.
      * @param filename        The filename
@@ -67,7 +67,7 @@ public class Utils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         return "";
     }
 
@@ -102,7 +102,7 @@ public class Utils {
         });
         alertDialog.show();
     }
-    
+
     public static void showToast(Context ctx, String message) {
         Toast.makeText(ctx, message, Toast.LENGTH_LONG).show();
     }

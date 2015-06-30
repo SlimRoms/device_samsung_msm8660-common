@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package com.cyanogenmod.settings.msm8660;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import com.cyanogenmod.settings.device.R;
+import com.cyanogenmod.settings.msm8660.R;
 
 public class ScreenFragmentActivity extends PreferenceFragment {
 
