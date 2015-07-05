@@ -119,6 +119,10 @@ PRODUCT_PACKAGES += \
     libgenlock \
     memtrack.msm8660
 
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    resize2fs_static
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8660
