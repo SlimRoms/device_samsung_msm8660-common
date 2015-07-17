@@ -34,7 +34,8 @@
 # System
 /data/qcks(/.*)?                                          u:object_r:efs_data_file:s0
 /data/misc/akmd_set.txt                                   u:object_r:sensors_data_file:s0
-/efs/wifi/.mac.info                                       u:object_r:wifi_efs_file:s0
+/efs/bluetooth(/.*)?                                      u:object_r:bluetooth_efs_file:s0
+/efs/wifi(/.*)?                                           u:object_r:wifi_efs_file:s0
 /system/bin/sec-ril                                       u:object_r:secril-daemon_exec:s0
 /system/bin/qcks                                          u:object_r:mdm_helper_exec:s0
 /system/bin/qmiproxy                                      u:object_r:qmuxd_exec:s0

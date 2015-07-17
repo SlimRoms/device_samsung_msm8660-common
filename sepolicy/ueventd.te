@@ -4,3 +4,4 @@ allow ueventd panel_dev:file { getattr relabelto };
 allow ueventd power_dev:file { getattr relabelto };
 allow ueventd unlabeled:dir search;
 allow ueventd unlabeled:file { read open getattr };
+allow ueventd sysfs_writable:file { getattr setattr };
