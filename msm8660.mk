@@ -77,6 +77,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # ART
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-flags=--no-watch-dog \
+    dalvik.vm.dex2oat-swap=false \
     ro.sys.fw.dex2oat_thread_count=4
 
 # Ramdisk
