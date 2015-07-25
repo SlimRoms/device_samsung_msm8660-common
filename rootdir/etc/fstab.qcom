@@ -16,3 +16,5 @@
 /devices/platform/msm_sdcc.3/mmc_host/mmc2/mmc2*    auto                    auto    defaults                                                                                        voldmanaged=sdcard1:auto,noemulatedsd
 
 /devices/platform/msm_hsusb_host.0*                 auto                    auto    defaults                                                                                        voldmanaged=usbdisk:auto
+
+/dev/block/zram0                                    none                    swap    defaults                                                                                        zramsize=268435456
