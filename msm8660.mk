@@ -70,9 +70,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SamsungMSM8660RIL
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vold.umsdirtyratio=50
-
 # ART
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-filter=balanced \
@@ -83,11 +80,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.qcom.efs.sync.sh \
-    init.qcom.mdm_links.sh \
-    init.qcom.modem_links.sh \
     init.qcom.rc \
-    init.qcom.syspart_fixup.sh \
-    lpm.rc \
     ueventd.qcom.rc
 
 # Audio config
@@ -187,10 +180,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
-
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
 
 # USB
 PRODUCT_PACKAGES += \
