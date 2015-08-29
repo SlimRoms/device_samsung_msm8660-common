@@ -102,7 +102,6 @@ BOARD_SEPOLICY_UNION += \
     bluetooth.te \
     bootanim.te \
     device.te \
-    domain.te \
     drmserver.te \
     file.te \
     file_contexts \
