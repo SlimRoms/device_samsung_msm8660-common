@@ -16,3 +16,4 @@ allow rmt_storage sysfs_wake_lock:file w_file_perms;
 allow rmt_storage uio_device:chr_file rw_file_perms;
 allow rmt_storage mmc_block_device:blk_file r_file_perms;
 allow rmt_storage self:capability { net_raw setpcap };
+allow rmt_storage device:chr_file rw_file_perms;
