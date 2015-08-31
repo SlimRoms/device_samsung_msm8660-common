@@ -1,2 +1,4 @@
+type qmux_device, dev_type;
+
 allow qmuxd self:process execmem;
 allow qmuxd init:unix_stream_socket connectto;
