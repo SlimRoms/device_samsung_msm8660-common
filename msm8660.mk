@@ -207,8 +207,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
-# Common Qualcomm hardware
-$(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
-
+# Hardware bypass
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=false
+
+# Common Qualcomm hardware
+    $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
