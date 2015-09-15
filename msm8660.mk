@@ -116,6 +116,7 @@ PRODUCT_PACKAGES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
+    fsck.f2fs \
     resize2fs_static
 
 # GPS
