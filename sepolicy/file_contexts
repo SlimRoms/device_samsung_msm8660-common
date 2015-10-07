@@ -7,6 +7,9 @@
 /dev/msm_camera(/.*)?                                     u:object_r:camera_device:s0
 /dev/msm_rotator                                          u:object_r:gpu_device:s0
 
+# Bluetooth
+/proc/bluetooth/sleep/btwrite                             u:object_r:bluetooth_data_file:s0
+
 # Wireless
 /dev/rfkill                                               u:object_r:rfkill_device:s0
 
