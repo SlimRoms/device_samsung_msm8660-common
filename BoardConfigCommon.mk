@@ -96,6 +96,7 @@ BOARD_SEPOLICY_DIRS += \
     device/samsung/msm8660-common/sepolicy
 
 BOARD_SEPOLICY_UNION += \
+    bluetooth.te \
     device.te \
     file.te \
     file_contexts \

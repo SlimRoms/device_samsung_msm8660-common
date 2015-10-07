@@ -3,3 +3,4 @@ allow init labeledfs:filesystem associate;
 allow init keypad_dev:filesystem associate;
 allow init su_exec:file execute_no_trans;
 allow init self:process execmem;
+allow init mmc_block_device:blk_file setattr;
