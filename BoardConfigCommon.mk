@@ -95,37 +95,6 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     device/samsung/msm8660-common/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    device.te \
-    file.te \
-    file_contexts \
-    gamma_dev.te \
-    healthd.te \
-    init.te \
-    init_shell.te \
-    kernel.te \
-    keypad_dev.te \
-    mdm_helper.te \
-    mediaserver.te \
-    mpdecision.te \
-    netmgrd.te \
-    panel_dev.te \
-    power_dev.te \
-    qmuxd.te \
-    qseecomd.te \
-    radio.te \
-    rild.te \
-    rmt_storage.te \
-    secril-daemon.te \
-    surfaceflinger.te \
-    sysinit.te \
-    system_app.te \
-    system_server.te \
-    thermal-engine.te \
-    ueventd.te \
-    vold.te \
-    wpa.te
-
 # Wifi related defines
 BOARD_HAVE_SAMSUNG_WIFI := true
 BOARD_NO_WIFI_HAL := true
