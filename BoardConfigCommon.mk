@@ -101,6 +101,7 @@ BOARD_SEPOLICY_UNION += \
     file.te \
     file_contexts \
     gamma_dev.te \
+    genfs_contexts \
     healthd.te \
     init.te \
     init_shell.te \
