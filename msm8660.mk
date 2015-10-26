@@ -108,6 +108,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.enable.chromecast.mirror=true
 
+# Compatibility symbols wrappers
+PRODUCT_PACKAGES += \
+    libboringssl-compat \
+    libsamsung_symbols
+
 # Display
 PRODUCT_PACKAGES += \
     copybit.msm8660 \

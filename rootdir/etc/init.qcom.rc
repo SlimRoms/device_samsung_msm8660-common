@@ -33,6 +33,9 @@ on early-init
     mkdir /firmware-mdm 0771 system system
 
 on init
+    # Samsung symbols
+    export LD_PRELOAD "/system/lib/libboringssl-compat.so /system/lib/libsamsung_symbols.so"
+
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
