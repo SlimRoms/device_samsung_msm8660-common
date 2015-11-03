@@ -735,4 +735,37 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             result.sendToTarget();
         }
     }
+
+    @Override
+    public void getRadioCapability (Message result) {
+        riljLog("getRadioCapability: not supported");
+        if (result != null) {
+            CommandException e = new CommandException(
+                CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(result, null, e);
+            result.sendToTarget();
+        }
+    }
+
+    @Override
+    public void startLceService(int reportIntervalMs, boolean pullMode, Message result) {
+        riljLog("startLceService: not supported");
+        if (result != null) {
+            CommandException e = new CommandException(
+                CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(result, null, e);
+            result.sendToTarget();
+        }
+    }
+
+    @Override
+    public void iccOpenLogicalChannel(String AID, Message result) {
+        riljLog("iccOpenLogicalChannel: not supported");
+        if (result != null) {
+            CommandException e = new CommandException(
+                CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(result, null, e);
+            result.sendToTarget();
+        }
+    }
 }
