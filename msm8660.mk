@@ -190,6 +190,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     power.msm8660
 
+# Stlport
+PRODUCT_PACKAGES += \
+    libstlport
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
