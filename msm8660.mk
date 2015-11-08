@@ -89,7 +89,6 @@ PRODUCT_PACKAGES += \
 # TWRP Recovery
 PRODUCT_PACKAGES += \
     postrecoveryboot.sh \
-    runatboot.sh \
     twrp.fstab
 
 # Audio config
