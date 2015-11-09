@@ -60,6 +60,9 @@ on init
     chown root system /sys/devices/platform/msm_hsusb/gadget/wakeup
     chmod 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
 
+		# BoringSSL hack
+    export LD_PRELOAD "/system/lib/libboringssl-compat.so"
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
