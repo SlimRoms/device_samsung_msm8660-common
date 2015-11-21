@@ -304,6 +304,11 @@ service sensors /system/bin/sensors.qcom
     user root
     group root
     disabled
+    
+service lmkd /system/bin/lmkd
+    class core
+    critical
+    socket lmkd seqpacket 0660 system system    
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
