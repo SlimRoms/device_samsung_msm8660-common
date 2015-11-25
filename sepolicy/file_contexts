@@ -52,4 +52,4 @@
 /sys/devices/virtual/timed_output/vibrator/pwm_value      u:object_r:power_dev:s0
 
 # Bluetooth
-/proc/bluetooth/sleep/btwrite                             u:object_r:bt_hc_worker_proc:s0
+#/proc/bluetooth/sleep/btwrite                             u:object_r:bt_hc_worker_proc:s0
