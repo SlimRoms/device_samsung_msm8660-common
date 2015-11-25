@@ -93,10 +93,6 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libaudioutils
 
-# BoringSSL hack
-PRODUCT_PACKAGES += \
-    libboringssl-compat
-    
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8660
@@ -107,15 +103,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Compatibility symbols wrappers
 PRODUCT_PACKAGES += \
-    libboringssl-compat \
     libsamsung_symbols
-
-# Debug - For userdebug builds
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.secure=0 \
-    ro.adb.secure=0 \
-    ro.debuggable=1 \
-    persist.service.adb.enable=1
 
 # Display
 PRODUCT_PACKAGES += \
