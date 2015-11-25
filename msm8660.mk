@@ -103,11 +103,6 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libaudioutils
 
-# Compatibility symbols wrappers
-PRODUCT_PACKAGES += \
-    libboringssl-compat \
-    libsamsung_symbols
-
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8660
@@ -115,6 +110,10 @@ PRODUCT_PACKAGES += \
 # Chromecast
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.enable.chromecast.mirror=true
+
+# Compatibility symbols wrappers
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
 
 # Display
 PRODUCT_PACKAGES += \
