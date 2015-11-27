@@ -34,7 +34,7 @@ on early-init
     mkdir /firmware-mdm 0771 system system
 
 on init
-    # Samsung symbols
+    # Preload BoringSSL and Samsung symbols
     export LD_PRELOAD "/system/lib/libboringssl-compat.so /system/lib/libsamsung_symbols.so"
 
     # Set permissions for persist partition
@@ -48,57 +48,35 @@ on init
     chown root system /sys/devices/platform/msm_hsusb/gadget/wakeup
     chmod 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
 
-    # BoringSSL hack
-    export LD_PRELOAD "/system/lib/libboringssl-compat.so"
-
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-    setprop persist.sys.ssr.restart_level 3
-    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
 
 on boot
-    restorecon_recursive /efs
-#    restorecon proc/bluetooth/sleep/btwrite
-
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     # bluetooth
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
-    chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwake
-    chown bluetooth net_bt_stack /proc/bluetooth/sleep/proto
-    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
-    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
-    chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_lpm
-    chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_btwrite
     chown system system /sys/module/sco/parameters/disable_esco
-    chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/module/bluetooth_power/parameters/power
-    chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/class/rfkill/rfkill0/state
-    chmod 0660 /proc/bluetooth/sleep/btwake
     chmod 0660 /proc/bluetooth/sleep/proto
-    chmod 0644 /proc/bluetooth/sleep/btwrite
-    chmod 0644 /proc/bluetooth/sleep/lpm
     chown bluetooth bluetooth /dev/ttyHS0
-    chmod 0660 /sys/module/hci_uart/parameters/ath_lpm
-    chmod 0660 /sys/module/hci_uart/parameters/ath_btwrite
-    chown bluetooth net_bt_stack /dev/ttyHS99
     chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
-
-    chmod 0660 /dev/ttyHS2
-    chown bluetooth bluetooth /dev/ttyHS2
 
     # bluetooth MAC address programming
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth bluetooth ro.bt.bdaddr_path
 
-    # Create QMUX deamon socket area
+    # bluetooth LPM
+    chmod 0220 /proc/bluetooth/sleep/lpm
+    chmod 0220 /proc/bluetooth/sleep/btwrite
+    chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
+    chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
+    
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
     mkdir /dev/socket/qmux_audio 0770 media audio
@@ -408,13 +386,12 @@ service quipc_main /system/bin/quipc_main
     group net_admin wifi inet gps
     disabled
 
-on property:crypto.driver.load=1
-     insmod /system/lib/modules/qce.ko
-     insmod /system/lib/modules/qcedev.ko
-
-on property:crypto.driver.load=0
-     exec /system/bin/rmmod qcedev.ko
-     exec /system/bin/rmmod qce.ko
+service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
+    class late_start
+    user root
+    group system qcom_oncrpc
+    disabled
+    oneshot
 
 service drmdiag /system/bin/drmdiagapp
     class late_start
