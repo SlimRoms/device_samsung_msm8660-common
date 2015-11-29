@@ -21,26 +21,16 @@ import static com.android.internal.telephony.RILConstants.*;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.AsyncResult;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Message;
 import android.os.Parcel;
-import android.telephony.SmsMessage;
 import android.os.SystemProperties;
-import android.os.SystemClock;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.telephony.Rlog;
 
 import android.telephony.SignalStrength;
 
 import android.telephony.PhoneNumberUtils;
 import com.android.internal.telephony.RILConstants;
-import com.android.internal.telephony.gsm.SmsBroadcastConfigInfo;
-import com.android.internal.telephony.cdma.CdmaInformationRecords;
-import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaSignalInfoRec;
-import com.android.internal.telephony.cdma.SignalToneUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,22 +51,15 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
 
     private AudioManager mAudioManager;
 
-    private Object mSMSLock = new Object();
-    private boolean mIsSendingSMS = false;
-    protected boolean isGSM = false;
-    public static final long SEND_SMS_TIMEOUT_IN_MS = 30000;
-
     public SamsungMSM8660RIL(Context context, int networkModes, int cdmaSubscription) {
         this(context, networkModes, cdmaSubscription, null);
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
     }
 
     public SamsungMSM8660RIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
     }
 
     @Override
@@ -119,72 +102,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             p.readInt(); // - perso_unblock_retries
             cardStatus.mApplications[i] = appStatus;
         }
-        if (numApplications==1 && !isGSM && appStatus.app_type == appStatus.AppTypeFromRILInt(2)) {
-            cardStatus.mApplications = new IccCardApplicationStatus[numApplications+2];
-            cardStatus.mGsmUmtsSubscriptionAppIndex = 0;
-            cardStatus.mApplications[cardStatus.mGsmUmtsSubscriptionAppIndex]=appStatus;
-            cardStatus.mCdmaSubscriptionAppIndex = 1;
-            cardStatus.mImsSubscriptionAppIndex = 2;
-            IccCardApplicationStatus appStatus2 = new IccCardApplicationStatus();
-            appStatus2.app_type       = appStatus2.AppTypeFromRILInt(4); // csim state
-            appStatus2.app_state      = appStatus.app_state;
-            appStatus2.perso_substate = appStatus.perso_substate;
-            appStatus2.aid            = appStatus.aid;
-            appStatus2.app_label      = appStatus.app_label;
-            appStatus2.pin1_replaced  = appStatus.pin1_replaced;
-            appStatus2.pin1           = appStatus.pin1;
-            appStatus2.pin2           = appStatus.pin2;
-            cardStatus.mApplications[cardStatus.mCdmaSubscriptionAppIndex] = appStatus2;
-            IccCardApplicationStatus appStatus3 = new IccCardApplicationStatus();
-            appStatus3.app_type       = appStatus3.AppTypeFromRILInt(5); // ims state
-            appStatus3.app_state      = appStatus.app_state;
-            appStatus3.perso_substate = appStatus.perso_substate;
-            appStatus3.aid            = appStatus.aid;
-            appStatus3.app_label      = appStatus.app_label;
-            appStatus3.pin1_replaced  = appStatus.pin1_replaced;
-            appStatus3.pin1           = appStatus.pin1;
-            appStatus3.pin2           = appStatus.pin2;
-            cardStatus.mApplications[cardStatus.mImsSubscriptionAppIndex] = appStatus3;
-        }
         return cardStatus;
-    }
-
-    @Override
-    public void
-    sendCdmaSms(byte[] pdu, Message result) {
-        smsLock();
-        super.sendCdmaSms(pdu, result);
-    }
-
-    @Override
-    public void
-        sendSMS (String smscPDU, String pdu, Message result) {
-        smsLock();
-        super.sendSMS(smscPDU, pdu, result);
-    }
-
-    private void smsLock(){
-        // Do not send a new SMS until the response for the previous SMS has been received
-        //   * for the error case where the response never comes back, time out after
-        //     30 seconds and just try the next SEND_SMS
-        synchronized (mSMSLock) {
-            long timeoutTime  = SystemClock.elapsedRealtime() + SEND_SMS_TIMEOUT_IN_MS;
-            long waitTimeLeft = SEND_SMS_TIMEOUT_IN_MS;
-            while (mIsSendingSMS && (waitTimeLeft > 0)) {
-                Rlog.d(RILJ_LOG_TAG, "sendSMS() waiting for response of previous SEND_SMS");
-                try {
-                    mSMSLock.wait(waitTimeLeft);
-                } catch (InterruptedException ex) {
-                    // ignore the interrupt and rewait for the remainder
-                }
-                waitTimeLeft = timeoutTime - SystemClock.elapsedRealtime();
-            }
-            if (waitTimeLeft <= 0) {
-                Rlog.e(RILJ_LOG_TAG, "sendSms() timed out waiting for response of previous CDMA_SEND_SMS");
-            }
-            mIsSendingSMS = true;
-        }
-
     }
 
     @Override
@@ -220,12 +138,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
 
         return new SignalStrength(response[0], response[1], response[2], response[3], response[4], response[5], response[6], response[7], response[8], response[9], response[10], response[11], (response[12] != 0));
 
-    }
-
-    @Override
-    public void setPhoneType(int phoneType){
-        super.setPhoneType(phoneType);
-        isGSM = (phoneType != RILConstants.CDMA_PHONE);
     }
 
     protected Object
@@ -415,7 +327,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
                 if (error == 0 || p.dataAvail() > 0) {
                     try {switch (tr.mRequest) {
                             /* Get those we're interested in */
-                        case RIL_REQUEST_VOICE_REGISTRATION_STATE:
                         case RIL_REQUEST_DATA_REGISTRATION_STATE:
                         case RIL_REQUEST_OPERATOR:
                             rr = tr;
@@ -444,7 +355,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
         Object ret = null;
         if (error == 0 || p.dataAvail() > 0) {
             switch (rr.mRequest) {
-                case RIL_REQUEST_VOICE_REGISTRATION_STATE: ret = responseVoiceRegistrationState(p); break;
                 case RIL_REQUEST_DATA_REGISTRATION_STATE: ret = responseDataRegistrationState(p); break;
                 case RIL_REQUEST_OPERATOR: ret =  operatorCheck(p); break;
                 default:
@@ -475,57 +385,27 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
     private Object
     responseDataRegistrationState(Parcel p) {
       String response[] = (String[])responseStrings(p); // all data from parcell get popped
-      if (isGSM){
-        /*
-         * Our RIL reports a value of 30 for DC-HSPAP.
-         * However, this isn't supported in AOSP. So, map it to HSPAP instead
-        */
-           if (response.length > 4 &&
-               response[0].equals("1") &&
-               response[3].equals("30")) {
-               response[3] = "15";
-           }
 
-        /* DANGER WILL ROBINSON
-         * In some cases from Vodaphone we are receiving a RAT of 102
-         * while in tunnels of the metro. Lets Assume that if we
-         * receive 102 we actually want a RAT of 2 for EDGE service */
-           if (response.length > 4 &&
-               response[0].equals("1") &&
-               response[3].equals("102")) {
-               response[3] = "2";
-           }
+      /*
+       * Our RIL reports a value of 30 for DC-HSPAP.
+       * However, this isn't supported in AOSP. So, map it to HSPAP instead
+      */
+         if (response.length > 4 &&
+             response[0].equals("1") &&
+             response[3].equals("30")) {
+             response[3] = "15";
+         }
 
-      }
-      return responseVoiceDataRegistrationState(response);
-   }
-
-   private Object
-   responseVoiceRegistrationState(Parcel p) {
-     String response[] = (String[])responseStrings(p); // all data from parcell get popped
-     return responseVoiceDataRegistrationState(response);
-   }
-
-   private Object
-   responseVoiceDataRegistrationState(String[] response) {
-        if (isGSM){
-            return response;
-        }
-        if (response.length>=10){
-            for(int i=6; i<=9; i++){
-                if (response[i]== null){
-                    response[i]=Integer.toString(Integer.MAX_VALUE);
-                } else {
-                    try {
-                        Integer.parseInt(response[i]);
-                    } catch(NumberFormatException e) {
-                        response[i]=Integer.toString(Integer.parseInt(response[i],16));
-                    }
-                }
-            }
-        }
-
-        return response;
+      /* DANGER WILL ROBINSON
+       * In some cases from Vodaphone we are receiving a RAT of 102
+       * while in tunnels of the metro. Lets Assume that if we
+       * receive 102 we actually want a RAT of 2 for EDGE service */
+         if (response.length > 4 &&
+             response[0].equals("1") &&
+             response[3].equals("102")) {
+             response[3] = "2";
+         }
+      return response;
     }
 
     /**
@@ -541,77 +421,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             Rlog.d(RILJ_LOG_TAG, "setWbAmr(): setting audio parameter - wb_amr=off");
             mAudioManager.setParameters("wide_voice_enable=false");
         }
-    }
-
-    // Workaround for Samsung CDMA "ring of death" bug:
-    //
-    // Symptom: As soon as the phone receives notice of an incoming call, an
-    // audible "old fashioned ring" is emitted through the earpiece and
-    // persists through the duration of the call, or until reboot if the call
-    // isn't answered.
-    //
-    // Background: The CDMA telephony stack implements a number of "signal info
-    // tones" that are locally generated by ToneGenerator and mixed into the
-    // voice call path in response to radio RIL_UNSOL_CDMA_INFO_REC requests.
-    // One of these tones, IS95_CONST_IR_SIG_IS54B_L, is requested by the
-    // radio just prior to notice of an incoming call when the voice call
-    // path is muted. CallNotifier is responsible for stopping all signal
-    // tones (by "playing" the TONE_CDMA_SIGNAL_OFF tone) upon receipt of a
-    // "new ringing connection", prior to unmuting the voice call path.
-    //
-    // Problem: CallNotifier's incoming call path is designed to minimize
-    // latency to notify users of incoming calls ASAP. Thus,
-    // SignalInfoTonePlayer requests are handled asynchronously by spawning a
-    // one-shot thread for each. Unfortunately the ToneGenerator API does
-    // not provide a mechanism to specify an ordering on requests, and thus,
-    // unexpected thread interleaving may result in ToneGenerator processing
-    // them in the opposite order that CallNotifier intended. In this case,
-    // playing the "signal off" tone first, followed by playing the "old
-    // fashioned ring" indefinitely.
-    //
-    // Solution: An API change to ToneGenerator is required to enable
-    // SignalInfoTonePlayer to impose an ordering on requests (i.e., drop any
-    // request that's older than the most recent observed). Such a change,
-    // or another appropriate fix should be implemented in AOSP first.
-    //
-    // Workaround: Intercept RIL_UNSOL_CDMA_INFO_REC requests from the radio,
-    // check for a signal info record matching IS95_CONST_IR_SIG_IS54B_L, and
-    // drop it so it's never seen by CallNotifier. If other signal tones are
-    // observed to cause this problem, they should be dropped here as well.
-    @Override
-    protected void notifyRegistrantsCdmaInfoRec(CdmaInformationRecords infoRec) {
-        final int response = RIL_UNSOL_CDMA_INFO_REC;
-
-        if (infoRec.record instanceof CdmaSignalInfoRec) {
-            CdmaSignalInfoRec sir = (CdmaSignalInfoRec) infoRec.record;
-            if (sir != null
-                    && sir.isPresent
-                    && sir.signalType == SignalToneUtil.IS95_CONST_IR_SIGNAL_IS54B
-                    && sir.alertPitch == SignalToneUtil.IS95_CONST_IR_ALERT_MED
-                    && sir.signal == SignalToneUtil.IS95_CONST_IR_SIG_IS54B_L) {
-
-                Rlog.d(RILJ_LOG_TAG, "Dropping \"" + responseToString(response) + " "
-                        + retToString(response, sir)
-                        + "\" to prevent \"ring of death\" bug.");
-                return;
-            }
-        }
-
-        super.notifyRegistrantsCdmaInfoRec(infoRec);
-    }
-
-
-
-    @Override
-    protected Object
-    responseSMS(Parcel p) {
-        // Notify that sendSMS() can send the next SMS
-        synchronized (mSMSLock) {
-            mIsSendingSMS = false;
-            mSMSLock.notify();
-        }
-
-        return super.responseSMS(p);
     }
 
     @Override
@@ -742,30 +551,8 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
     }
 
     @Override
-    public void getRadioCapability (Message result) {
-        riljLog("getRadioCapability: not supported");
-        if (result != null) {
-            CommandException e = new CommandException(
-                CommandException.Error.REQUEST_NOT_SUPPORTED);
-            AsyncResult.forMessage(result, null, e);
-            result.sendToTarget();
-        }
-    }
-
-    @Override
     public void startLceService(int reportIntervalMs, boolean pullMode, Message result) {
         riljLog("startLceService: not supported");
-        if (result != null) {
-            CommandException e = new CommandException(
-                CommandException.Error.REQUEST_NOT_SUPPORTED);
-            AsyncResult.forMessage(result, null, e);
-            result.sendToTarget();
-        }
-    }
-
-    @Override
-    public void iccOpenLogicalChannel(String AID, Message result) {
-        riljLog("iccOpenLogicalChannel: not supported");
         if (result != null) {
             CommandException e = new CommandException(
                 CommandException.Error.REQUEST_NOT_SUPPORTED);
