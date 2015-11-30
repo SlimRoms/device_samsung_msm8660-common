@@ -198,10 +198,6 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     libstlport
 
-# USB
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
-
 # Wifi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
