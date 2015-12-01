@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a9dcd25_3e11c5ac",
+        "filename": "rootdir/etc/fstab.qcom",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000016
+      },
+      "writtenOn": "2015-12-01T20:27:57Z",
+      "side": 1,
+      "message": "or footer? i am also not sure about on tab2",
+      "range": {
+        "startLine": 19,
+        "startChar": 209,
+        "endLine": 19,
+        "endChar": 217
+      },
+      "revId": "61f7d139f158885cfe336feb143d5b1425e563b9",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
