@@ -185,6 +185,10 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libstagefrighthw
 
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8660
+
 # Stlport
 PRODUCT_PACKAGES += \
     libstlport
