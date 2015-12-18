@@ -134,6 +134,17 @@ PRODUCT_PACKAGES += \
     libgenlock \
     memtrack.msm8660
 
+# Execmod wrapper
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/ks \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/mpdecision \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/netmgrd \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qcks \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qmiproxy \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qmuxd \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/rmt_storage \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/thermald
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     fsck.f2fs \

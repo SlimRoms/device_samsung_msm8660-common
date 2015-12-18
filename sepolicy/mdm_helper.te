@@ -10,3 +10,5 @@ allow mdm_helper self:process execmem;
 allow mdm_helper efs_data_file:file create_file_perms;
 allow mdm_helper efs_data_file:dir create_dir_perms;
 allow mdm_helper firmware_file:lnk_file { open read getattr };
+allow mdm_helper shell_exec:file rx_file_perms;
+allow mdm_helper system_file:file { rx_file_perms execmod };

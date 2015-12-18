@@ -1,3 +1,5 @@
 allow netmgrd self:process execmem;
 allow netmgrd netmgrd:packet_socket { bind create read write };
 allow netmgrd radio_data_file:dir { search };
+allow netmgrd shell_exec:file rx_file_perms;
+allow netmgrd system_file:file { rx_file_perms execmod };
