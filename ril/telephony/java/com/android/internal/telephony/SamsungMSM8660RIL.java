@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2014 The CyanogenMod Project
+ * Copyright (C) 2012-2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,15 +21,10 @@ import static com.android.internal.telephony.RILConstants.*;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.AsyncResult;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Message;
 import android.os.Parcel;
 import android.os.SystemProperties;
-import android.os.SystemClock;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.telephony.Rlog;
 
 import android.telephony.SignalStrength;
@@ -45,11 +40,7 @@ import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
 
 /**
- * Qualcomm RIL for the Samsung family.
- * Quad core Exynos4 with Qualcomm modem and later is supported
- * Snapdragon S3 and later is supported
- * This RIL is univerisal meaning it supports CDMA and GSM radio.
- * Handles most GSM and CDMA cases.
+ * Qualcomm RIL for the Samsung MSM8660 family.
  * {@hide}
  */
 public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
@@ -59,14 +50,12 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
     public SamsungMSM8660RIL(Context context, int networkModes, int cdmaSubscription) {
         this(context, networkModes, cdmaSubscription, null);
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
     }
 
     public SamsungMSM8660RIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
         mAudioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
-        mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
     }
 
     @Override
@@ -172,8 +161,10 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             dc.isMT = (0 != p.readInt());
             dc.als = p.readInt();
             voiceSettings = p.readInt();
-            p.readInt();
             dc.isVoice = (0 == voiceSettings) ? false : true;
+            p.readInt();    // Samsung CallDetails
+            p.readInt();    // Samsung CallDetails
+            p.readString(); // Samsung CallDetails
             dc.isVoicePrivacy = (0 != p.readInt());
             dc.number = p.readString();
             int np = p.readInt();
@@ -307,6 +298,19 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
     }
 
     @Override
+    public void
+    acceptCall (Message result) {
+        RILRequest rr = RILRequest.obtain(RIL_REQUEST_ANSWER, result);
+
+        rr.mParcel.writeInt(1);
+        rr.mParcel.writeInt(0);
+
+        if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
+
+        send(rr);
+    }
+
+    @Override
     protected RILRequest
     processSolicited (Parcel p) {
         int serial, error;
@@ -322,7 +326,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
                 if (error == 0 || p.dataAvail() > 0) {
                     try {switch (tr.mRequest) {
                             /* Get those we're interested in */
-                        case RIL_REQUEST_VOICE_REGISTRATION_STATE:
                         case RIL_REQUEST_DATA_REGISTRATION_STATE:
                         case RIL_REQUEST_OPERATOR:
                             rr = tr;
@@ -351,7 +354,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
         Object ret = null;
         if (error == 0 || p.dataAvail() > 0) {
             switch (rr.mRequest) {
-                case RIL_REQUEST_VOICE_REGISTRATION_STATE: ret = responseVoiceRegistrationState(p); break;
                 case RIL_REQUEST_DATA_REGISTRATION_STATE: ret = responseDataRegistrationState(p); break;
                 case RIL_REQUEST_OPERATOR: ret =  operatorCheck(p); break;
                 default:
@@ -382,6 +384,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
     private Object
     responseDataRegistrationState(Parcel p) {
       String response[] = (String[])responseStrings(p); // all data from parcell get popped
+
       /*
        * Our RIL reports a value of 30 for DC-HSPAP.
        * However, this isn't supported in AOSP. So, map it to HSPAP instead
@@ -401,19 +404,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
              response[3].equals("102")) {
              response[3] = "2";
          }
-
-      return responseVoiceDataRegistrationState(response);
-   }
-
-   private Object
-   responseVoiceRegistrationState(Parcel p) {
-     String response[] = (String[])responseStrings(p); // all data from parcell get popped
-     return responseVoiceDataRegistrationState(response);
-   }
-
-   private Object
-   responseVoiceDataRegistrationState(String[] response) {
-        return response;
+      return response;
     }
 
     /**
@@ -571,17 +562,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
     @Override
     public void startLceService(int reportIntervalMs, boolean pullMode, Message result) {
         riljLog("startLceService: not supported");
-        if (result != null) {
-            CommandException e = new CommandException(
-                CommandException.Error.REQUEST_NOT_SUPPORTED);
-            AsyncResult.forMessage(result, null, e);
-            result.sendToTarget();
-        }
-    }
-
-    @Override
-    public void iccOpenLogicalChannel(String AID, Message result) {
-        riljLog("iccOpenLogicalChannel: not supported");
         if (result != null) {
             CommandException e = new CommandException(
                 CommandException.Error.REQUEST_NOT_SUPPORTED);
