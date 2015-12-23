@@ -280,6 +280,7 @@ static int responseIntsGetPreferredNetworkType(Parcel &p, void *response, size_t
 static int responseStrings(Parcel &p, void *response, size_t responselen);
 static int responseStringsNetworks(Parcel &p, void *response, size_t responselen);
 static int responseStrings(Parcel &p, void *response, size_t responselen, bool network_search);
+static int responseStringsDataRegistrationState(Parcel &p, void *response, size_t responselen);
 static int responseString(Parcel &p, void *response, size_t responselen);
 static int responseVoid(Parcel &p, void *response, size_t responselen);
 static int responseCallList(Parcel &p, void *response, size_t responselen);
@@ -2327,6 +2328,36 @@ static int responseStrings(Parcel &p, void *response, size_t responselen, bool n
     return 0;
 }
 
+
+/*
+ * RIL_RADIO_TECHNOLOGY: 15 (QCOM HSPAP_DC) ==> 30 (CM DCHSPAP)
+ */
+static int responseStringsDataRegistrationState(Parcel &p, void *response, size_t responselen) {
+
+    if (response == NULL && responselen != 0) {
+        ALOGE("invalid response: NULL");
+        return RIL_ERRNO_INVALID_RESPONSE;
+    }
+    if (responselen % sizeof(char *) != 0) {
+        ALOGE("invalid response length %d expected multiple of %d\n",
+            (int)responselen, (int)sizeof(char *));
+        return RIL_ERRNO_INVALID_RESPONSE;
+    }
+
+    char **p_cur = (char **) response;
+
+    if (p_cur[3] != NULL) {
+        if (strncmp(p_cur[3], "30", 2) == 0) {
+            ALOGE("DATA_REGISTRATION_STATE: stock rat=30 (QCOM DC-HSPAP) -> AOSP rat=30 (HSPAP)");
+            strncpy(p_cur[3], "15", 2);
+        } else if (strncmp(p_cur[3], "102", 3) == 0) {
+            ALOGE("DATA_REGISTRATION_STATE: stock rat=102 -> AOSP rat=2 (EDGE)");
+            strncpy(p_cur[3], "2", 1);
+        }
+    }
+
+    return responseStrings(p, response, responselen);
+}
 
 /**
  * NULL strings are accepted

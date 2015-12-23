@@ -24,10 +24,7 @@ import android.os.AsyncResult;
 import android.os.Message;
 import android.os.Parcel;
 import android.os.SystemProperties;
-import android.provider.Settings;
 import android.telephony.Rlog;
-
-import android.telephony.SignalStrength;
 
 import android.telephony.PhoneNumberUtils;
 import com.android.internal.telephony.RILConstants;
@@ -99,41 +96,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             cardStatus.mApplications[i] = appStatus;
         }
         return cardStatus;
-    }
-
-    @Override
-    protected Object responseSignalStrength(Parcel p) {
-        int numInts = 13;
-        int response[];
-
-        // Get raw data
-        response = new int[numInts];
-        for (int i = 0; i < numInts; i++) {
-            response[i] = p.readInt();
-        }
-        //gsm
-        response[0] &= 0xff;
-        //cdma
-        response[2] %= 256;
-        response[4] %= 256;
-
-        // RIL_LTE_SignalStrength
-        if ((response[7] & 0xff) == 255 || response[7] == 99) {
-            // If LTE is not enabled, clear LTE results
-            // 7-11 must be -1 for GSM signal strength to be used (see
-            // frameworks/base/telephony/java/android/telephony/SignalStrength.java)
-            // make sure lte is disabled
-            response[7] = 99;
-            response[8] = SignalStrength.INVALID;
-            response[9] = SignalStrength.INVALID;
-            response[10] = SignalStrength.INVALID;
-            response[11] = SignalStrength.INVALID;
-        } else { // lte is gsm on samsung/qualcomm cdma stack
-            response[7] &= 0xff;
-        }
-
-        return new SignalStrength(response[0], response[1], response[2], response[3], response[4], response[5], response[6], response[7], response[8], response[9], response[10], response[11], (response[12] != 0));
-
     }
 
     protected Object
@@ -225,15 +187,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
         int origResponse = p.readInt();
         int newResponse = origResponse;
         switch (origResponse) {
-            case RIL_UNSOL_RIL_CONNECTED:
-                ret = responseInts(p);
-                setRadioPower(false, null);
-                setPreferredNetworkType(mPreferredNetworkType, null);
-                setCdmaSubscriptionSource(mCdmaSubscription, null);
-                if(mRilVersion >= 8)
-                    setCellInfoListRate(Integer.MAX_VALUE, null);
-                notifyRegistrantsRilConnectionChanged(((int[])ret)[0]);
-                break;
             // SAMSUNG STATES
             case 11010: // RIL_UNSOL_AM:
                 ret = responseString(p);
@@ -306,103 +259,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
         send(rr);
     }
 
-    @Override
-    protected RILRequest
-    processSolicited (Parcel p) {
-        int serial, error;
-        boolean found = false;
-        int dataPosition = p.dataPosition(); // save off position within the Parcel
-        serial = p.readInt();
-        error = p.readInt();
-        RILRequest rr = null;
-        /* Pre-process the reply before popping it */
-        synchronized (mRequestList) {
-            RILRequest tr = mRequestList.get(serial);
-            if (tr != null && tr.mSerial == serial) {
-                if (error == 0 || p.dataAvail() > 0) {
-                    try {switch (tr.mRequest) {
-                            /* Get those we're interested in */
-                        case RIL_REQUEST_DATA_REGISTRATION_STATE:
-                        case RIL_REQUEST_OPERATOR:
-                            rr = tr;
-                            break;
-                    }} catch (Throwable thr) {
-                        // Exceptions here usually mean invalid RIL responses
-                        if (tr.mResult != null) {
-                            AsyncResult.forMessage(tr.mResult, null, thr);
-                            tr.mResult.sendToTarget();
-                        }
-                        return tr;
-                    }
-                }
-            }
-        }
-        if (rr == null) {
-            /* Nothing we care about, go up */
-            p.setDataPosition(dataPosition);
-            // Forward responses that we are not overriding to the super class
-            return super.processSolicited(p);
-        }
-        rr = findAndRemoveRequestFromList(serial);
-        if (rr == null) {
-            return rr;
-        }
-        Object ret = null;
-        if (error == 0 || p.dataAvail() > 0) {
-            switch (rr.mRequest) {
-                case RIL_REQUEST_DATA_REGISTRATION_STATE: ret = responseDataRegistrationState(p); break;
-                case RIL_REQUEST_OPERATOR: ret =  operatorCheck(p); break;
-                default:
-                    throw new RuntimeException("Unrecognized solicited response: " + rr.mRequest);
-            }
-            //break;
-        }
-        if (RILJ_LOGD) riljLog(rr.serialString() + "< " + requestToString(rr.mRequest)
-                               + " " + retToString(rr.mRequest, ret));
-        if (rr.mResult != null) {
-            AsyncResult.forMessage(rr.mResult, ret, null);
-            rr.mResult.sendToTarget();
-        }
-        return rr;
-    }
-
-    private Object
-    operatorCheck(Parcel p) {
-        String response[] = (String[])responseStrings(p);
-        for(int i=0; i<2; i++){
-            if (response[i]!= null){
-                response[i] = Operators.operatorReplace(response[i]);
-            }
-        }
-        return response;
-    }
-
-    private Object
-    responseDataRegistrationState(Parcel p) {
-      String response[] = (String[])responseStrings(p); // all data from parcell get popped
-
-      /*
-       * Our RIL reports a value of 30 for DC-HSPAP.
-       * However, this isn't supported in AOSP. So, map it to HSPAP instead
-      */
-         if (response.length > 4 &&
-             response[0].equals("1") &&
-             response[3].equals("30")) {
-             response[3] = "15";
-         }
-
-      /* DANGER WILL ROBINSON
-       * In some cases from Vodaphone we are receiving a RAT of 102
-       * while in tunnels of the metro. Lets Assume that if we
-       * receive 102 we actually want a RAT of 2 for EDGE service */
-         if (response.length > 4 &&
-             response[0].equals("1") &&
-             response[3].equals("102")) {
-             response[3] = "2";
-         }
-      return response;
-    }
-
     /**
      * Set audio parameter "wb_amr" for HD-Voice (Wideband AMR).
      *
@@ -412,7 +268,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
         if (state == 1) {
             Rlog.d(RILJ_LOG_TAG, "setWbAmr(): setting audio parameter - wb_amr=on");
             mAudioManager.setParameters("wide_voice_enable=true");
-        }else if (state == 0) {
+        } else if (state == 0) {
             Rlog.d(RILJ_LOG_TAG, "setWbAmr(): setting audio parameter - wb_amr=off");
             mAudioManager.setParameters("wide_voice_enable=false");
         }
@@ -441,38 +297,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
         if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
 
         send(rr);
-    }
-
-    //this method is used in the search network functionality.
-    // in mobile network setting-> network operators
-    @Override
-    protected Object
-    responseOperatorInfos(Parcel p) {
-        String strings[] = (String [])responseStrings(p);
-        ArrayList<OperatorInfo> ret;
-
-        if (strings.length % mQANElements != 0) {
-            throw new RuntimeException(
-                                       "RIL_REQUEST_QUERY_AVAILABLE_NETWORKS: invalid response. Got "
-                                       + strings.length + " strings, expected multiple of " + mQANElements);
-        }
-
-        ret = new ArrayList<OperatorInfo>(strings.length / mQANElements);
-        Operators init = null;
-        if (strings.length != 0) {
-            init = new Operators();
-        }
-        for (int i = 0 ; i < strings.length ; i += mQANElements) {
-            String temp = init.unOptimizedOperatorReplace(strings[i+0]);
-            ret.add (
-                     new OperatorInfo(
-                                      temp, //operatorAlphaLong
-                                      temp,//operatorAlphaShort
-                                      strings[i+2],//operatorNumeric
-                                      strings[i+3]));//state
-        }
-
-        return ret;
     }
 
     @Override
