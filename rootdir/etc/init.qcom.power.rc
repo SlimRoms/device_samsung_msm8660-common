@@ -42,8 +42,8 @@ on enable-low-power
     chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load
     chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
     chown system system /sys/kernel/cpu_input_boost/enabled
-    chown system system /sys/kernel/cpu_input_boost/boost_freqs
-    chown system system /sys/kernel/cpu_input_boost/up_threshold
+    chown system system /sys/kernel/cpu_input_boost/ib_freqs
+    chown system system /sys/kernel/cpu_input_boost/ib_duration_ms
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
     write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 2
@@ -54,8 +54,8 @@ on enable-low-power
     write /sys/devices/system/cpu/cpufreq/ondemand/sync_freq 1026000
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
-    write /sys/kernel/cpu_input_boost/boost_freqs "1242000 1026000"
-    write /sys/kernel/cpu_input_boost/up_threshold 60
+    write /sys/kernel/cpu_input_boost/ib_freqs "1242000 1026000"
+    write /sys/kernel/cpu_input_boost/ib_duration_ms 1400
 
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler deadline

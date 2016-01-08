@@ -38,7 +38,6 @@ typedef struct ondemand_governor_settings {
     int scaling_max_freq;
     int scaling_min_freq;
     char *input_boost_freqs;
-    int boost_up_threshold;
     char *gpu_governor;
 } ondemand_power_profile;
 
@@ -58,7 +57,6 @@ static ondemand_power_profile ondemand_profiles[PROFILE_MAX] = {
         .scaling_max_freq = 1026000,
         .scaling_min_freq = 192000,
         .input_boost_freqs = "756000 540000",
-        .boost_up_threshold = 60,
         .gpu_governor = "ondemand",
     },
     [PROFILE_BIAS_POWER] = {
@@ -76,7 +74,6 @@ static ondemand_power_profile ondemand_profiles[PROFILE_MAX] = {
         .scaling_max_freq = 1026000,
         .scaling_min_freq = 192000,
         .input_boost_freqs = "972000 864000",
-        .boost_up_threshold = 60,
         .gpu_governor = "ondemand",
     },
     [PROFILE_BALANCED] = {
@@ -94,7 +91,6 @@ static ondemand_power_profile ondemand_profiles[PROFILE_MAX] = {
         .scaling_max_freq = 1512000,
         .scaling_min_freq = 384000,
         .input_boost_freqs = "1242000 1026000",
-        .boost_up_threshold = 60,
         .gpu_governor = "ondemand",
     },
     [PROFILE_BIAS_PERFORMANCE] = {
@@ -112,7 +108,6 @@ static ondemand_power_profile ondemand_profiles[PROFILE_MAX] = {
         .scaling_max_freq = 1512000,
         .scaling_min_freq = 756000,
         .input_boost_freqs = "1242000 1026000",
-        .boost_up_threshold = 60,
         .gpu_governor = "ondemand",
     },
     [PROFILE_HIGH_PERFORMANCE] = {
@@ -130,7 +125,6 @@ static ondemand_power_profile ondemand_profiles[PROFILE_MAX] = {
         .scaling_max_freq = 1512000,
         .scaling_min_freq = 1512000,
         .input_boost_freqs = "1512000 1512000",
-        .boost_up_threshold = 60,
         .gpu_governor = "performance",
     },
 };
