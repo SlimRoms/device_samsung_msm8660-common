@@ -71,9 +71,6 @@ TARGET_NO_INITLOGO := true
 # Dlmalloc
 MALLOC_IMPL := dlmalloc
 
-# External apps on SD
-TARGET_EXTERNAL_APPS = sdcard0
-
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
@@ -88,12 +85,7 @@ TARGET_PROVIDES_LIBLIGHT := true
 TARGET_USES_LOGD := false
 
 # Media
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 TARGET_NO_ADAPTIVE_PLAYBACK := true
-
-# Qualcomm support
-COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
-TARGET_USES_QCOM_BSP := true
 
 # Recovery
 TARGET_RECOVERY_DEVICE_DIRS := device/samsung/msm8660-common
