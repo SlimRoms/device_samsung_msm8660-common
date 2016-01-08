@@ -158,6 +158,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml
 
+# MSM8660Settings
+PRODUCT_PACKAGES += \
+    MSM8660Settings
+
 # NFC
 PRODUCT_PACKAGES += \
     libnfc \

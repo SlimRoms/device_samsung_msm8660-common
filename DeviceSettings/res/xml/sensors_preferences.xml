@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="@string/gyro_subcat_title">
+        <!-- Use sensor calibration -->
+        <CheckBoxPreference
+            android:key="use_gyro_calibration"
+            android:title="@string/use_gyro_calibration_title_head"
+            android:summary="@string/use_gyro_calibration_summary_head"
+            android:defaultValue="true" />
+
+        <!-- Do gyro calibration -->
+        <Preference
+            android:key="calibrate_gyro"
+            android:title="@string/calibrate_gyro_title_head"
+            android:summary="@string/calibrate_gyro_summary_head" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/touchkey_subcat_title">
+        <com.cyanogenmod.settings.msm8660.Sweep2Wake
+            android:key="touchkey_s2w"
+            android:title="@string/touchkey_s2w_title_head"
+            android:summary="@string/touchkey_s2w_summary_head"
+            android:entries="@array/s2w_entries"
+            android:entryValues="@array/s2w_entries_values"
+            android:defaultValue="0" />
+
+        <CheckBoxPreference
+            android:key="s2w_sensitive"
+            android:title="@string/s2w_sensitive_head"
+            android:summary="@string/s2w_sensitive_summary_head"
+            android:defaultValue="false" />
+
+        <!-- Touchkey backlight -->
+        <CheckBoxPreference
+            android:key="touchkey_light"
+            android:title="@string/touchkey_light_title_head"
+            android:summary="@string/touchkey_light_summary_head"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>
