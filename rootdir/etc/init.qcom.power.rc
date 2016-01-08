@@ -56,11 +56,16 @@ on enable-low-power
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
     write /sys/kernel/cpu_input_boost/ib_freqs "1242000 1026000"
     write /sys/kernel/cpu_input_boost/ib_duration_ms 1400
+    write /sys/kernel/msm_thermal/enabled 0
+    write /sys/kernel/msm_thermal/low_thresh "1188000 64 60"
+    write /sys/kernel/msm_thermal/mid_thresh "972000 69 65"
+    write /sys/kernel/msm_thermal/high_thresh "384000 80 75"
+    write /sys/kernel/msm_thermal/sampling_ms 3000
 
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler deadline
     write /sys/kernel/cpu_input_boost/enabled 1
-    write /sys/kernel/msm_thermal/conf/start 1
+    write /sys/kernel/msm_thermal/enabled 1
 
     # Set up KSM
     write /sys/kernel/mm/ksm/deferred_timer 1
