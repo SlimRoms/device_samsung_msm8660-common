@@ -14,30 +14,74 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string-array name="s2w_entries">
-        <item>Disable</item>
-        <item>Enable Sweep2Wake</item>
-        <item>Enable Sweep2Sleep</item>
+    <string-array name="bln_timeout_entries">
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>Never</item>
     </string-array>
-    <string-array name="s2w_entries_values" translatable="false">
+    <string-array name="bln_timeout_entries_values" translatable="false">
+        <item>300000</item>
+        <item>600000</item>
+        <item>900000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="dt2w_entries">
+        <item>Disabled</item>
+        <item>Menu</item>
+        <item>Home</item>
+        <item>Back</item>
+        <item>Search</item>
+    </string-array>
+    <string-array name="dt2w_entries_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
-    <string-array name="touchscreen_sensitivity_entries">
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-        <item>50</item>
-        <item>70</item>
-        <item>100</item>
+    <string-array name="dt2s_entries">
+        <item>Disabled</item>
+        <item>Menu</item>
+        <item>Home</item>
+        <item>Back</item>
+        <item>Search</item>
     </string-array>
-    <string-array name="touchscreen_sensitivity_entries_values" translatable="false">
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
+    <string-array name="dt2s_entries_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="paneluv_entries">
+        <item>No UV</item>
+        <item>50mV UV</item>
+        <item>100mV UV</item>
+        <item>150mV UV</item>
+        <item>200mV UV</item>
+        <item>250mV UV</item>
+        <item>300mV UV</item>
+        <item>350mV UV</item>
+        <item>400mV UV</item>
+        <item>450mV UV</item>
+        <item>500mV UV</item>
+    </string-array>
+    <string-array name="paneluv_entries_values" translatable="false">
+        <item>0</item>
         <item>50</item>
-        <item>70</item>
         <item>100</item>
+        <item>150</item>
+        <item>200</item>
+        <item>250</item>
+        <item>300</item>
+        <item>350</item>
+        <item>400</item>
+        <item>450</item>
+        <item>500</item>
     </string-array>
 </resources>

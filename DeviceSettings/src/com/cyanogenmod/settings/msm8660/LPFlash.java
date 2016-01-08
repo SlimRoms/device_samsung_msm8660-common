@@ -23,9 +23,9 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class Sweep2Wake implements OnPreferenceChangeListener {
+public class LPFlash implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/android_touch/sweep2wake";
+    private static final String FILE = "/sys/module/sec_m5mo/parameters/force_lp_flash";
 
     public static boolean isSupported() {
         return Utils.fileExists(FILE);
@@ -37,7 +37,7 @@ public class Sweep2Wake implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_SWEEP2WAKE, "0"));
+        Utils.writeValue(FILE, sharedPrefs.getBoolean(DeviceSettings.KEY_LP_FLASH, false) ? "1" : "0");
     }
 
     @Override

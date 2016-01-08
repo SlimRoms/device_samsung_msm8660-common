@@ -24,8 +24,11 @@ public class Startup extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent bootintent) {
-        SensorsFragmentActivity.restore(context);
+        BLNTimeout.restore(context);
+        DoubleTap2Sleep.restore(context);
+        DoubleTap2Wake.restore(context);
+        LPFlash.restore(context);
+        PanelUV.restore(context);
         Sweep2Wake.restore(context);
     }
-
 }

@@ -18,14 +18,13 @@ package com.cyanogenmod.settings.msm8660;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class Sweep2Wake implements OnPreferenceChangeListener {
+public class BLNTimeout implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/android_touch/sweep2wake";
+    private static final String FILE = "/sys/class/misc/enhanced_bln/blink_timeout_ms";
 
     public static boolean isSupported() {
         return Utils.fileExists(FILE);
@@ -37,12 +36,12 @@ public class Sweep2Wake implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_SWEEP2WAKE, "0"));
+        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_BLN_TIMEOUT, "600000"));
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Utils.writeValue(FILE, ((CheckBoxPreference)preference).isChecked() ? "0" : "1");
+        Utils.writeValue(FILE, (String) newValue);
         return true;
     }
 

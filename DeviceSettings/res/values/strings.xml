@@ -15,26 +15,28 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Advanced Settings</string>
-    <string name="screen_colors_title">Colors</string>
-    <string name="category_screen_title">Screen</string>
+    <string name="category_touchkey_title">Touchkeys</string>
+    <string name="category_display_title">Display</string>
+    <string name="category_misc_title">Misc</string>
 
-    <string name="touchscreen_subcat_title">Touchscreen</string>
-    <string name="touchscreen_sensitivity_title_head">Touch sensitivity</string>
-    <string name="touchscreen_sensitivity_summary_head">Set touch panel sensitivity</string>
-    <string name="category_sensors_title">Sensors</string>
-    <string name="gyro_subcat_title">Gyroscope</string>
-    <string name="use_gyro_calibration_title_head">Use calibration data</string>
-    <string name="use_gyro_calibration_summary_head">Use the gyroscope calibration values. Do a calibration after checking this!</string>
-    <string name="calibrate_gyro_title_head">Calibrate</string>
-    <string name="calibrate_gyro_summary_head">Put your phone on a flat surface, and press this to calibrate</string>
+    <string name="s2w_title_head">Sweep2Wake</string>
+    <string name="s2w_summary_head">Sweep the four keys from left to right to wake the device</string>
 
-    <string name="touchkey_s2w_title_head">Enable Sweep2Wake/Sweep2Sleep</string>
-    <string name="touchkey_s2w_summary_head">Sweep the four keys from left to right to wake the device or sweep the four keys from right to left to put the device to sleep</string>
+    <string name="dt2w_title_head">DoubleTap2Wake</string>
+    <string name="dt2w_summary_head">Double tap one of the four keys to wake the device</string>
 
-    <string name="s2w_sensitive_head">Enable Sweep2Wake Sensitivity</string>
-    <string name="s2w_sensitive_summary_head">Require only the first and last buttons to trigger Sweep2Wake</string>
+    <string name="dt2s_title_head">DoubleTap2Sleep</string>
+    <string name="dt2s_summary_head">Double tap one of the four keys to turn off the screen</string>
 
-    <string name="touchkey_subcat_title">Touch key</string>
-    <string name="touchkey_light_title_head">Enable keys backlight</string>
-    <string name="touchkey_light_summary_head">Light up touch keys when screen is on</string>
+    <string name="bln_timeout_title_head">BLN blink timeout</string>
+    <string name="bln_timeout_summary_head">BLN will stop blinking on its own after this amount of time</string>
+
+    <string name="paneluv_title_head">Display undervolt</string>
+    <string name="paneluv_summary_head">Select the display UV you want</string>
+
+    <string name="lp_flash_title_head">Force low-power camera flash</string>
+    <string name="lp_flash_summary_head">Enable if phone crashes when taking pictures with flash</string>
+
+    <string name="button_reset_title">Reset</string>
+
 </resources>
