@@ -120,6 +120,7 @@ on boot
 
     # Display color calibration
     chown system system /sys/class/graphics/fb0/kcal
+    chown system system /sys/module/mdp/parameters/mdp_gamma_cooler_colors
 
     chown system graphics /sys/class/graphics/fb1/hpd
     chown system graphics /sys/class/graphics/fb1/vendor_name
