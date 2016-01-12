@@ -24,7 +24,7 @@
 
         <activity
             android:name="com.cyanogenmod.settings.msm8660.DeviceSettings"
-            android:icon="@drawable/ic_launcher_cmdevicesettings"
+            android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS" />
