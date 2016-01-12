@@ -37,7 +37,7 @@ public class LPFlash implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_LP_FLASH, "0");
+        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_LP_FLASH, "0"));
     }
 
     @Override
