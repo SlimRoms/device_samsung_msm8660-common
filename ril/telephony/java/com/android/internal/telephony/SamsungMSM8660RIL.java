@@ -191,7 +191,10 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             case RIL_UNSOL_RIL_CONNECTED:
                 ret = responseInts(p);
                 setRadioPower(false, null);
-                setPreferredNetworkType(mPreferredNetworkType, null);
+                if (!setPreferredNetworkTypeSeen) {
+                    Rlog.v(RILJ_LOG_TAG, "connected, setting network type to " + mPreferredNetworkType);
+                    setPreferredNetworkType(mPreferredNetworkType, null);
+                }
                 setCdmaSubscriptionSource(mCdmaSubscription, null);
                 if(mRilVersion >= 8)
                     setCellInfoListRate(Integer.MAX_VALUE, null);
@@ -412,8 +415,6 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
         riljLog("setPreferredNetworkType: " + networkType);
 
         if (!setPreferredNetworkTypeSeen) {
-            riljLog("Need to reboot modem!");
-            setRadioPower(false, null);
             setPreferredNetworkTypeSeen = true;
         }
 
