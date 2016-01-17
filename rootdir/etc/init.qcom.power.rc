@@ -28,7 +28,9 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
     write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor ondemand
     chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 644 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
     chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
     chown system system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
     chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
@@ -40,8 +42,8 @@ on enable-low-power
     chown system system /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load
     chown system system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
     chown system system /sys/kernel/cpu_input_boost/enabled
-    chown system system /sys/kernel/cpu_input_boost/boost_freqs
-    chown system system /sys/kernel/cpu_input_boost/up_threshold
+    chown system system /sys/kernel/cpu_input_boost/ib_freqs
+    chown system system /sys/kernel/cpu_input_boost/ib_duration_ms
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
     write /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy 1
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 2
@@ -52,13 +54,18 @@ on enable-low-power
     write /sys/devices/system/cpu/cpufreq/ondemand/sync_freq 1026000
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate 50000
-    write /sys/kernel/cpu_input_boost/boost_freqs "1242000 1026000"
-    write /sys/kernel/cpu_input_boost/up_threshold 60
+    write /sys/kernel/cpu_input_boost/ib_freqs "1242000 1026000"
+    write /sys/kernel/cpu_input_boost/ib_duration_ms 1400
+    write /sys/kernel/msm_thermal/enabled 0
+    write /sys/kernel/msm_thermal/low_thresh "1188000 64 60"
+    write /sys/kernel/msm_thermal/mid_thresh "972000 69 65"
+    write /sys/kernel/msm_thermal/high_thresh "384000 80 75"
+    write /sys/kernel/msm_thermal/sampling_ms 3000
 
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler deadline
     write /sys/kernel/cpu_input_boost/enabled 1
-    write /sys/kernel/msm_thermal/conf/start 1
+    write /sys/kernel/msm_thermal/enabled 1
 
     # Set up KSM
     write /sys/kernel/mm/ksm/deferred_timer 1

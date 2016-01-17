@@ -75,6 +75,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-flags=--no-watch-dog \
     dalvik.vm.dex2oat-swap=false \
+    dalvik.vm.image-dex2oat-filter=speed \
     ro.sys.fw.dex2oat_thread_count=4
 
 # Ramdisk
@@ -157,6 +158,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml
+
+# MSM8660Settings
+PRODUCT_PACKAGES += \
+    MSM8660Settings
 
 # NFC
 PRODUCT_PACKAGES += \

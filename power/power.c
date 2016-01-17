@@ -196,10 +196,10 @@ static void set_power_profile(int profile)
                                 ondemand_profiles[profile].sampling_rate);
                 sysfs_write_int(CPUFREQ_PATH "scaling_max_freq",
                                 ondemand_profiles[profile].scaling_max_freq);
-                sysfs_write_str(INPUT_BOOST_PATH "boost_freqs",
+                sysfs_write_int(CPUFREQ_PATH "scaling_min_freq",
+                                ondemand_profiles[profile].scaling_min_freq);
+                sysfs_write_str(INPUT_BOOST_PATH "ib_freqs",
                                 ondemand_profiles[profile].input_boost_freqs);
-                sysfs_write_int(INPUT_BOOST_PATH "up_threshold",
-                                ondemand_profiles[profile].boost_up_threshold);
                 sysfs_write_str(GPU_GOVERNOR_PATH,
                                 ondemand_profiles[profile].gpu_governor);
         } else if (strncmp(governor, "interactive", 11) == 0) {
@@ -223,6 +223,10 @@ static void set_power_profile(int profile)
                                 interactive_profiles[profile].target_loads);
                 sysfs_write_int(CPUFREQ_PATH "scaling_max_freq",
                                 interactive_profiles[profile].scaling_max_freq);
+                sysfs_write_int(CPUFREQ_PATH "scaling_min_freq",
+                                interactive_profiles[profile].scaling_min_freq);
+                sysfs_write_str(INPUT_BOOST_PATH "ib_freqs",
+                                interactive_profiles[profile].input_boost_freqs);
                 sysfs_write_str(GPU_GOVERNOR_PATH,
                                 interactive_profiles[profile].gpu_governor);
         }
