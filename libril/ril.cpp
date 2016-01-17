@@ -2348,7 +2348,7 @@ static int responseStringsDataRegistrationState(Parcel &p, void *response, size_
 
     if (p_cur[3] != NULL) {
         if (strncmp(p_cur[3], "30", 2) == 0) {
-            ALOGE("DATA_REGISTRATION_STATE: stock rat=30 (QCOM DC-HSPAP) -> AOSP rat=30 (HSPAP)");
+            ALOGE("DATA_REGISTRATION_STATE: stock rat=30 (QCOM DC-HSPAP) -> AOSP rat=15 (HSPAP)");
             strncpy(p_cur[3], "15", 2);
         } else if (strncmp(p_cur[3], "102", 3) == 0) {
             ALOGE("DATA_REGISTRATION_STATE: stock rat=102 -> AOSP rat=2 (EDGE)");
