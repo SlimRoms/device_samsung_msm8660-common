@@ -421,4 +421,16 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             result.sendToTarget();
         }
     }
+
+    @Override
+    public void setInitialAttachApn(String apn, String protocol, int authType, String username,
+            String password, Message result) {
+        riljLog("setInitialAttachApn: not supported");
+        if (result != null) {
+            CommandException ex = new CommandException(
+                CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(result, null, ex);
+            result.sendToTarget();
+        }
+    }
 }
