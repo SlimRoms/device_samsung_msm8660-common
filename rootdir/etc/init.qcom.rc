@@ -110,7 +110,7 @@ on boot
     # the modem firmware early. This is necessary to avoid a race condition
     # where in-call audio dies if a phone call is made before initialization
     # has finished.
-    exec /system/xbin/busybox dd if=/dev/smd0 of=/dev/null bs=1 count=1 skip=1
+    exec /system/bin/toybox dd if=/dev/smd0 of=/dev/null bs=1 count=1 skip=1
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
