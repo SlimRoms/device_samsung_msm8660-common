@@ -52,15 +52,23 @@
 /efs/wifi(/.*)?                                           u:object_r:wifi_efs_file:s0
 /system/bin/qcks                                          u:object_r:mdm_helper_exec:s0
 /system/bin/qmiproxy                                      u:object_r:qmuxd_exec:s0
+/system/bin/thermald                                      u:object_r:thermal-engine_exec:s0
 /system/etc/firmware(/.*)?                                u:object_r:firmware_file:s0
 
 # CMHW
 /data/.disable_touchlight                                 u:object_r:keypad_dev:s0
 /sys/devices/virtual/misc/sec_touchkey/brightness         u:object_r:keypad_dev:s0
 /sys/android_touch/sweep2wake                             u:object_r:keypad_dev:s0
-/sys/android_touch/sweep2wake_sensitive                   u:object_r:keypad_dev:s0
 /sys/devices/virtual/graphics/fb0/kcal                    u:object_r:panel_dev:s0
 /sys/devices/virtual/lcd/panel/power_reduce               u:object_r:panel_dev:s0
 /sys/devices/virtual/misc/enhanced_bln/blink(.*)          u:object_r:keypad_dev:s0
 /sys/devices/virtual/sec/sec_touchkey/keypad_enable       u:object_r:keypad_dev:s0
 /sys/devices/virtual/timed_output/vibrator/pwm_value      u:object_r:power_dev:s0
+/sys/module/mdp/parameters/mdp_gamma_cooler_colors        u:object_r:panel_dev:s0
+
+# DeviceSettings
+/sys/android_touch/doubletap2sleep                        u:object_r:keypad_dev:s0
+/sys/android_touch/doubletap2wake                         u:object_r:keypad_dev:s0
+/sys/class/misc/enhanced_bln/blink_timeout_ms             u:object_r:keypad_dev:s0
+/sys/module/board_msm8x60_celox/parameters/panel_uv       u:object_r:panel_dev:s0
+/sys/module/sec_m5mo/parameters/force_lp_flash            u:object_r:power_dev:s0
