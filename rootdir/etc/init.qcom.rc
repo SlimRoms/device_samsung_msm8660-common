@@ -52,6 +52,8 @@ on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
 
+    setprop persist.sys.ssr.restart_level 3
+
 on boot
     chown system system /dev/accelerometer
     chown system system /dev/akm8975
@@ -572,6 +574,13 @@ service ril-daemon /system/bin/rild
     socket rild-debug stream 660 radio system
     user root
     group radio cache inet misc audio log readproc wakelock qcom_diag
+
+# Limit to SoC reset (1) and independent SSR (3)
+on property:persist.sys.ssr.restart_level=1
+    write /sys/module/subsystem_restart/parameters/restart_level 1
+
+on property:persist.sys.ssr.restart_level=3
+    write /sys/module/subsystem_restart/parameters/restart_level 3
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
