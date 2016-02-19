@@ -227,6 +227,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     sensors.MSM8660_SURF
 
+# SPN override
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
+
 # Stlport
 PRODUCT_PACKAGES += \
     libstlport
