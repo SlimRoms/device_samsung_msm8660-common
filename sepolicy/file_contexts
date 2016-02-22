@@ -58,7 +58,6 @@
 # CMHW
 /data/.disable_touchlight                                 u:object_r:keypad_dev:s0
 /sys/devices/virtual/misc/sec_touchkey/brightness         u:object_r:keypad_dev:s0
-/sys/android_touch/sweep2wake                             u:object_r:keypad_dev:s0
 /sys/devices/virtual/graphics/fb0/kcal                    u:object_r:panel_dev:s0
 /sys/devices/virtual/lcd/panel/power_reduce               u:object_r:panel_dev:s0
 /sys/devices/virtual/misc/enhanced_bln/blink(.*)          u:object_r:keypad_dev:s0
@@ -69,6 +68,8 @@
 # DeviceSettings
 /sys/android_touch/doubletap2sleep                        u:object_r:keypad_dev:s0
 /sys/android_touch/doubletap2wake                         u:object_r:keypad_dev:s0
+/sys/android_touch/pocket_detect                          u:object_r:keypad_dev:s0
+/sys/android_touch/sweep2wake                             u:object_r:keypad_dev:s0
 /sys/class/misc/enhanced_bln/blink_timeout_ms             u:object_r:keypad_dev:s0
 /sys/module/board_msm8x60_celox/parameters/panel_uv       u:object_r:panel_dev:s0
 /sys/module/sec_m5mo/parameters/force_lp_flash            u:object_r:power_dev:s0

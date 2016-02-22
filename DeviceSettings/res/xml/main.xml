@@ -39,6 +39,11 @@
 	        android:entries="@array/dt2s_entries"
 	        android:entryValues="@array/dt2s_entries_values"
 	        android:defaultValue="0" />
+	    <!-- PocketDetection -->
+	    <CheckBoxPreference
+	        android:key="pocket_detect"
+	        android:title="@string/pocket_detect_title_head"
+	        android:summary="@string/pocket_detect_summary_head" />
 	    <!-- BLN Timeout -->
 	    <ListPreference
 	        android:key="bln_timeout"
