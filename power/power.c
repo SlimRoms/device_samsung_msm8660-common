@@ -229,6 +229,17 @@ static void set_power_profile(int profile)
                                 interactive_profiles[profile].input_boost_freqs);
                 sysfs_write_str(GPU_GOVERNOR_PATH,
                                 interactive_profiles[profile].gpu_governor);
+        } else {
+                sysfs_write_int(INPUT_BOOST_PATH,
+                                alt_profiles[profile].input_boost_on);
+                sysfs_write_int(CPUFREQ_PATH "scaling_max_freq",
+                                alt_profiles[profile].scaling_max_freq);
+                sysfs_write_int(CPUFREQ_PATH "scaling_min_freq",
+                                alt_profiles[profile].scaling_min_freq);
+                sysfs_write_str(INPUT_BOOST_PATH "ib_freqs",
+                                alt_profiles[profile].input_boost_freqs);
+                sysfs_write_str(GPU_GOVERNOR_PATH,
+                                alt_profiles[profile].gpu_governor);
         }
     }
 

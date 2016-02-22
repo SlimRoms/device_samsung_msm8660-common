@@ -222,3 +222,49 @@ static interactive_power_profile interactive_profiles[PROFILE_MAX] = {
         .gpu_governor = "performance",
     },
 };
+
+typedef struct alt_governor_settings {
+    int input_boost_on;
+    int scaling_max_freq;
+    int scaling_min_freq;
+    char *input_boost_freqs;
+    char *gpu_governor;
+} alt_power_profile;
+
+static alt_power_profile alt_profiles[PROFILE_MAX] = {
+    [PROFILE_POWER_SAVE] = {
+        .input_boost_on = 1,
+        .scaling_max_freq = 1026000,
+        .scaling_min_freq = 192000,
+        .input_boost_freqs = "756000 540000",
+        .gpu_governor = "ondemand",
+    },
+    [PROFILE_BIAS_POWER] = {
+        .input_boost_on = 1,
+        .scaling_max_freq = 1026000,
+        .scaling_min_freq = 192000,
+        .input_boost_freqs = "972000 864000",
+        .gpu_governor = "ondemand",
+    },
+    [PROFILE_BALANCED] = {
+        .input_boost_on = 1,
+        .scaling_max_freq = 1512000,
+        .scaling_min_freq = 384000,
+        .input_boost_freqs = "1242000 1026000",
+        .gpu_governor = "ondemand",
+    },
+    [PROFILE_BIAS_PERFORMANCE] = {
+        .input_boost_on = 1,
+        .scaling_max_freq = 1512000,
+        .scaling_min_freq = 756000,
+        .input_boost_freqs = "1242000 1026000",
+        .gpu_governor = "ondemand",
+    },
+    [PROFILE_HIGH_PERFORMANCE] = {
+        .input_boost_on = 0,
+        .scaling_max_freq = 1512000,
+        .scaling_min_freq = 384000,
+        .input_boost_freqs = "1512000 1512000",
+        .gpu_governor = "performance",
+    },
+};
