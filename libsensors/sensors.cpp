@@ -52,12 +52,13 @@
 #define SENSORS_PROXIMITY        (1<<ID_P)
 #define SENSORS_GYROSCOPE        (1<<ID_GY)
 
-#define SENSORS_ACCELERATION_HANDLE     0
-#define SENSORS_MAGNETIC_FIELD_HANDLE   1
-#define SENSORS_ORIENTATION_HANDLE      2
-#define SENSORS_LIGHT_HANDLE            3
-#define SENSORS_PROXIMITY_HANDLE        4
-#define SENSORS_GYROSCOPE_HANDLE        5
+#define SENSORS_ACCELERATION_HANDLE       0
+#define SENSORS_MAGNETIC_FIELD_HANDLE     1
+#define SENSORS_ORIENTATION_HANDLE        2
+#define SENSORS_LIGHT_HANDLE              3
+#define SENSORS_PROXIMITY_HANDLE          4
+#define SENSORS_GYROSCOPE_HANDLE          5
+#define SENSORS_SIGNIFICANT_MOTION_HANDLE 6
 
 #define AKM_FTRACE 0
 #define AKM_DEBUG 0
@@ -91,6 +92,11 @@ static const struct sensor_t sSensorList[] = {
           "STMicroelectronics",
           1, SENSORS_GYROSCOPE_HANDLE,
           SENSOR_TYPE_GYROSCOPE, RANGE_GYRO, CONVERT_GYRO, 6.1f, 1190, 0, 0,},
+        { "Movement Detection sensor",
+          "STMicroelectronics",
+          1, SENSORS_SIGNIFICANT_MOTION_HANDLE,
+          SENSOR_TYPE_SIGNIFICANT_MOTION, 1.0f, 1.0f, 0.01f, 0, 0, 0,
+          SENSOR_STRING_TYPE_SIGNIFICANT_MOTION, 0, 0, SENSOR_FLAG_ONE_SHOT_MODE | SENSOR_FLAG_WAKE_UP, { } },
 };
 
 
@@ -152,6 +158,7 @@ private:
             case ID_A:
             case ID_M:
             case ID_O:
+            case ID_SM:
                 return akm;
             case ID_P:
                 return proximity;
