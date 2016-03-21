@@ -37,7 +37,7 @@ public class PocketDetection implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_POCKET_DETECT, "0"));
+        Utils.writeValue(FILE, sharedPrefs.getBoolean(DeviceSettings.KEY_POCKET_DETECT, false) ? "1" : "0");
     }
 
     @Override
