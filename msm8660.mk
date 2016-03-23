@@ -219,6 +219,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/releasetools/partitioncheck.sh:install/bin/partitioncheck.sh
 
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.MSM8660_SURF
+
 # Stlport
 PRODUCT_PACKAGES += \
     libstlport
