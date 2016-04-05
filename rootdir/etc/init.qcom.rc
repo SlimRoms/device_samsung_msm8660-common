@@ -553,9 +553,10 @@ service kickstart /system/bin/qcks l
     disabled
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
-   class late_start
-   user root
-   group system
+    class main
+    user root
+    group system
+    disabled
 
 service thermald /system/bin/thermald
     class main
