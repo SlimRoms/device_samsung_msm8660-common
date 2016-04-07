@@ -29,6 +29,7 @@ public class Startup extends BroadcastReceiver {
         DoubleTap2Wake.restore(context);
         LPFlash.restore(context);
         PanelUV.restore(context);
+        PocketDetection.restore(context);
         Sweep2Wake.restore(context);
     }
 }

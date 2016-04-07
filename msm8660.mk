@@ -46,13 +46,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/system/lib/libqc-opt.so
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.mdpcomp.maxlayer=3 \
-    debug.hwc.dynThreshold=1.9 \
+    debug.composition.type=dyn \
     persist.hwc.mdpcomp.enable=false \
     ro.opengles.version=131072
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    lpa.decode=false \
     qcom.hw.aac.encoder=true \
     camera2.portability.force_api=1
 
@@ -75,8 +73,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-flags=--no-watch-dog \
     dalvik.vm.dex2oat-swap=false \
-    dalvik.vm.image-dex2oat-filter=speed \
-    ro.sys.fw.dex2oat_thread_count=4
+    dalvik.vm.image-dex2oat-filter=speed
+
+# Low-Ram
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.max_starting_bg=8 \
+    ro.sys.fw.bg_apps_limit=16 \
+    ro.sys.fw.use_trim_settings=true \
+    ro.sys.fw.empty_app_percent=50 \
+    ro.sys.fw.trim_empty_percent=100 \
+    ro.sys.fw.trim_cache_percent=100 \
+    ro.sys.fw.trim_enable_memory=874512384 \
+    ro.sys.fw.bservice_enable=true \
+    ro.sys.fw.bservice_limit=5 \
+    ro.sys.fw.bservice_age=5000
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -123,6 +133,17 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8660 \
     libgenlock \
     memtrack.msm8660
+
+# Execmod wrapper
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/ks \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/mpdecision \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/netmgrd \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qcks \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qmiproxy \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qmuxd \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/rmt_storage \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/thermald
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -193,6 +214,14 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.msm8660
+
+# Releasetools
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/releasetools/partitioncheck.sh:install/bin/partitioncheck.sh
+
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.MSM8660_SURF
 
 # Stlport
 PRODUCT_PACKAGES += \

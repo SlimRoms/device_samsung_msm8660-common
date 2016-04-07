@@ -68,9 +68,6 @@ TARGET_DISPLAY_INSECURE_MM_HEAP := true
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 TARGET_NO_INITLOGO := true
 
-# Dlmalloc
-MALLOC_IMPL := dlmalloc
-
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
@@ -93,7 +90,7 @@ TARGET_RECOVERY_FSTAB := device/samsung/msm8660-common/rootdir/etc/fstab.qcom
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common
+TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common/releasetools
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/samsung/msm8660-common/ril

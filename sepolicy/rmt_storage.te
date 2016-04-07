@@ -14,3 +14,5 @@ allow rmt_storage self:process execmem;
 allow rmt_storage self:socket create_socket_perms;
 allow rmt_storage sysfs_wake_lock:file w_file_perms;
 allow rmt_storage rmt_device:chr_file rw_file_perms;
+allow rmt_storage shell_exec:file rx_file_perms;
+allow rmt_storage system_file:file { rx_file_perms execmod };

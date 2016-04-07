@@ -32,6 +32,7 @@ public class DeviceSettings extends PreferenceActivity  {
     public static final String KEY_SWEEP2WAKE = "s2w";
     public static final String KEY_DT2W = "dt2w";
     public static final String KEY_DT2S = "dt2s";
+    public static final String KEY_POCKET_DETECT = "pocket_detect";
     public static final String KEY_BLN_TIMEOUT = "bln_timeout";
     public static final String KEY_PANEL_UV = "panel_uv";
     public static final String KEY_LP_FLASH = "lp_flash";
@@ -43,6 +44,7 @@ public class DeviceSettings extends PreferenceActivity  {
     private CheckBoxPreference mSweep2Wake;
     private ListPreference mDoubleTap2Wake;
     private ListPreference mDoubleTap2Sleep;
+    private CheckBoxPreference mPocketDetection;
     private ListPreference mBLNTimeout;
 
     private ListPreference mPanelUV;
@@ -65,6 +67,10 @@ public class DeviceSettings extends PreferenceActivity  {
         mDoubleTap2Sleep = (ListPreference) findPreference(KEY_DT2S);
         mDoubleTap2Sleep.setEnabled(DoubleTap2Sleep.isSupported());
         mDoubleTap2Sleep.setOnPreferenceChangeListener(new DoubleTap2Sleep());
+
+        mPocketDetection = (CheckBoxPreference) findPreference(KEY_POCKET_DETECT);
+        mPocketDetection.setEnabled(PocketDetection.isSupported());
+        mPocketDetection.setOnPreferenceChangeListener(new PocketDetection());
 
         mBLNTimeout = (ListPreference) findPreference(KEY_BLN_TIMEOUT);
         mBLNTimeout.setEnabled(BLNTimeout.isSupported());

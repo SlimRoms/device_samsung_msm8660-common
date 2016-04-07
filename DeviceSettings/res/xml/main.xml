@@ -22,7 +22,8 @@
 	    <CheckBoxPreference
 	        android:key="s2w"
 	        android:title="@string/s2w_title_head"
-	        android:summary="@string/s2w_summary_head" />
+	        android:summary="@string/s2w_summary_head"
+	        android:defaultValue="false" />
 	    <!-- DoubleTap2Wake -->
 	    <ListPreference
 	        android:key="dt2w"
@@ -39,6 +40,12 @@
 	        android:entries="@array/dt2s_entries"
 	        android:entryValues="@array/dt2s_entries_values"
 	        android:defaultValue="0" />
+	    <!-- PocketDetection -->
+	    <CheckBoxPreference
+	        android:key="pocket_detect"
+	        android:title="@string/pocket_detect_title_head"
+	        android:summary="@string/pocket_detect_summary_head"
+	        android:defaultValue="false" />
 	    <!-- BLN Timeout -->
 	    <ListPreference
 	        android:key="bln_timeout"
@@ -67,7 +74,8 @@
 	    <CheckBoxPreference
 	        android:key="lp_flash"
 	        android:title="@string/lp_flash_title_head"
-	        android:summary="@string/lp_flash_summary_head" />
+	        android:summary="@string/lp_flash_summary_head"
+	        android:defaultValue="false" />
 	</PreferenceCategory>
 
 </PreferenceScreen>

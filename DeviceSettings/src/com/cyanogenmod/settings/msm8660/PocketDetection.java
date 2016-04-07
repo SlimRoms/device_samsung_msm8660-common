@@ -23,9 +23,9 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class Sweep2Wake implements OnPreferenceChangeListener {
+public class PocketDetection implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/android_touch/sweep2wake";
+    private static final String FILE = "/sys/android_touch/pocket_detect";
 
     public static boolean isSupported() {
         return Utils.fileExists(FILE);
@@ -37,7 +37,7 @@ public class Sweep2Wake implements OnPreferenceChangeListener {
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getBoolean(DeviceSettings.KEY_SWEEP2WAKE, false) ? "1" : "0");
+        Utils.writeValue(FILE, sharedPrefs.getBoolean(DeviceSettings.KEY_POCKET_DETECT, false) ? "1" : "0");
     }
 
     @Override
