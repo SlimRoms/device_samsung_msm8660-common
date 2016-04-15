@@ -126,6 +126,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     libsamsung_symbols
 
+# Debug - For userdebug builds
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.adb.secure=0 \
+    ro.debuggable=1 \
+    persist.service.adb.enable=1
+
+# Enable ADB
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.service.debuggable=1 \
+    persist.sys.usb.config=mtp,adb
+   
 # Display
 PRODUCT_PACKAGES += \
     copybit.msm8660 \
