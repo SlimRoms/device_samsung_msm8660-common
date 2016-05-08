@@ -150,6 +150,10 @@ PRODUCT_PACKAGES += \
     fsck.f2fs \
     resize2fs_static
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8660
