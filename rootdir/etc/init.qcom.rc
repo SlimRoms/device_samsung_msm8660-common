@@ -52,7 +52,6 @@ on early-boot
     setrlimit 8 67108864 67108864
 
 on boot
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
