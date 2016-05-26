@@ -1,2 +1,4 @@
+allow platform_app battery_service:service_manager find;
+allow platform_app healthd_service:service_manager find;
 allow platform_app kernel:dir search;
 allow platform_app kernel:file r_file_perms;

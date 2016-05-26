@@ -50,6 +50,7 @@
 /data/misc/akmd_set.txt                                   u:object_r:sensors_data_file:s0
 /efs/bluetooth(/.*)?                                      u:object_r:bluetooth_efs_file:s0
 /efs/wifi(/.*)?                                           u:object_r:wifi_efs_file:s0
+/efs/calibration_data                                     u:object_r:sensors_data_file:s0
 /system/bin/qcks                                          u:object_r:mdm_helper_exec:s0
 /system/bin/qmiproxy                                      u:object_r:qmuxd_exec:s0
 /system/bin/thermald                                      u:object_r:thermal-engine_exec:s0
