@@ -520,52 +520,15 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
-# Export GPIO56 for fusion targets to enable/disable hub
-service usbhub_init /system/bin/usbhub_init
-   class late_start
-   user root
-   disabled
-   oneshot
-
-on property:ro.board.platform=msm7630_fusion
-    start usbhub_init
-
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
 on property:init.svc.p2p_supplicant=stopped
     stop dhcpcd
 
-#on property:bluetooth.isEnabled=true
-#    start btwlancoex
-#    start amp_load
-#    write /sys/class/bluetooth/hci0/idle_timeout 7000
-
-#on property:bluetooth.isEnabled=false
-#    start amp_unload
-
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 660 root radio
-    user radio
-    group system radio
-    disabled
-
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmcblk0p11 /dev/block/mmcblk0p17
     class core
     user root
-
-service bridgemgrd /system/bin/bridgemgrd
-    class late_start
-    user radio
-    group radio qcom_diag
-    disabled
-
-service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
-    class late_start
-    user system
-    group system inet
-    disabled
 
 service qmiproxy /system/bin/qmiproxy
     class main
@@ -581,12 +544,6 @@ service qmuxd /system/bin/qmuxd
 service netmgrd /system/bin/netmgrd
     class core
 
-service sensors /system/bin/sensors.qcom
-    class late_start
-    user root
-    group root
-    disabled
-
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
     stop netmgrd
@@ -594,25 +551,6 @@ on property:ro.use_data_netmgrd=false
 service kickstart /system/bin/qcks l
     oneshot
     disabled
-
-# Start kickstart if csfb or svlte2a target
-on property:ro.baseband=csfb
-    wait /dev/ttyHSL1
-    mkdir /data/qcks 0770 system system
-    start kickstart
-
-on property:ro.baseband=svlte2a
-    wait /dev/ttyHSL1
-    mkdir /data/qcks 0770 system system
-    start kickstart
-
-on property:ro.baseband=svlte2a
-   setprop ro.config.ehrpd true
-   setprop ro.ril.svlte1x true
-
-on property:sys.radio.shutdown=true
-   exec /system/bin/cat /sys/devices/platform/rs300000a7.65536/force_sync
-   exec /system/bin/cat /sys/devices/platform/rs300100a7.65536/force_sync
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
    class late_start
@@ -659,21 +597,6 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-#for WiFi MFG(TestMode)
-service mfgloader /system/bin/mfgloader
-    class main
-    disabled
-    oneshot
-
-service wlandutservice /system/bin/wlandutservice
-    class main
-    user system
-    group wifi net_raw net_admin system inet
-    disabled
-    oneshot
-# end of wifi
-
-
 service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     class late_start
     disabled
@@ -704,73 +627,30 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service wiperiface /system/bin/wiperiface
-    user location
-    group qcom_oncrpc
-    oneshot
-
-service quipc_igsn /system/bin/quipc_igsn
-    class late_start
-    user gps
-    group inet gps
-    disabled
-
-service quipc_main /system/bin/quipc_main
-    class late_start
-    user gps
-    group net_admin wifi inet gps
-    disabled
-
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user root
-    group system qcom_oncrpc
-    disabled
-    oneshot
-
-service drmdiag /system/bin/drmdiagapp
-    class late_start
-     user root
-     disabled
-     oneshot
-
-on property:drmdiag.load=1
-    start drmdiag
-
-on property:drmdiag.load=0
-    stop drmdiag
-
-#service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
-#    class late_start
-#    oneshot
-
 service charger /charger
     class charger
     critical
     seclabel u:r:healthd:s0
 
-#service abld /system/bin/mm-abl-daemon
-#    class late_start
-#    disabled
-
-service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
-    class late_start
-    group radio
-    disabled
-    oneshot
-
-on property:persist.data.ds_fmc_app.mode=1
-    start ds_fmc_appd
-
-service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
-    class late_start
-    user system
-    group qcom_oncrpc net_bt_admin inet radio wifi
-    disabled
-
-on property:persist.ims.regmanager.mode=1
-    start ims_regmanager
-
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
+
+# Start kickstart if csfb or svlte2a target
+on property:ro.baseband=csfb
+    wait /dev/ttyHSL1
+    mkdir /data/qcks 0770 system system
+    start kickstart
+
+on property:ro.baseband=svlte2a
+    wait /dev/ttyHSL1
+    mkdir /data/qcks 0770 system system
+    start kickstart
+
+on property:ro.baseband=svlte2a
+   setprop ro.config.ehrpd true
+   setprop ro.ril.svlte1x true
+
+on property:sys.radio.shutdown=true
+   exec /system/bin/cat /sys/devices/platform/rs300000a7.65536/force_sync
+   exec /system/bin/cat /sys/devices/platform/rs300100a7.65536/force_sync
