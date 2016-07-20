@@ -144,6 +144,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qmiproxy \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qmuxd \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/rmt_storage \
+    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/sec-ril \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/thermald
 
 # Filesystem management tools

@@ -14,6 +14,8 @@ elif [ "${0}" = "/system/bin/qmuxd" ]; then
 	exec "/system/bin/qmuxd.exec" "${@}"
 elif [ "${0}" = "/system/bin/rmt_storage" ]; then
 	exec "/system/bin/rmt_storage.exec" "${@}"
+elif [ "${0}" = "/system/bin/sec-ril" ]; then
+	exec "/system/bin/sec-ril.exec" "${@}"
 elif [ "${0}" = "/system/bin/thermald" ]; then
 	exec "/system/bin/thermald.exec" "${@}"
 fi

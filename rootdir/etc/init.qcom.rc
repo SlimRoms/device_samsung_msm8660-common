@@ -35,7 +35,7 @@ on early-init
     mkdir /efs 0771 system system
 
 on init
-    export LD_SHIM_LIBS /system/lib/libutils.so|libsamsung_symbols.so
+    export LD_SHIM_LIBS /system/lib/libril.so|libsamsung_symbols.so:/system/lib/libutils.so|libsamsung_symbols.so
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -547,6 +547,11 @@ service netmgrd /system/bin/netmgrd
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
     stop netmgrd
+
+service secril-daemon /system/bin/sec-ril
+    class main
+    user root
+    group radio cache inet misc audio sdcard_rw qcom_diag log
 
 service kickstart /system/bin/qcks l
     oneshot
