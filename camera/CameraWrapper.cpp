@@ -122,6 +122,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
     // Fix rotation mismatch
     params.set(android::CameraParameters::KEY_ROTATION, "0");
 
+    params.set("preview-frame-rate-mode", "frame-rate-fixed");
+
     ALOGV("%s: fixed parameters:", __FUNCTION__);
 #if !LOG_NDEBUG
     params.dump();
