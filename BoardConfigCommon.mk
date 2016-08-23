@@ -21,7 +21,6 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm8660-common/include
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_BUILD_VARIANT := userdebug
-USE_CLANG_PLATFORM_BUILD := true
 
 # Architecture
 TARGET_CPU_VARIANT := scorpion
