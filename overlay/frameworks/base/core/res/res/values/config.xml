@@ -64,7 +64,7 @@
          thrashing if set too low. Overrides the default value chosen by ActivityManager based
          on screen size and total memory for the largest lowmemorykiller bucket, and scaled
          proportionally to the smaller buckets. -1 keeps the default. -->
-    <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">81920</integer>
+    <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">122880</integer>
 
     <!-- Expose notification LED configuration in Settings (for BLN) -->
     <bool name="config_intrusiveNotificationLed">true</bool>
