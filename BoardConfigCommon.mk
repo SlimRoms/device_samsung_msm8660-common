@@ -37,7 +37,7 @@ COMMON_GLOBAL_CFLAGS += -DLEGACY_QCOM_VOICE
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUEDROID_VENDOR_CONF := device/samsung/msm8660-common/bluetooth/vnd_msm8660.txt
+BOARD_CUSTOM_BT_CONFIG := device/samsung/msm8660-common/bluetooth/vnd_msm8660.txt
 
 # Camera
 BOARD_CAMERA_USE_MM_HEAP := true
