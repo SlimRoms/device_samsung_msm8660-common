@@ -93,7 +93,10 @@ BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 # Recovery
 TARGET_RECOVERY_DEVICE_DIRS := device/samsung/msm8660-common
 TARGET_RECOVERY_FSTAB := device/samsung/msm8660-common/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USERIMAGES_USE_F2FS := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common/releasetools
@@ -104,30 +107,6 @@ BOARD_RIL_CLASS := ../../../device/samsung/msm8660-common/ril
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/samsung/msm8660-common/sepolicy
-
-# TWRP
-DEVICE_RESOLUTION := 480x800
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-RECOVERY_SDCARD_ON_DATA := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-TW_EXTERNAL_STORAGE_PATH := "/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
-TW_EXCLUDE_SUPERSU := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_NO_CPU_TEMP := true
-TW_NO_REBOOT_BOOTLOADER := true
-TW_INCLUDE_CRYPTO := true
-TW_CRYPTO_FS_TYPE := "ext4"
-TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p28"
-TW_CRYPTO_MNT_POINT := "/data"
-TW_CRYPTO_FS_OPTIONS := "noauto_da_alloc"
-TW_CRYPTO_FS_FLAGS := "0x00000006"
-TW_CRYPTO_KEY_LOC := "/efs/metadata"
-TW_MAX_BRIGHTNESS := 255
-
 
 # Wifi related defines
 BOARD_HAVE_SAMSUNG_WIFI := true
