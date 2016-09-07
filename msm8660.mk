@@ -225,6 +225,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/releasetools/partitioncheck.sh:install/bin/partitioncheck.sh
 
+# SDCardFS
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.sdcardfs=true
+
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.MSM8660_SURF
