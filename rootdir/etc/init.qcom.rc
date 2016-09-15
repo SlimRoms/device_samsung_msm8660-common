@@ -225,12 +225,8 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
 
 on fs
-    mkdir /data/tombstones 0771 system system
-    mkdir /tombstones/modem 0771 system system
-    mkdir /tombstones/mdm 0771 system system
-    mkdir /tombstones/lpass 0771 system system
-
     mount_all fstab.qcom
+
     # Enable zRAM
     swapon_all /fstab.qcom
 
@@ -238,6 +234,13 @@ on fs
 on post-fs-data
 
     write /sys/devices/i2c-0/0-0024/cyttsp_update_fw 1
+
+    mkdir /data/tombstones 0771 system system
+    mkdir /tombstones/modem 0771 system system
+    mkdir /tombstones/mdm 0771 system system
+    mkdir /tombstones/lpass 0771 system system
+
+    restorecon_recursive /efs
 
     chown radio system /efs
     chmod 0771 /efs

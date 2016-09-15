@@ -3,8 +3,8 @@
 
 # GPU device
 /dev/kgsl-2d(.*)                                          u:object_r:gpu_device:s0
-/dev/gemini0                                              u:object_r:camera_device:s0
-/dev/msm_camera(/.*)?                                     u:object_r:camera_device:s0
+/dev/gemini0                                              u:object_r:video_device:s0
+/dev/msm_camera(/.*)?                                     u:object_r:video_device:s0
 /dev/msm_rotator                                          u:object_r:gpu_device:s0
 
 # Wireless

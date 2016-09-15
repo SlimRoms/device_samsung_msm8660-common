@@ -15,11 +15,14 @@ unix_socket_connect(secril-daemon, rild, rild)
 allow secril-daemon net_radio_prop:property_service set;
 allow secril-daemon radio_prop:property_service set;
 
+allow secril-daemon bluetooth_efs_file:dir { search };
+allow secril-daemon bluetooth_efs_file:file { read open getattr };
 allow secril-daemon efs_file:dir { search };
+allow secril-daemon efs_file:file { read open getattr };
 allow secril-daemon radio_data_file:dir { search write add_name read open remove_name };
 allow secril-daemon radio_data_file:file { create_file_perms };
 allow secril-daemon shell_exec:file rx_file_perms;
+allow secril-daemon sysfs:file { read open getattr };
 allow secril-daemon sysfs_wake_lock:file { read write open };
 allow secril-daemon system_file:file { rx_file_perms execmod };
-allow secril-daemon unlabeled:dir { search };
-allow secril-daemon unlabeled:file { read open getattr setattr };
+allow secril-daemon toolbox_exec:file rx_file_perms;

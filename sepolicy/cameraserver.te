@@ -1,0 +1,4 @@
+allow cameraserver video_device:chr_file rw_file_perms;
+allow cameraserver oncrpc_device:dir r_dir_perms;
+allow cameraserver oncrpc_device:chr_file rw_file_perms;
+allow cameraserver system_file:file execmod;
