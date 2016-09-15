@@ -25,19 +25,19 @@ import android.os.Message;
 import android.os.Parcel;
 import android.os.SystemProperties;
 import android.provider.Settings;
+import android.telephony.ModemActivityInfo;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.Rlog;
-
 import android.telephony.SignalStrength;
 
-import android.telephony.PhoneNumberUtils;
 import com.android.internal.telephony.RILConstants;
+import com.android.internal.telephony.uicc.IccCardApplicationStatus;
+import com.android.internal.telephony.uicc.IccCardStatus;
+import com.android.internal.telephony.uicc.IccUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import com.android.internal.telephony.uicc.IccCardApplicationStatus;
-import com.android.internal.telephony.uicc.IccCardStatus;
 
 /**
  * Qualcomm RIL for the Samsung MSM8660 family.
@@ -220,7 +220,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
 
     @Override
     protected void
-    processUnsolicited (Parcel p) {
+    processUnsolicited (Parcel p, int type) {
         Object ret;
         int dataPosition = p.dataPosition();
         int origResponse = p.readInt();
@@ -279,7 +279,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
                 p.setDataPosition(dataPosition);
 
                 // Forward responses that we are not overriding to the super class
-                super.processUnsolicited(p);
+                super.processUnsolicited(p, type);
                 return;
         }
 
@@ -289,7 +289,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             p.setDataPosition(dataPosition);
             p.writeInt(newResponse);
             p.setDataPosition(dataPosition);
-            super.processUnsolicited(p);
+            super.processUnsolicited(p, type);
         }
 
     }
@@ -309,7 +309,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
 
     @Override
     protected RILRequest
-    processSolicited (Parcel p) {
+    processSolicited (Parcel p, int type) {
         int serial, error;
         boolean found = false;
         int dataPosition = p.dataPosition(); // save off position within the Parcel
@@ -342,7 +342,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             /* Nothing we care about, go up */
             p.setDataPosition(dataPosition);
             // Forward responses that we are not overriding to the super class
-            return super.processSolicited(p);
+            return super.processSolicited(p, type);
         }
         rr = findAndRemoveRequestFromList(serial);
         if (rr == null) {
@@ -607,6 +607,17 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
                 CommandException.Error.REQUEST_NOT_SUPPORTED);
             AsyncResult.forMessage(result, null, ex);
             result.sendToTarget();
+        }
+    }
+
+    @Override
+    public void getModemActivityInfo(Message response) {
+        riljLog("getModemActivityInfo: not supported");
+        if (response != null) {
+            CommandException ex = new CommandException(
+                CommandException.Error.REQUEST_NOT_SUPPORTED);
+            AsyncResult.forMessage(response, null, ex);
+            response.sendToTarget();
         }
     }
 }
