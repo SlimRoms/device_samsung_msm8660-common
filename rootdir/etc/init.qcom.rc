@@ -483,6 +483,7 @@ on post-fs-data
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmcblk0p11 /dev/block/mmcblk0p17
     class core
     user root
+    group wakelock
 
 service qmiproxy /system/bin/qmiproxy
     class main
@@ -493,10 +494,11 @@ service qmiproxy /system/bin/qmiproxy
 service qmuxd /system/bin/qmuxd
     class core
     user radio
-    group radio audio bluetooth gps qcom_diag log
+    group radio audio bluetooth gps qcom_diag log wakelock
 
 service netmgrd /system/bin/netmgrd
     class core
+    group radio system wakelock
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -505,9 +507,10 @@ on property:ro.use_data_netmgrd=false
 service secril-daemon /system/bin/sec-ril
     class main
     user root
-    group radio cache inet misc audio sdcard_rw qcom_diag log
+    group radio cache inet misc audio sdcard_rw qcom_diag log wakelock
 
 service kickstart /system/bin/qcks l
+    group wakelock
     oneshot
     disabled
 
@@ -538,6 +541,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     #   group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
+    group system wakelock
     disabled
     oneshot
 
@@ -554,6 +558,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
 #   group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
+    group system wakelock
     disabled
     oneshot
 
