@@ -41,7 +41,7 @@ public class ColorEnhancement {
      * the operation failed while reading the status; true in any other case.
      */
     public static boolean isEnabled() {
-        return FileUtils.readOneLine(COLOR_FILE) == "Y";
+        return (FileUtils.readOneLine(COLOR_FILE)).equals("Y");
     }
 
     /**
@@ -52,12 +52,7 @@ public class ColorEnhancement {
      * failed; true in any other case.
      */
     public static boolean setEnabled(boolean status) {
-        if (status == true) {
-            return FileUtils.writeLine(COLOR_FILE, "Y");
-        } else {
-            return FileUtils.writeLine(COLOR_FILE, "N");
-        }
+        return FileUtils.writeLine(COLOR_FILE, (status ? "Y" : "N"));
     }
 
 }
-

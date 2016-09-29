@@ -44,9 +44,7 @@ public class KeyDisabler {
      */
 
     public static boolean isActive() {
-        int i;
-        i = Integer.parseInt(FileUtils.readOneLine(KEYDISABLER_PATH));
-
+        int i = Integer.parseInt(FileUtils.readOneLine(KEYDISABLER_PATH));
         return i > 0 ? false : true;
     }
 
