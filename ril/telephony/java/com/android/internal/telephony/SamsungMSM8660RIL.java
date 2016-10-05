@@ -104,7 +104,7 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
 
     @Override
     protected Object responseSignalStrength(Parcel p) {
-        int numInts = 13;
+        int numInts = 12;
         int response[];
 
         // Get raw data
@@ -117,23 +117,9 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
         //cdma
         response[2] %= 256;
         response[4] %= 256;
+        response[7] &= 0xff;
 
-        // RIL_LTE_SignalStrength
-        if ((response[7] & 0xff) == 255 || response[7] == 99) {
-            // If LTE is not enabled, clear LTE results
-            // 7-11 must be -1 for GSM signal strength to be used (see
-            // frameworks/base/telephony/java/android/telephony/SignalStrength.java)
-            // make sure lte is disabled
-            response[7] = 99;
-            response[8] = SignalStrength.INVALID;
-            response[9] = SignalStrength.INVALID;
-            response[10] = SignalStrength.INVALID;
-            response[11] = SignalStrength.INVALID;
-        } else { // lte is gsm on samsung/qualcomm cdma stack
-            response[7] &= 0xff;
-        }
-
-        return new SignalStrength(response[0], response[1], response[2], response[3], response[4], response[5], response[6], response[7], response[8], response[9], response[10], response[11], (response[12] != 0));
+        return new SignalStrength(response[0], response[1], response[2], response[3], response[4], response[5], response[6], response[7], response[8], response[9], response[10], response[11], true);
 
     }
 
@@ -248,29 +234,29 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
                     Rlog.e(RILJ_LOG_TAG, "am " + amString + " could not be executed.");
                 }
                 break;
-            case 11021: // RIL_UNSOL_RESPONSE_HANDOVER:
-                ret = responseVoid(p);
-                break;
-            case 1036:
-                ret = responseVoid(p);
-                break;
             case 11017: // RIL_UNSOL_WB_AMR_STATE:
                 ret = responseInts(p);
                 setWbAmr(((int[])ret)[0]);
                 break;
+            case 11021: // RIL_UNSOL_RESPONSE_HANDOVER:
+                ret = responseVoid(p);
+                break;
+            case 1036: // RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED
+                ret = responseVoid(p);
+                break;
             // Remap
-            case 1039:
+            case 1038:
                 newResponse = RIL_UNSOL_ON_SS;
                 break;
-            case 1040:
+            case 1039:
                 newResponse = RIL_UNSOL_STK_CC_ALPHA_NOTIFY;
                 break;
-            case 1041:
+            case 1040:
                 newResponse = RIL_UNSOL_UICC_SUBSCRIPTION_STATUS_CHANGED;
                 break;
             case 1037: // RIL_UNSOL_TETHERED_MODE_STATE_CHANGED
-            case 1038: // RIL_UNSOL_DATA_NETWORK_STATE_CHANGED
-            case 1042: // RIL_UNSOL_QOS_STATE_CHANGED_IND
+            case 1041: // RIL_UNSOL_QOS_STATE_CHANGED_IND
+            case 1042: // RIL_UNSOL_MODIFY_CALL
                 riljLog("SamsungMSM8660RIL: ignoring unsolicited response " +
                         origResponse);
                 return;
