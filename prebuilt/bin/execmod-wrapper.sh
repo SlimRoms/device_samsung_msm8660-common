@@ -1,8 +1,6 @@
 #!/system/bin/sh
 
-if [ "${0}" = "/system/bin/ks" ]; then
-	exec "/system/bin/ks.exec" "${@}"
-elif [ "${0}" = "/system/bin/mpdecision" ]; then
+if [ "${0}" = "/system/bin/mpdecision" ]; then
 	exec "/system/bin/mpdecision.exec" "${@}"
 elif [ "${0}" = "/system/bin/netmgrd" ]; then
 	exec "/system/bin/netmgrd.exec" "${@}"
