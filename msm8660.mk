@@ -114,6 +114,9 @@ PRODUCT_PACKAGES += \
     Snap \
     camera.msm8660
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/priv-app/Snap.apk:system/priv-app/Snap/Snap.apk
+
 # Chromecast
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.enable.chromecast.mirror=true
