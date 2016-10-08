@@ -53,7 +53,6 @@
 /efs/calibration_data                                     u:object_r:sensors_data_file:s0
 /system/bin/qcks                                          u:object_r:mdm_helper_exec:s0
 /system/bin/qmiproxy                                      u:object_r:qmuxd_exec:s0
-/system/bin/sec-ril                                       u:object_r:secril-daemon_exec:s0
 /system/bin/thermald                                      u:object_r:thermal-engine_exec:s0
 /system/etc/firmware(/.*)?                                u:object_r:firmware_file:s0
 
