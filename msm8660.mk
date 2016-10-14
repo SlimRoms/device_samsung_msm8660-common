@@ -52,7 +52,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     qcom.hw.aac.encoder=true \
-    camera2.portability.force_api=1
+    camera2.portability.force_api=1 \
+    media.stagefright.legacyencoder=true \
+    media.stagefright.less-secure=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_plmn="" \

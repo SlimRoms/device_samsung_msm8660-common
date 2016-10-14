@@ -45,6 +45,7 @@ BOARD_CUSTOM_BT_CONFIG := device/samsung/msm8660-common/bluetooth/vnd_msm8660.tx
 BOARD_CAMERA_USE_MM_HEAP := true
 BOARD_GLOBAL_CFLAGS += -DQCOM_BSP_CAMERA_ABI_HACK
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
