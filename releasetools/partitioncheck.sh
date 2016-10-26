@@ -12,6 +12,7 @@
 DATA_FORMAT=$(mount | grep /data | awk '{ print $5 }');
 DATA_PARTITION=$(mount | grep /data | awk '{ print $1 }');
 SYSTEM_PARTITION=$(mount | grep /system | awk '{ print $1 }');
+ENC_DATA_PARTITION="/dev/block/dm-0"
 VP_DATA_PARTITION="/dev/block/mmcblk0p28"
 VP_SYSTEM_PARTITION="/dev/block/mmcblk0p25"
 # This is the stock PIT file's MD5. 
@@ -50,7 +51,20 @@ ui_print "Checking partitions..."
 # Check if the data partition is, in fact, the data partition.
 # The only realistic time this will not be true is if the user is 
 # on a non-repartitioned recovery.
-if [ "$DATA_PARTITION" != "$VP_DATA_PARTITION" -o "$SYSTEM_PARTITION" != "$VP_SYSTEM_PARTITION" ]; then
+if [ "$DATA_PARTITION" = "$ENC_DATA_PARTITION" ]; then
+  # Device is encrypted
+  if [ "$SYSTEM_PARTITION" != "$VP_SYSTEM_PARTITION" ]; then
+    ui_print "Your partition layout isn't supported."
+    ui_print "This usually means that you are using a non-virtually partitioned recovery, such as one from http://twrp.me/."
+    ui_print "In order to take full advantage of this ROM, you must flash the recovery by bryan2894, linked in the thread."
+    ui_print "That custom recovery makes it so everything flashes in the right place."
+    ui_print "Otherwise, you would be pretty much unable to flash Gapps, and all your apps, downloads, music, etc, all get squeezed into that already-small 2GB data partition."
+    ui_print "The whole point of this virtual repartitioning is to make it so you DON'T run out of storage, not run out twice as fast!"
+    ui_print "Make sure you followed the instructions for virtually partitioning your device."
+    ui_print "Read Post 2 from the XDA thread for your device for more information."
+    exit 1
+  fi
+elif [ "$DATA_PARTITION" != "$VP_DATA_PARTITION" -o "$SYSTEM_PARTITION" != "$VP_SYSTEM_PARTITION" ]; then
   ui_print "Your partition layout isn't supported."
   ui_print "This usually means that you are using a non-virtually partitioned recovery, such as one from http://twrp.me/."
   ui_print "In order to take full advantage of this ROM, you must flash the recovery by bryan2894, linked in the thread."
@@ -63,7 +77,7 @@ if [ "$DATA_PARTITION" != "$VP_DATA_PARTITION" -o "$SYSTEM_PARTITION" != "$VP_SY
 fi
 
 # Compare the MD5 checksums of the PIT partition, /dev/block/mmcblk0p11, with the
-# official one. 
+# official one.
 # A custom PIT does us no good.
 if [ "$PIT_MD5" != "$STOCK_PIT_MD5" ]; then
   ui_print "You have a custom PIT file, which isn't supported."
