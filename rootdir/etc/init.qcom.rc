@@ -609,7 +609,3 @@ on property:ro.baseband=svlte2a
 on property:ro.baseband=svlte2a
    setprop ro.config.ehrpd true
    setprop ro.ril.svlte1x true
-
-on property:sys.radio.shutdown=true
-   exec /system/bin/cat /sys/devices/platform/rs300000a7.65536/force_sync
-   exec /system/bin/cat /sys/devices/platform/rs300100a7.65536/force_sync
