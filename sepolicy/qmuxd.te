@@ -7,3 +7,5 @@ allow qmuxd radio_prop:property_service set;
 allow qmuxd self:process execmem;
 allow qmuxd shell_exec:file rx_file_perms;
 allow qmuxd system_file:file { rx_file_perms execmod };
+
+diag_use(qmuxd)
