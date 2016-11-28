@@ -47,15 +47,13 @@ __BEGIN_DECLS
  * The SENSORS Module
  */
 
-/* the CM3663 is a binary proximity sensor that triggers around 6 cm on
+/* the GP2A is a binary proximity sensor that triggers around 5 cm on
  * this hardware */
-#define PROXIMITY_THRESHOLD_CM  6.0f
+#define PROXIMITY_THRESHOLD_GP2A  5.0f
 
 /*****************************************************************************/
 
 #define AKM_DEVICE_NAME     "/dev/akm8975"
-#define CM_DEVICE_NAME      "/dev/i2c11" // FIXME Proximity
-#define LS_DEVICE_NAME      "/dev/i2c11" // FIXME Lig
 
 /*
     E/Sensors ( 2656): AkmSensor: processing event (type=0, code=0)
@@ -102,8 +100,8 @@ __BEGIN_DECLS
 #define EVENT_TYPE_PROXIMITY        ABS_DISTANCE
 #define EVENT_TYPE_LIGHT            ABS_MISC
 
-#define EVENT_TYPE_GYRO_X           REL_RX
-#define EVENT_TYPE_GYRO_Y           REL_RY
+#define EVENT_TYPE_GYRO_X           REL_RY
+#define EVENT_TYPE_GYRO_Y           REL_RX
 #define EVENT_TYPE_GYRO_Z           REL_RZ
 
 // 90 LSB = 1G for KR3DM
@@ -112,6 +110,7 @@ __BEGIN_DECLS
 
 // conversion of acceleration data to SI units (m/s^2)
 #define RANGE_A                     (2*GRAVITY_EARTH)
+#define RESOLUTION_A                (RANGE_A/(512*NUMOFACCDATA))
 #define CONVERT_A                   (GRAVITY_EARTH / LSB / NUMOFACCDATA)
 #define CONVERT_A_X                 (CONVERT_A)
 #define CONVERT_A_Y                 (-CONVERT_A)
@@ -133,7 +132,7 @@ __BEGIN_DECLS
 #define RANGE_GYRO                  (500.0f*(float)M_PI/180.0f)
 #define CONVERT_GYRO                ((70.0f / 4000.0f) * ((float)M_PI / 180.0f))
 #define CONVERT_GYRO_X              (-CONVERT_GYRO)
-#define CONVERT_GYRO_Y              (-CONVERT_GYRO)
+#define CONVERT_GYRO_Y              (CONVERT_GYRO)
 #define CONVERT_GYRO_Z              (CONVERT_GYRO)
 
 #define SENSOR_STATE_MASK           (0x7FFF)

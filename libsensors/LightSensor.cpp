@@ -138,7 +138,7 @@ int LightSensor::readEvents(sensors_event_t* data, int count)
                 if (event->value != -1) {
                     ALOGV("LightSensor: event (value=%d)", event->value);
                     // FIXME: not sure why we're getting -1 sometimes
-                    mPendingEvent.light = event->value;
+                    mPendingEvent.light = indexToValue(event->value);
                 }
             }
         } else if (type == EV_SYN) {
@@ -156,4 +156,27 @@ int LightSensor::readEvents(sensors_event_t* data, int count)
     }
 
     return numEventReceived;
+}
+
+
+float LightSensor::indexToValue(size_t index) const
+{
+    /* Driver gives a rolling average adc value.  We convert it lux levels. */
+    static const struct adcToLux {
+        size_t adc_value;
+        float  lux_value;
+    } adcToLux[] = {
+        {  360,     7.0 },  /* from    0 -  360 adc, we map to       7.0 lux */
+        {  798,    70.0 },  /* from  361 -  798 adc, we map to      70.0 lux */
+        { 1240,  1000.0 },  /* from  799 - 1240 adc, we map to    1000.0 lux */
+        { 1673, 10000.0 },  /* from 1241 - 1673 adc, we map to   10000.0 lux */
+        { 3000, 16000.0 },  /* from 1674 - 3000 adc, we map to   16000.0 lux */
+    };
+    size_t i;
+    for (i = 0; i < ARRAY_SIZE(adcToLux); i++) {
+        if (index < adcToLux[i].adc_value) {
+            return adcToLux[i].lux_value;
+        }
+    }
+    return adcToLux[ARRAY_SIZE(adcToLux)-1].lux_value;
 }

@@ -114,7 +114,7 @@ int GyroSensor::setDelay(int32_t handle, int64_t delay_ns)
     fd = open(input_sysfs_path, O_RDWR);
     if (fd >= 0) {
         char buf[80];
-        sprintf(buf, "%lld", delay_ns);
+        sprintf(buf, "%lld", delay_ns / 1000000);
         write(fd, buf, strlen(buf)+1);
         close(fd);
         return 0;

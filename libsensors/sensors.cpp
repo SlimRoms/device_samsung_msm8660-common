@@ -71,28 +71,34 @@ static const struct sensor_t sSensorList[] = {
         { "K3DH Acceleration Sensor",
           "STMicroelectronics",
           1, SENSORS_ACCELERATION_HANDLE,
-          SENSOR_TYPE_ACCELEROMETER, RANGE_A, CONVERT_A, 0.25f, 20000, 0, 0,},
+          SENSOR_TYPE_ACCELEROMETER, RANGE_A, RESOLUTION_A, 0.25f, 15000, 0, 0,
+          SENSOR_STRING_TYPE_ACCELEROMETER, "", 0, SENSOR_FLAG_CONTINUOUS_MODE, { } },
         { "AK8975 Magnetic field Sensor",
           "Asahi Kasei Microdevices",
           1, SENSORS_MAGNETIC_FIELD_HANDLE,
-          SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, CONVERT_M, 6.0f, 16667, 0, 0,},
+          SENSOR_TYPE_MAGNETIC_FIELD, 2000.0f, CONVERT_M, 6.0f, 30000, 0, 0,
+          SENSOR_STRING_TYPE_MAGNETIC_FIELD, "", 0, SENSOR_FLAG_CONTINUOUS_MODE, { } },
         { "AK8975 Orientation Sensor",
           "Asahi Kasei Microdevices",
           1, SENSORS_ORIENTATION_HANDLE,
-          SENSOR_TYPE_ORIENTATION, 360.0f, CONVERT_O, 7.8f, 16667, 0, 0,},
+          SENSOR_TYPE_ORIENTATION, 360.0f, CONVERT_O, 7.8f, 30000, 0, 0,
+          SENSOR_STRING_TYPE_ORIENTATION, "", 0, SENSOR_FLAG_CONTINUOUS_MODE, { } },
         { "GP2A Light Sensor",
           "Sharp",
           1, SENSORS_LIGHT_HANDLE,
-          SENSOR_TYPE_LIGHT, 3000.0f, 1.0f, 0.75f, 0, 0, 0,},
+          SENSOR_TYPE_LIGHT, 3000.0f, 1.0f, 0.75f, 0, 0, 0,
+          SENSOR_STRING_TYPE_LIGHT, "", 0, SENSOR_FLAG_ON_CHANGE_MODE, { } },
         { "GP2A Proximity Sensor",
           "Sharp",
           1, SENSORS_PROXIMITY_HANDLE,
-          SENSOR_TYPE_PROXIMITY, 5.0f, 5.0f, 0.75f, 0, 0, 0,},
+          SENSOR_TYPE_PROXIMITY, 5.0f, 5.0f, 0.75f, 0, 0, 0,
+          SENSOR_STRING_TYPE_PROXIMITY, "", 0, SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ON_CHANGE_MODE, { } },
         { "K3G Gyroscope Sensor",
           "STMicroelectronics",
           1, SENSORS_GYROSCOPE_HANDLE,
-          SENSOR_TYPE_GYROSCOPE, RANGE_GYRO, CONVERT_GYRO, 6.1f, 1190, 0, 0,},
-        { "Movement Detection sensor",
+          SENSOR_TYPE_GYROSCOPE, RANGE_GYRO, CONVERT_GYRO, 6.1f, 15000, 0, 0,
+          SENSOR_STRING_TYPE_GYROSCOPE, "", 0, SENSOR_FLAG_CONTINUOUS_MODE, { } },
+        { "Movement Detection Sensor",
           "STMicroelectronics",
           1, SENSORS_SIGNIFICANT_MOTION_HANDLE,
           SENSOR_TYPE_SIGNIFICANT_MOTION, 1.0f, 1.0f, 0.01f, 0, 0, 0,
@@ -112,20 +118,20 @@ static int sensors__get_sensors_list(struct sensors_module_t* module,
 }
 
 static struct hw_module_methods_t sensors_module_methods = {
-        open: open_sensors
+        .open = open_sensors
 };
 
 struct sensors_module_t HAL_MODULE_INFO_SYM = {
-        common: {
-                tag: HARDWARE_MODULE_TAG,
-                version_major: 1,
-                version_minor: 0,
-                id: SENSORS_HARDWARE_MODULE_ID,
-                name: "Samsung Sensor module",
-                author: "Samsung Electronic Company",
-                methods: &sensors_module_methods,
+        .common = {
+             .tag= HARDWARE_MODULE_TAG,
+             .module_api_version = 1,
+             .hal_api_version = 0,
+             .id = SENSORS_HARDWARE_MODULE_ID,
+             .name = "Samsung Sensor module",
+             .author = "Samsung Electronic Company",
+             .methods = &sensors_module_methods,
         },
-        get_sensors_list: sensors__get_sensors_list,
+        .get_sensors_list = sensors__get_sensors_list,
 };
 
 struct sensors_poll_context_t {
@@ -218,7 +224,9 @@ sensors_poll_context_t::~sensors_poll_context_t() {
 int sensors_poll_context_t::activate(int handle, int enabled) {
     int index = handleToDriver(handle);
     if (index < 0) return index;
-
+    if (index == gyro && enabled == 0) {
+        usleep(200*1000);
+    }
     int err =  mSensors[index]->enable(handle, enabled);
     if (enabled && !err) {
         const char wakeMessage(WAKE_MESSAGE);
