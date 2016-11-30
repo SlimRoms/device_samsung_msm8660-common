@@ -19,18 +19,6 @@
     <string name="category_display_title">Display</string>
     <string name="category_misc_title">Misc</string>
 
-    <string name="s2w_title_head">Sweep2Wake</string>
-    <string name="s2w_summary_head">Sweep the four keys from left to right to wake the device</string>
-
-    <string name="dt2w_title_head">DoubleTap2Wake</string>
-    <string name="dt2w_summary_head">Double tap one of the four keys to wake the device</string>
-
-    <string name="dt2s_title_head">DoubleTap2Sleep</string>
-    <string name="dt2s_summary_head">Double tap one of the four keys to turn off the screen</string>
-
-    <string name="pocket_detect_title_head">Pocket Detection</string>
-    <string name="pocket_detect_summary_head">Disable wake controls when in pocket</string>
-
     <string name="bln_timeout_title_head">BLN blink timeout</string>
     <string name="bln_timeout_summary_head">BLN will stop blinking on its own after this amount of time</string>
 

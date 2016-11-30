@@ -29,10 +29,6 @@ import android.preference.PreferenceCategory;
 
 public class DeviceSettings extends PreferenceActivity  {
 
-    public static final String KEY_SWEEP2WAKE = "s2w";
-    public static final String KEY_DT2W = "dt2w";
-    public static final String KEY_DT2S = "dt2s";
-    public static final String KEY_POCKET_DETECT = "pocket_detect";
     public static final String KEY_BLN_TIMEOUT = "bln_timeout";
     public static final String KEY_PANEL_UV = "panel_uv";
     public static final String KEY_LP_FLASH = "lp_flash";
@@ -41,36 +37,14 @@ public class DeviceSettings extends PreferenceActivity  {
     public static final String KEY_DISPLAY_CATEGORY = "category_display";
     public static final String KEY_MISC_CATEGORY = "category_misc";
 
-    private CheckBoxPreference mSweep2Wake;
-    private ListPreference mDoubleTap2Wake;
-    private ListPreference mDoubleTap2Sleep;
-    private CheckBoxPreference mPocketDetection;
     private ListPreference mBLNTimeout;
-
     private ListPreference mPanelUV;
-
     private CheckBoxPreference mLPFlash;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.main);
-
-        mSweep2Wake = (CheckBoxPreference) findPreference(KEY_SWEEP2WAKE);
-        mSweep2Wake.setEnabled(Sweep2Wake.isSupported());
-        mSweep2Wake.setOnPreferenceChangeListener(new Sweep2Wake());
-
-        mDoubleTap2Wake = (ListPreference) findPreference(KEY_DT2W);
-        mDoubleTap2Wake.setEnabled(DoubleTap2Wake.isSupported());
-        mDoubleTap2Wake.setOnPreferenceChangeListener(new DoubleTap2Wake());
-
-        mDoubleTap2Sleep = (ListPreference) findPreference(KEY_DT2S);
-        mDoubleTap2Sleep.setEnabled(DoubleTap2Sleep.isSupported());
-        mDoubleTap2Sleep.setOnPreferenceChangeListener(new DoubleTap2Sleep());
-
-        mPocketDetection = (CheckBoxPreference) findPreference(KEY_POCKET_DETECT);
-        mPocketDetection.setEnabled(PocketDetection.isSupported());
-        mPocketDetection.setOnPreferenceChangeListener(new PocketDetection());
 
         mBLNTimeout = (ListPreference) findPreference(KEY_BLN_TIMEOUT);
         mBLNTimeout.setEnabled(BLNTimeout.isSupported());
@@ -83,7 +57,6 @@ public class DeviceSettings extends PreferenceActivity  {
         mLPFlash = (CheckBoxPreference) findPreference(KEY_LP_FLASH);
         mLPFlash.setEnabled(LPFlash.isSupported());
         mLPFlash.setOnPreferenceChangeListener(new LPFlash());
-
     }
 
     @Override
