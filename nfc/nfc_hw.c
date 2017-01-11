@@ -1,5 +1,6 @@
 /*
- * Copyright 2016 The CyanogenMod Project
+ * Copyright (C) 2016 The CyanogenMod Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +33,6 @@ static uint8_t pn544_eedata_settings[][4] = {
     ,{0x00,0x9B,0xD6,0x1E} // GSP setting for this threshold
     ,{0x00,0x9B,0xDD,0x1C} // GSP setting for this threshold
     ,{0x00,0x9B,0x84,0x13} // ANACM2 setting
-    ,{0x00,0x99,0x81,0x7F} // ANAVMID setting PCD
-    ,{0x00,0x99,0x31,0x70} // ANAVMID setting PICC
 
     // Enable PBTF
     ,{0x00,0x98,0x00,0x3F} // SECURE_ELEMENT_CONFIGURATION - No Secure Element
@@ -44,33 +43,50 @@ static uint8_t pn544_eedata_settings[][4] = {
     // Change RF Level Detector ANARFLDWU
     ,{0x00,0x99,0x23,0x00} // Default Value is 0x01
 
-    // Polling Loop Optimisation Detection  - 0x86 to enable - 0x00 to disable
-    ,{0x00,0x9E,0x74,0x00} // Default Value is 0x00, bits 0->2: sensitivity (0==maximal, 6==minimal), bits 3->6: RFU, bit 7: (0 -> disabled, 1 -> enabled)
+    // Low-power polling
+    ,{0x00,0x9E,0x74,0xB0} // Default Value is 0x00, bits 0->2: sensitivity (0==max, 6==min),
+                           // bit 3: RFU,
+                           // bits 4,5 hybrid low-power: # of low-power polls per regular poll
+                           // bit 6: RFU
+                           // bit 7: (0 -> disabled, 1 -> enabled)
+    ,{0x00,0x9E,0x7D,0xB0} // bits 0->3: RFU,
+                           // bits 4,5: # retries after low power detection
+                           // 0=1 retry, 1=2 retry, 2=3 retry, 3=4 retry
+                           // bit 6: RFU,
+                           // bit 7: Enable or disable retry mechanism (0: disable, 1: enable)
+    ,{0x00,0x9F,0x28,0x01} // bits 0->7: # of measurements per low-power poll
 
     // Polling Loop - Card Emulation Timeout
     ,{0x00,0x9F,0x35,0x14} // Time for which PN544 stays in Card Emulation mode after leaving RF field
     ,{0x00,0x9F,0x36,0x60} // Default value 0x0411 = 50 ms ---> New Value : 0x1460 = 250 ms
 
     //LLC Timer
-    ,{0x00,0x9C,0x31,0x00} //
-    ,{0x00,0x9C,0x32,0x00} //
+    ,{0x00,0x9C,0x31,0x00} // Guard host time-out in ms (MSB)
+    ,{0x00,0x9C,0x32,0xC8} // Guard host time-out in ms (LSB)
+    ,{0x00,0x9C,0x19,0x40} // Max RX retry (PN544=>host?)
+    ,{0x00,0x9C,0x1A,0x40} // Max TX retry (PN544=>host?)
+
     ,{0x00,0x9C,0x0C,0x00} //
     ,{0x00,0x9C,0x0D,0x00} //
     ,{0x00,0x9C,0x12,0x00} //
     ,{0x00,0x9C,0x13,0x00} //
 
-    //WTX for LLCP communication
-    ,{0x00,0x98,0xA2,0x0E} // Max value: 14 (default value: 09)
+    // NFC-DEP Target Waiting Time (WT)
+    ,{0x00,0x98,0xA2,0x08} // Set to 0x08 as required by [digital] (default value: 09)
 
-    //Murata Resonator setting
-    ,{0x00,0x9C,0x5C,0x06} // default 0x0140 = 1ms
-    ,{0x00,0x9C,0x5D,0x81} // 0x0681(= 5ms) is recommended value by Murata
-    ,{0x00,0x9F,0x19,0xFF} // nxp test 3sec
-    ,{0x00,0x9F,0x1A,0xFF} // nxp test 3sec
+    //SE GPIO
+    ,{0x00, 0x98, 0x93, 0x40}
 
     // Set NFCT ATQA
-    ,{0x00,0x98,0x7D,0x02}
-    ,{0x00,0x98,0x7E,0x00}
+    ,{0x00, 0x98, 0x7D, 0x02}
+    ,{0x00, 0x98, 0x7E, 0x00}
+
+    // Enable CEA detection mechanism
+    ,{0x00, 0x9F, 0xC8, 0x01}
+    // Set NFC-F poll RC=0x00
+    ,{0x00, 0x9F, 0x9A, 0x00}
+    // Setting for EMD support for ISO 14443-4 Reader
+    ,{0x00,0x9F,0x09,0x00} // 0x00 - Disable EMD support, 0x01 - Enable EMD support
 };
 
 static int pn544_close(hw_device_t *dev) {
@@ -115,7 +131,7 @@ struct nfc_module_t HAL_MODULE_INFO_SYM = {
         .version_major = 1,
         .version_minor = 0,
         .id = NFC_HARDWARE_MODULE_ID,
-        .name = "S4 NFC HW HAL",
+        .name = "MSM8660 NFC HW HAL",
         .author = "The Android Open Source Project",
         .methods = &nfc_module_methods,
     },
